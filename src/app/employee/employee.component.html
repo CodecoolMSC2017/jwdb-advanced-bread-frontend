@@ -1,0 +1,7 @@
+<h1>Employees</h1>
+
+<ul *ngFor = "let employee of employees$">
+  <a routerLink = "employees"><strong>{{ employee.firstName }} {{ employee.lastName}}</strong></a>
+  <li>Email : {{ employee.email }} </li>
+
+</ul>
