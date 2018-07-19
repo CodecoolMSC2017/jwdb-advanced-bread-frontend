@@ -7,6 +7,7 @@ import { LoginGuard } from './login.guard';
 import { RegisterComponent } from './register/register.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { OwnerComponent } from './owner/owner.component';
 
 const routes: Routes = [
   { 
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path: 'restaurants' ,
     component: RestaurantsComponent,
+    canActivate: [LoginGuard] 
+  },
+  {
+    path: 'profile' ,
+    component: OwnerComponent,
     canActivate: [LoginGuard] 
   }
 

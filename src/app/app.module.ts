@@ -16,6 +16,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { EmployeeComponent }from './employee/employee.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { OwnerComponent } from './owner/owner.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
     EmployeeComponent,
     SidebarComponent,
     EmployeeDetailComponent,
-    RestaurantsComponent
+    RestaurantsComponent,
+    OwnerComponent
   ],
   imports: [
     AppRoutingModule,
