@@ -1,10 +1,10 @@
 <h1>Employees</h1>
-<ul>
+<ul [@listStagger] = 'employees$'>
   <li *ngFor = "let employee of employees$">
     <a routerLink = ""><strong>{{ employee.firstName }} {{ employee.lastName}}</strong></a>
   <ul>
-    <li>Email : {{ employee.email }}</li>
-    <li>Role : {{ employee.role }}</li>
+    <li><strong>Email : </strong>{{ employee.email }}</li>
+    <li><strong>Role : </strong>{{ employee.role }}</li>
   </ul>
   </li>
   

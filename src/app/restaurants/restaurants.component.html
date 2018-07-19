@@ -1,0 +1,18 @@
+<h1>Restaurants</h1>
+
+<ul [@listStagger] = 'restaurants$'>
+    <li *ngFor = "let restaurant of restaurants$">
+    <a routerLink = ""><strong>{{ restaurant.name }}</strong></a>
+    <ul>
+      <li><strong>Street : </strong>  {{ restaurant.address.street }}</li>
+      <li><strong>City : </strong>  {{ restaurant.address.city }}</li>
+      <li><strong>PostalCode : </strong>  {{ restaurant.address.postalCode }}</li>
+      <li><strong>State :</strong>  {{ restaurant.address.state }}</li>
+      <li><strong>Country :</strong>  {{ restaurant.address.country }}</li>
+    </ul>
+    <ul>
+      <li><strong>Email : </strong> {{ restaurant.email }}</li>
+      <li><strong>Phone : </strong>{{ restaurant.phone}}</li>
+    </ul>
+  </li>
+</ul>

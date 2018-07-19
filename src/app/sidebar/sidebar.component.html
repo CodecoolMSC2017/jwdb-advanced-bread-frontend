@@ -2,18 +2,26 @@
   <ul>
     <li>
       <a routerLink = "" [class.activated] = "currentUrl == '/'">
-        <i class = "material-icons">account_box</i>
+        <i class = "material-icons">home</i>
       </a>
     </li>
     <li>
       <a routerLink = "posts" [class.activated] = "currentUrl == '/posts'">
-        <i class = "material-icons">message</i>
+        <i class = "material-icons">account_box</i>
       </a>
     </li>
     <li>
-      <a routerLink = "employee" [class.activated] = "currentUrl == '/owner/1/restaurant/1/employee'">
+      <a routerLink = "employee" [class.activated] = "currentUrl == '/employee'">
         <i class = "material-icons">work_outline</i>
       </a>
     </li>
+    <li>
+        <a routerLink = "restaurants" [class.activated] = "currentUrl == '/restaurants'">
+          <i class="material-icons">restaurant</i></a>
+      </li>
+      <li id = "logoutA">
+          <a (click) = "deleteAuth()">
+            <i class="material-icons">power_settings_new</i></a>
+        </li>
   </ul>
 </nav>

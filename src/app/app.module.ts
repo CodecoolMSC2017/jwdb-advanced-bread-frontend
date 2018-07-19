@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { httpInterceptorProviders } from './http-interceptors';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EmployeeComponent }from './employee/employee.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,16 @@ import { EmployeeDetailComponent } from './employee-detail/employee-detail.compo
     RegisterComponent,
     EmployeeComponent,
     SidebarComponent,
-    EmployeeDetailComponent
+    EmployeeDetailComponent,
+    RestaurantsComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
+
   ],
   providers: [
     httpInterceptorProviders

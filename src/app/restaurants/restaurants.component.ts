@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { AuthService } from '../auth.service';
+import { Observable } from 'rxjs';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 
-
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss'],
+  selector: 'app-restaurants',
+  templateUrl: './restaurants.component.html',
+  styleUrls: ['./restaurants.component.scss'],
   animations: [
     trigger('listStagger', [
       transition('* <=> *', [
@@ -32,16 +31,16 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
     ])
   ]
 })
-export class EmployeeComponent implements OnInit {
+export class RestaurantsComponent implements OnInit {
 
   user = JSON.parse(sessionStorage.getItem('user'));
-  employees$ : Object;
+  restaurants$ : Object;
 
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.getEmployees().subscribe(
-      data => this.employees$ = data
+    this.data.getRestaurants(this.user.id).subscribe(
+      data => this.restaurants$ = data
     )
   }
 
