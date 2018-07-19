@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [LoginGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {path: 'employee' , component: EmployeeComponent}
+  {path: 'employee' , component: EmployeeComponent,canActivate: [LoginGuard] }
 ];
 
 @NgModule({

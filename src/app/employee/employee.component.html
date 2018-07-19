@@ -1,7 +1,11 @@
 <h1>Employees</h1>
-
-<ul *ngFor = "let employee of employees$">
-  <a routerLink = "employees"><strong>{{ employee.firstName }} {{ employee.lastName}}</strong></a>
-  <li>Email : {{ employee.email }} </li>
-
+<ul>
+  <li *ngFor = "let employee of employees$">
+    <p><strong>{{ employee.firstName }} {{ employee.lastName}}</strong></p>
+  <ul>
+    <li>Email : {{ employee.email }}</li>
+    <li>Phone : {{ employee.phone }}</li>
+  </ul>
+  </li>
+  
 </ul>
