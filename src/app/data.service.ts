@@ -21,6 +21,6 @@ export class DataService {
   }
 
   getEmployees() {
-    return this.http.get("/api/owner/1/restaurant/1/employee");
+    return this.http.get("/api/owner/:id/restaurant/:id/employee");
   }
 }

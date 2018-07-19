@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { httpInterceptorProviders } from './http-interceptors';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EmployeeComponent }from './employee/employee.component';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EmployeeComponent }from './employee/employee.component';
     LoginComponent,
     RegisterComponent,
     EmployeeComponent,
-    SidebarComponent
+    SidebarComponent,
+    EmployeeDetailComponent
   ],
   imports: [
     AppRoutingModule,
