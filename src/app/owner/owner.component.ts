@@ -17,7 +17,7 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
             stagger(
               '50ms',
               animate(
-                '550ms ease-out',
+                '300ms ease-out',
                 style({ opacity: 1, transform: 'translateY(0px)' })
               )
             )
@@ -34,15 +34,16 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 export class OwnerComponent implements OnInit {
   user = JSON.parse(sessionStorage.getItem('user'));
   
-  owner$ : Object;
+  user$ : Object;
+
 
   constructor(private data : DataService) { }
 
   ngOnInit() {
-    this.data.getOwner(this.user.id).subscribe(
-      data => this.owner$ = data
-    
+    this.data.getOwner().subscribe(
+      data => this.user$ = data
     )
+  
   }
 
 }

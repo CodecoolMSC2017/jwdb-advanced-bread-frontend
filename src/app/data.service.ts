@@ -10,14 +10,31 @@ export class DataService {
 
   
   getEmployees() {
-    return this.http.get("/api/owner/1/restaurant/1/employee");
+    return this.http.get("/api/owner/employee");
   }
 
-  getRestaurants(ownerId){
-    return this.http.get("/api/owner/"+ownerId+"/restaurant");
+  getEmployeesByRestaurant(restaurantId) {
+    return this.http.get("/api/owner/restaurant/"+restaurantId+"/employee");
   }
 
-  getOwner(userId){
-    return this.http.get("/api/owner/"+userId);
+  getEmployee(restaurantId,userId){
+    return this.http.get("/api/owner/restaurant/"+restaurantId+"/employee/"+userId);
+  }
+
+  getRestaurants(){
+    return this.http.get("/api/owner/restaurant");
+  }
+
+  getOwner(){
+    return this.http.get("/api/owner/user");
+  }
+
+
+  getItems(){
+    return this.http.get("/api/owner/items");
+  }
+
+  getRestaurant(restaurantId){
+    return this.http.get("/api/owner/restaurant/"+restaurantId);
   }
 }

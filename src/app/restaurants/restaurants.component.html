@@ -1,8 +1,11 @@
 <h1>Restaurants</h1>
 
 <ul [@listStagger] = 'restaurants$'>
-    <li *ngFor = "let restaurant of restaurants$">
-    <a routerLink = ""><strong>{{ restaurant.name }}</strong></a>
+    <li *ngFor = "let restaurant of restaurants$"> 
+    <a id = "editiconA"><i id = "editIcon" class="material-icons">edit</i></a>
+    <br>
+    <a routerLink = "/restaurant/{{ restaurant.id }}/employee"><strong>{{ restaurant.name }}</strong></a>
+    
     <ul>
       <li><strong>Street : </strong>  {{ restaurant.address.street }}</li>
       <li><strong>City : </strong>  {{ restaurant.address.city }}</li>

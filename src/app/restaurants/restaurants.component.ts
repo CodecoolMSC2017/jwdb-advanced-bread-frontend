@@ -17,7 +17,7 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
             stagger(
               '50ms',
               animate(
-                '550ms ease-out',
+                '300ms ease-out',
                 style({ opacity: 1, transform: 'translateY(0px)' })
               )
             )
@@ -35,11 +35,12 @@ export class RestaurantsComponent implements OnInit {
 
   user = JSON.parse(sessionStorage.getItem('user'));
   restaurants$ : Object;
+  employees$ : Object;
 
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.getRestaurants(this.user.id).subscribe(
+    this.data.getRestaurants().subscribe(
       data => this.restaurants$ = data
     )
   }

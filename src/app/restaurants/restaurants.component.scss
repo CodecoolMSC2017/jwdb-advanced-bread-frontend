@@ -1,0 +1,23 @@
+
+
+#editIcon {
+   margin-left:625px;
+   color: grey;
+   position: absolute;
+   font-size: 40px;
+   
+}
+
+#editiconA {
+    border: none;
+    color: grey;
+    text-align: center;
+    opacity: 0.6;
+    transition: 0.3s;
+  }
+  
+#editiconA:hover{
+    opacity: 1;
+    color:#797979;
+}
+

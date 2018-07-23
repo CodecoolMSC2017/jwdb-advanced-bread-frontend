@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute } from '@angular/router';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 
 
@@ -18,7 +19,7 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
             stagger(
               '50ms',
               animate(
-                '550ms ease-out',
+                '300ms ease-out',
                 style({ opacity: 1, transform: 'translateY(0px)' })
               )
             )
@@ -34,15 +35,22 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 })
 export class EmployeeComponent implements OnInit {
 
-  user = JSON.parse(sessionStorage.getItem('user'));
+  resaturantId : Object;
   employees$ : Object;
+  restaurant$ : Object;
 
-  constructor(private data: DataService) { }
+
+  constructor(private data: DataService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => this.resaturantId = params.id)
+   }
 
   ngOnInit() {
-    this.data.getEmployees().subscribe(
+    this.data.getEmployeesByRestaurant(this.resaturantId).subscribe(
       data => this.employees$ = data
     )
+    this.data.getRestaurant(this.resaturantId).subscribe(
+      data => this.restaurant$ = data
+    )
+    
   }
-
 }

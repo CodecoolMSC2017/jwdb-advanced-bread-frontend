@@ -1,7 +1,7 @@
-<h1>Employees</h1>
+<h1>{{ restaurant$.name }}'s Employees</h1>
 <ul [@listStagger] = 'employees$'>
   <li *ngFor = "let employee of employees$">
-    <a routerLink = ""><strong>{{ employee.firstName }} {{ employee.lastName}}</strong></a>
+    <a routerLink = "/restaurant/{{ restaurant$.id }}/employee/{{ employee.id }}"><strong>{{ employee.firstName }} {{ employee.lastName}}</strong></a>
   <ul>
     <li><strong>Email : </strong>{{ employee.email }}</li>
     <li><strong>Role : </strong>{{ employee.role }}</li>

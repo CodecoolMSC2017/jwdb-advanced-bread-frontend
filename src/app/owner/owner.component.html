@@ -1,17 +1,17 @@
 
 <h1>Profile</h1>
-<ul [@listStagger] = 'owner$'>
+<ul>
   <li>
-    <p><strong>{{ owner$.firstName }} </strong> <br> <strong>{{ owner$.lastName}}</strong></p>
+    <p><strong>{{ owner.firstName }} </strong> <br> <strong>{{ owner.lastName}}</strong></p>
     <ul>
-        <li><strong>Street : </strong>  {{ owner$.address.street }}</li>
-        <li><strong>City : </strong>  {{ owner$.address.city }}</li>
-        <li><strong>PostalCode : </strong>  {{ owner$.address.postalCode }}</li>
-        <li><strong>State :</strong>  {{ owner$.address.state }}</li>
-        <li><strong>Country :</strong>  {{ owner$.address.country }}</li>
+        <li><strong>Street : </strong>  {{ owner.address.street }}</li>
+        <li><strong>City : </strong>  {{ owner.address.city }}</li>
+        <li><strong>PostalCode : </strong>  {{ owner.address.postalCode }}</li>
+        <li><strong>State :</strong>  {{ owner.address.state }}</li>
+        <li><strong>Country :</strong>  {{ owner.address.country }}</li>
       </ul>
       <ul>
-        <li><strong>Email : </strong> {{ owner$.email }}</li>
+        <li><strong>Email : </strong> {{ owner.email }}</li>
       </ul>
   </li>
   

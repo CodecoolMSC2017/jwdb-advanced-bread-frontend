@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
 import { RegisterComponent } from './register/register.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { OwnerComponent } from './owner/owner.component';
 
@@ -25,21 +26,26 @@ const routes: Routes = [
     path: 'register', 
     component: RegisterComponent },
   {
-    path: 'employee' ,
+    path: 'restaurant/:id/employee' ,
     component: EmployeeComponent,
     canActivate: [LoginGuard] 
   },
   {
-    path: 'restaurants' ,
+    path: 'restaurant' ,
     component: RestaurantsComponent,
+    canActivate: [LoginGuard] 
+  },
+  {
+    path: 'restaurant/:restaurantId/employee/:employeeId' ,
+    component: EmployeeDetailComponent,
     canActivate: [LoginGuard] 
   },
   {
     path: 'profile' ,
     component: OwnerComponent,
     canActivate: [LoginGuard] 
+  
   }
-
 
 ];
 
