@@ -2,8 +2,8 @@
 
 <ul [@listStagger] = 'restaurants$'>
     <li *ngFor = "let restaurant of restaurants$"> 
-    <a routerLink = "/restaurant/{{ restaurant.id }}/employee"><strong>{{ restaurant.name }}</strong></a>
-    <span id = "edit-icon-span"><a><i id = "edit-icon" class="material-icons">edit</i></a></span>
+    <a routerLink = "/restaurant/{{ restaurant.id }}/employee" class="button"><strong>{{ restaurant.name }}</strong></a>
+    <!--<a><span id = "edit-icon-span"><i id = "edit-icon" class="material-icons">edit</i></span></a>-->
     <ul>
       <li><strong>Street : </strong>  {{ restaurant.address.street }}</li>
       <li><strong>City : </strong>  {{ restaurant.address.city }}</li>
