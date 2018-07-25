@@ -1,22 +1,22 @@
 <nav>
   <ul>
-    <li>
+    <li class = "menu-button">
       <a routerLink = "" [class.activated] = "currentUrl == '/'">
-        <i class = "material-icons">home</i>
+        <i class = "material-icons">home</i><span class = "menu-button-text">HOME</span>
       </a>
     </li>
-    <li>
+    <li class = "menu-button">
       <a routerLink = "profile" [class.activated] = "currentUrl == '/profile'">
-        <i class = "material-icons">account_box</i>
+        <i class = "material-icons">account_box</i><span class = "menu-button-text">PROFILE</span>
       </a>
     </li>
-    <li>
+    <li class = "menu-button">
         <a routerLink = "restaurant" [class.activated] = "currentUrl == '/restaurant'">
-          <i class="material-icons">restaurant</i></a>
+          <i class="material-icons">restaurant</i><span class = "menu-button-text">RESTAURANT</span></a>
       </li>
-      <li id = "logoutA">
+      <li id = "logoutA" class = "menu-button">
           <a (click)="logOut()">
-            <i class="material-icons">power_settings_new</i></a>
+            <i class="material-icons">power_settings_new</i><span class = "menu-button-text">LOG OUT</span></a>
         </li>
   </ul>
 </nav>

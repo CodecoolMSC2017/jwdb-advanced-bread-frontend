@@ -1,10 +1,24 @@
-<h1>Login</h1>
-<label>Username: </label>
-<input placeholder = "Username" type = "text" [(ngModel)]="loginDetails.username">
-<br>
-<label>Password: </label>
-<input placeholder="Password" type = "password" [(ngModel)]="loginDetails.password">
-<br>
-<button (click)="getAuth()">Login</button>
-<br>
-<a routerLink="/register" routerLinkActive="active">Click here to register</a>
+
+<div class="login">
+    <div class="login-screen">
+        <div class="app-title">
+            <h1>Login</h1>
+        </div>
+
+        <div class="login-form">
+            <div class="control-group">
+            <input type="text" class="login-field" value="" placeholder="username"[(ngModel)]="loginDetails.username">
+            <label class="login-field-icon fui-user" for="login-name"></label>
+            </div>
+
+            <div class="control-group">
+            <input type="password" class="login-field" value="" placeholder="password" [(ngModel)]="loginDetails.password">
+            <label class="login-field-icon fui-lock" for="login-pass"></label>
+            </div>
+
+            <a class="btn btn-primary btn-large btn-block" (click)= "getAuth()">login</a>
+            <a class="login-link" href="#">Forgot your password?</a>
+        </div>
+    </div>
+</div>
+    

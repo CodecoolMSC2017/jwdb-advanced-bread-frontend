@@ -1,23 +1,26 @@
 
 
-#editIcon {
-   margin-left:625px;
+
+#edit-icon { 
+   margin-left:530px;
    color: grey;
-   position: absolute;
+   float: right;
    font-size: 40px;
    
 }
 
-#editiconA {
-    border: none;
-    color: grey;
+#edit-icon-span {
+    padding: 0px;
+    margin: 0px;
+    margin-top: -30px;
+    float: right;
     text-align: center;
     opacity: 0.6;
     transition: 0.3s;
   }
   
-#editiconA:hover{
+#edit-icon-span :hover{
     opacity: 1;
-    color:#797979;
+    color:#343333;
 }
 
