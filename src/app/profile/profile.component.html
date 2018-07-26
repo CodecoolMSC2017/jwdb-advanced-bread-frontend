@@ -1,0 +1,18 @@
+
+<h1>Profile</h1>
+<ul>
+  <li>
+    <p><strong>{{ user$.firstName }} </strong> <strong>{{ user$.lastName}}</strong></p>
+    <ul>
+        <li><strong>Street : </strong>  {{ user$.address.street }}</li>
+        <li><strong>City : </strong>  {{ user$.address.city }}</li>
+        <li><strong>PostalCode : </strong>  {{ user$.address.postalCode }}</li>
+        <li><strong>State :</strong>  {{ user$.address.state }}</li>
+        <li><strong>Country :</strong>  {{ user$.address.country }}</li>
+      </ul>
+      <ul>
+        <li><strong>Email : </strong> {{ user$.email }}</li>
+      </ul>
+  </li>
+  
+</ul>

@@ -8,7 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
-import { OwnerComponent } from './owner/owner.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { 
@@ -39,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: 'profile' ,
-    component: OwnerComponent,
+    component: ProfileComponent,
     canActivate: [LoginGuard] 
   
   }

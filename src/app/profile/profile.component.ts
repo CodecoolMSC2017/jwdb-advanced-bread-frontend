@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 
 @Component({
-  selector: 'app-owner',
-  templateUrl: './owner.component.html',
-  styleUrls: ['./owner.component.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss'],
   animations: [
     trigger('listStagger', [
       transition('* <=> *', [
@@ -31,7 +31,7 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
     ])
   ]
 })
-export class OwnerComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   user = JSON.parse(sessionStorage.getItem('user'));
   
   user$ : Object;
@@ -40,7 +40,7 @@ export class OwnerComponent implements OnInit {
   constructor(private data : DataService) { }
 
   ngOnInit() {
-    this.data.getOwner().subscribe(
+    this.data.getProfile().subscribe(
       data => this.user$ = data
     )
   

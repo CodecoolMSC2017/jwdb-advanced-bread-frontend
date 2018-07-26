@@ -16,7 +16,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { EmployeeComponent }from './employee/employee.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
-import { OwnerComponent } from './owner/owner.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RestaurantDeatilsComponent } from './restaurant-deatils/restaurant-deatils.component';
 import { ItemsComponent } from './items/items.component';
 
@@ -30,7 +30,7 @@ import { ItemsComponent } from './items/items.component';
     SidebarComponent,
     EmployeeDetailComponent,
     RestaurantsComponent,
-    OwnerComponent,
+    ProfileComponent,
     RestaurantDeatilsComponent,
     ItemsComponent
   ],

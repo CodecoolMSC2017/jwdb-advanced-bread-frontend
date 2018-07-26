@@ -25,8 +25,8 @@ export class DataService {
     return this.http.get("/api/owner/restaurant");
   }
 
-  getOwner(){
-    return this.http.get("/api/owner/user");
+  getProfile(){
+    return this.http.get("/api/profile");
   }
 
 
