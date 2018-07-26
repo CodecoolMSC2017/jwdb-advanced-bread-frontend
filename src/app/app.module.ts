@@ -19,6 +19,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RestaurantDeatilsComponent } from './restaurant-deatils/restaurant-deatils.component';
 import { ItemsComponent } from './items/items.component';
+import { TablesComponent } from './tables/tables.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ItemsComponent } from './items/items.component';
     RestaurantsComponent,
     ProfileComponent,
     RestaurantDeatilsComponent,
-    ItemsComponent
+    ItemsComponent,
+    TablesComponent
   ],
   imports: [
     AppRoutingModule,

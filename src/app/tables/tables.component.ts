@@ -6,9 +6,9 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss'],
+  selector: 'app-tables',
+  templateUrl: './tables.component.html',
+  styleUrls: ['./tables.component.scss'],
   animations: [
     trigger('listStagger', [
       transition('* <=> *', [
@@ -33,20 +33,20 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
     ])
   ]
 })
-export class EmployeeComponent implements OnInit {
+export class TablesComponent implements OnInit {
 
   restaurantId : Object;
-  employees$ : Object;
   restaurant$ : Object;
+  tables$ : Object;
 
 
   constructor(private data: DataService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.restaurantId = params.id)
+    this.route.params.subscribe(params => this.restaurantId = params.restaurantId)
    }
 
   ngOnInit() {
-    this.data.getEmployeesByRestaurant(this.restaurantId).subscribe(
-      data => this.employees$ = data
+    this.data.getTables(this.restaurantId).subscribe(
+      data => this.tables$ = data
     )
     this.data.getRestaurant(this.restaurantId).subscribe(
       data => this.restaurant$ = data

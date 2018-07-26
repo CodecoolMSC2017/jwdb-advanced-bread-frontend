@@ -37,4 +37,8 @@ export class DataService {
   getRestaurant(restaurantId){
     return this.http.get("/api/owner/restaurant/"+restaurantId);
   }
+
+  getTables(restaurantId) {
+    return this.http.get("/api/restaurant/"+restaurantId+"/table");
+  }
 }
