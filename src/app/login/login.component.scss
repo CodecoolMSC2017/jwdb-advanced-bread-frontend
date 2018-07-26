@@ -50,9 +50,9 @@
     }
     
     .btn {
-      border: 2px solid transparent;
-      background: rgb(7, 176, 41);
-      color: #ffffff;
+      border: 2px solid rgb(12, 208, 51);
+      background: rgb(12, 208, 51);
+      color: #ECF0F1;
       font-size: 16px;
       line-height: 25px;
       padding: 10px 0;
@@ -64,10 +64,13 @@
       display: block;
       width: 250px;
       margin: 0 auto;
+      font-weight: bold;
     }
     
     .btn:hover {
       background-color:rgb(7, 176, 41) ;
+      border: 2px solid rgb(7, 176, 41);
+    
     }
     
     .login-link {
