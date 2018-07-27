@@ -10,6 +10,7 @@ import { EmployeeDetailComponent } from './employee-detail/employee-detail.compo
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TablesComponent } from './tables/tables.component';
+import { SeatsComponent } from './seats/seats.component';
 
 const routes: Routes = [
   { 
@@ -24,7 +25,7 @@ const routes: Routes = [
     path: 'login', 
     component: LoginComponent },
   {
-    path: 'restaurant/:id/employee' ,
+    path: 'restaurant/:restaurantId/employee' ,
     component: EmployeeComponent,
     canActivate: [LoginGuard] 
   },
@@ -48,6 +49,11 @@ const routes: Routes = [
     path: 'restaurant/:restaurantId/table' ,
     component: TablesComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path: 'restaurant/:restaurantId/table/:tableId/seat' ,
+    component: SeatsComponent,
+    canActivate: [LoginGuard] 
   }
 
 ];

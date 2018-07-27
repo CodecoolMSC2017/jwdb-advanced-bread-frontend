@@ -41,4 +41,14 @@ export class DataService {
   getTables(restaurantId) {
     return this.http.get("/api/restaurant/"+restaurantId+"/table");
   }
+
+  getTable(restaurantId,tableId){
+    return this.http.get("/api/restaurant/"+restaurantId+"/table/"+tableId);
+  }
+
+  getSeats(tableId){
+    return this.http.get("api/table/"+tableId+"/seat");
+  }
+
+
 }

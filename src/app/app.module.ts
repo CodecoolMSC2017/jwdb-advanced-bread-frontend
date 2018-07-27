@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { httpInterceptorProviders } from './http-interceptors';
@@ -20,13 +19,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { RestaurantDeatilsComponent } from './restaurant-deatils/restaurant-deatils.component';
 import { ItemsComponent } from './items/items.component';
 import { TablesComponent } from './tables/tables.component';
+import { SeatsComponent } from './seats/seats.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent,
     EmployeeComponent,
     SidebarComponent,
     EmployeeDetailComponent,
@@ -34,7 +33,8 @@ import { TablesComponent } from './tables/tables.component';
     ProfileComponent,
     RestaurantDeatilsComponent,
     ItemsComponent,
-    TablesComponent
+    TablesComponent,
+    SeatsComponent
   ],
   imports: [
     AppRoutingModule,

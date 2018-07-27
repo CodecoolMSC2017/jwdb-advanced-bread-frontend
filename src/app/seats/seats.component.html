@@ -1,0 +1,12 @@
+<h1 *ngIf = "table$">{{ table$.name }}'s Seats</h1>
+<ul [@listStagger] = 'seats$'>
+    <li *ngFor = "let seat of seats$">
+    <ul>
+      <li><strong>SeatID : </strong>{{ seat.id }}</li>
+      <li class="submenu">
+          <a routerLink=""><button class="submenu-button"><i class="material-icons">add</i><span class="submenu-button-text">ADD ORDER</span></button></a>
+      </li>
+    </ul>
+    </li>
+  </ul>
+

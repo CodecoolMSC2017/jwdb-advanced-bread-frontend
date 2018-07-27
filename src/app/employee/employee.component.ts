@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 
@@ -41,7 +40,7 @@ export class EmployeeComponent implements OnInit {
 
 
   constructor(private data: DataService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.restaurantId = params.id)
+    this.route.params.subscribe(params => this.restaurantId = params.restaurantId)
    }
 
   ngOnInit() {
@@ -51,6 +50,6 @@ export class EmployeeComponent implements OnInit {
     this.data.getRestaurant(this.restaurantId).subscribe(
       data => this.restaurant$ = data
     )
-    
+    console.log(this.restaurant$)
   }
 }

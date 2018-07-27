@@ -25,22 +25,30 @@
 }
 
 
-.submenu {
-    display:inline-block;
-
-    .submenu-button{
-        font-family: 'Roboto', sans-serif;
-        padding: 10px;
-        margin-right:10px;
-        border:none;
-        background-color:rgb(12, 208, 51);
-        text-align: center;
-        color: white;
-        font-weight:bolder;
-        border-radius: 10px;
+.add-button {
+    
+    float: right;
+    margin-top:-82px;
+    background-color: #fff;
+    border-radius:8px;
+    
+    
+  
+    button {
+        padding:12px;
+        border:none; 
+        background:none;
+        border-radius:8px;
+        
+        
+        i {
+            color:rgb(7, 176, 41);
+            font-size: 33px;
+        }
     }
-    .submenu-button:hover{
-        background-color:rgb(7, 176, 41); 
-    }
+    
 }
-
+.add-button :hover {
+        background-color:rgb(189, 193, 190);
+        border-radius:8px;
+    }
