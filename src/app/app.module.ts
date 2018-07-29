@@ -20,6 +20,7 @@ import { RestaurantDeatilsComponent } from './restaurant-deatils/restaurant-deat
 import { ItemsComponent } from './items/items.component';
 import { TablesComponent } from './tables/tables.component';
 import { SeatsComponent } from './seats/seats.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SeatsComponent } from './seats/seats.component';
     RestaurantDeatilsComponent,
     ItemsComponent,
     TablesComponent,
-    SeatsComponent
+    SeatsComponent,
+    OrdersComponent
   ],
   imports: [
     AppRoutingModule,

@@ -25,17 +25,16 @@ export class DataService {
     return this.http.get("/api/owner/restaurant");
   }
 
-  getProfile(){
-    return this.http.get("/api/profile");
-  }
-
-
-  getItems(){
-    return this.http.get("/api/owner/items");
-  }
-
   getRestaurant(restaurantId){
     return this.http.get("/api/owner/restaurant/"+restaurantId);
+  }
+  
+  postRestaurant(restaurant){
+    return this.http.post("/api/owner/restaurant",restaurant);
+  }
+
+  getProfile(){
+    return this.http.get("/api/profile");
   }
 
   getTables(restaurantId) {
@@ -48,6 +47,14 @@ export class DataService {
 
   getSeats(tableId){
     return this.http.get("api/table/"+tableId+"/seat");
+  }
+
+  getOrders(restaurantId){
+    return this.http.get("/api/order/restaurant/"+restaurantId);
+  }
+
+  getItems(){
+    return this.http.get("/api/owner/items");
   }
 
 

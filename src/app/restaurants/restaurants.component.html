@@ -1,5 +1,5 @@
 
-<h1><p>Restaurants</p><a class="add-button"><span><button><i class="material-icons">add</i></button></span></a></h1>
+<h1><p>Restaurants</p><a class="add-button" (click)="show()"><span><button><i class="material-icons">add</i></button></span></a></h1>
 
 <ul [@listStagger] = 'restaurants$'>
     <li *ngFor = "let restaurant of restaurants$"> 
@@ -18,10 +18,44 @@
       <li class="submenu">
         <a routerLink="/restaurant/{{ restaurant.id }}/employee"><button class="submenu-button">EMPLOYEES</button></a>
         
-        <a routerLink="/restaurant/{{ restaurant.id }}/table"> <button class="submenu-button">TABLES</button></a>
-                
-        <a routerLink=""> <button class="submenu-button">ORDERS</button></a>
+        <a routerLink="/restaurant/{{ restaurant.id }}/table"> <button class="submenu-button">TABLES</button></a>        
       </li>
     </ul>
   </li>
 </ul>
+
+<div id="myModal" class="modal hidden">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" (click)="hide()">&times;</span>
+          <h1>Add Restaurant</h1>
+        </div>
+        <div class="modal-body">
+          <form>
+            <label><strong>Name: </strong></label>
+            <input type="text" placeholder="name" [(ngModel)] = "created$.name" [ngModelOptions] = "{  standalone : true }"><br><br>
+            <label><strong>Street: </strong></label>
+            <input type="text" placeholder="street" [(value)] = "address$.street"><br><br>
+            <label><strong>City: </strong></label>
+            <input type="text" placeholder="city" [(value)] = "address$.city"><br><br>
+            <label><strong>PostalCode: </strong></label>
+            <input type="text" placeholder="postalCode" [(value)] = "address$.postalCode"><br><br>
+            <label><strong>State: </strong></label>
+            <input type="text" placeholder="state" [(value)] = "address$.state"><br><br>
+            <label><strong>Country: </strong></label>
+            <input type="text" placeholder="country" [(value)] = "address$.country"><br><br>
+            <label><strong>Email: </strong></label>
+            <input type="email" placeholder="email" [(value)] = "created$.email"><br><br>
+            <label><strong>Phone: </strong></label>
+            <input type="text" placeholder="phone" [(value)] = "created$.phone"><br><br>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p>
+          <a class="btn cancel-btn" (click)="hide()">cancel</a>
+          <a class="btn" (click)="add()">submit</a></p>
+        </div>
+      </div>
+    
+    </div>

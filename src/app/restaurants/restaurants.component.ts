@@ -36,10 +36,42 @@ export class RestaurantsComponent implements OnInit {
   user = JSON.parse(sessionStorage.getItem('user'));
   restaurants$ : Object;
   employees$ : Object;
+  address$ : Object = {
+    street :'',
+    city:'',
+    postalCode:'',
+    state:'',
+    country : ''
+  }
+  created$:Object = {
+    name : '',
+    email : '',
+    address : this.address$, 
+    phone : '',
+    owner_id : this.user.id
+  }
+  
 
   constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.getRestaurants().subscribe(
+      data => this.restaurants$ = data
+    )
+  }
+
+  show():void{
+    let button = document.getElementById("myModal")
+    button.classList.remove("hidden");
+  }
+
+  hide():void{
+    let button = document.getElementById("myModal")
+    button.classList.add("hidden");
+  }
+
+  add(){
+    this.data.postRestaurant(this.created$)
     this.data.getRestaurants().subscribe(
       data => this.restaurants$ = data
     )

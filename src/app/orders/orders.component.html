@@ -1,0 +1,40 @@
+<div id="restaurant-ontent">
+<h1>Orders</h1>
+
+<ul [@listStagger] = 'restaurants$'>
+    <li *ngFor = "let restaurant of restaurants$"> 
+    <a (click) = "getOrdersByRestaurant(restaurant.id)" class="button"><strong>{{ restaurant.name }}</strong></a>
+    <ul>
+      <li><strong>Email : </strong> {{ restaurant.email }}</li>
+      <li><strong>Phone : </strong>{{ restaurant.phone }}</li>
+    </ul>
+  </li>
+</ul>
+<div>
+<div *ngIf = "orders$" id="order-content">
+  <h1>{{ currentRestaurant$.name}}'s active orders</h1>
+
+  <ul [@listStagger] = 'orders$.tableDtoSet'>
+    <li  *ngFor = 'let table of orders$.tableDtoSet'>
+      <ul>
+        <a routerLink=""><strong>{{ table.name }}</strong></a>
+        <h2>Orders:</h2>
+        <li *ngFor = "let order of table.seatDtoSet">
+          <ul>
+            <li><strong>Order {{ order.id }} :</strong></li>
+            <li *ngFor = "let customerOrder of order.customerOrderSet">
+              <ul *ngIf = "order.customerOrderSet">
+                <li><strong>Time: </strong>{{ customerOrder.orderingTime | date : 'HH:mm:ss' }}</li>
+                <li><strong>Item: </strong>{{ customerOrder.orderItem.item.name }}</li>
+                <li><strong>Quantity: </strong>{{ customerOrder.orderItem.quantity }}</li> 
+                <li><strong>Unit price: </strong>{{ customerOrder.orderItem.item.price}} HUF</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <ul>
+        </ul>
+      </ul>
+    </li>
+  </ul>
+</div>

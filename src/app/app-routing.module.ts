@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
-import { RegisterComponent } from './register/register.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TablesComponent } from './tables/tables.component';
 import { SeatsComponent } from './seats/seats.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { 
@@ -53,6 +53,11 @@ const routes: Routes = [
   {
     path: 'restaurant/:restaurantId/table/:tableId/seat' ,
     component: SeatsComponent,
+    canActivate: [LoginGuard] 
+  },
+  {
+    path: 'order/restaurant' ,
+    component: OrdersComponent,
     canActivate: [LoginGuard] 
   }
 

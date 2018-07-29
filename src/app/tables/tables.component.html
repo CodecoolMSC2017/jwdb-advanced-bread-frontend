@@ -1,11 +1,11 @@
-<h1 *ngIf="restaurant$">{{ restaurant$.name }}'s tables</h1>
+<h1 *ngIf = "restaurant$">{{ restaurant$.name }}'s tables</h1>
 
 <ul [@listStagger]='tables$'>
   <li *ngFor="let table of tables$">
-    <ul *ngIf="tables$">
+    <ul >
       <li> <strong>{{ table.name }}</strong></li>
-    <!--<a><span id = "edit-icon-span"><i id = "edit-icon" class="material-icons">edit</i></span></a>--> 
-    <li class="submenu">
+      
+    <li class="submenu" *ngIf="tables$">
         
         <a [routerLink]="['/restaurant',restaurant$.id,'table',table.id,'seat']">
           <button class="submenu-button">SEATS</button>

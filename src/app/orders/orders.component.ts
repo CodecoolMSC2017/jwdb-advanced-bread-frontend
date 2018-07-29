@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 
-
 @Component({
-  selector: 'app-tables',
-  templateUrl: './tables.component.html',
-  styleUrls: ['./tables.component.scss'],
+  selector: 'app-orders',
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.scss'],
   animations: [
     trigger('listStagger', [
       transition('* <=> *', [
@@ -32,24 +31,28 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
     ])
   ]
 })
-export class TablesComponent implements OnInit {
+export class OrdersComponent implements OnInit {
 
-  restaurantId : Object;
-  restaurant$ : Object;
-  tables$ : Object;
+  currentRestaurant$ : Object;
+  restaurants$ : Object;
   orders$ : Object;
 
 
-  constructor(private data: DataService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.restaurantId = params.restaurantId)
-   }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.getTables(this.restaurantId).subscribe(
-      data => this.tables$ = data
+    this.data.getRestaurants().subscribe(
+      data => this.restaurants$ = data
     )
-    this.data.getRestaurant(this.restaurantId).subscribe(
-      data => this.restaurant$ = data
+  }
+
+  getOrdersByRestaurant(restaurantId){
+    this.data.getOrders(restaurantId).subscribe(
+      data => this.orders$ = data
+    )
+
+    this.data.getRestaurant(restaurantId).subscribe(
+      data => this.currentRestaurant$ = data
     )
     
   }
