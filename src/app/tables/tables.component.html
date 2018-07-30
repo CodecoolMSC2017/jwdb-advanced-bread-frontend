@@ -1,11 +1,11 @@
-<h1 *ngIf = "restaurant$">{{ restaurant$.name }}'s tables</h1>
+<h1 *ngIf = "restaurant$"><p>{{ restaurant$.name }}'s tables</p><a class="add-button" (click)="show()"><span><button><i class="material-icons">add</i></button></span></a></h1>
 
-<ul [@listStagger]='tables$'>
+<ul *ngIf="tables$" [@listStagger]='tables$'>
   <li *ngFor="let table of tables$">
     <ul >
       <li> <strong>{{ table.name }}</strong></li>
       
-    <li class="submenu" *ngIf="tables$">
+    <li class="submenu" *ngIf="table">
         
         <a [routerLink]="['/restaurant',restaurant$.id,'table',table.id,'seat']">
           <button class="submenu-button">SEATS</button>
@@ -14,3 +14,23 @@
     </ul>
   </li>
 </ul>
+
+<div id="myModal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close" (click)="hide()">&times;</span>
+      <h1>Add Table</h1>
+    </div>
+    <div class="modal-body">
+      <form>
+        <label><strong>Name: </strong></label>
+        <input type="text" placeholder="name" [(ngModel)] = "created$.name" [ngModelOptions] = "{  standalone : true }"><br><br>
+        </form>
+    </div>
+    <div class="modal-footer">
+      <p>
+      <a class="btn cancel-btn" (click)="hide()">cancel</a>
+      <a class="btn" (click)="add()">submit</a></p>
+    </div>
+  </div>
+</div>
