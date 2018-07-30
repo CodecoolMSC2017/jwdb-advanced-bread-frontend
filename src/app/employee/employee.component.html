@@ -25,13 +25,11 @@
         <label><strong>Last name: </strong></label>
         <input type="text" placeholder="last name" [(ngModel)] = "created$.lastName" [ngModelOptions] = "{  standalone : true }"><br><br>
         <label><strong>Role: </strong></label>
-
-        <div class="radio-role">
-          <button><img href="http://icons.iconarchive.com/icons/iconsmind/outline/256/Chef-Hat-icon.png"></button>
-          <button><img href="http://icons.iconarchive.com/icons/iconsmind/outline/256/Chef-Hat-icon.png"></button>
-          <button><img href="http://icons.iconarchive.com/icons/iconsmind/outline/256/Chef-Hat-icon.png"></button>
-        </div>
-
+        <select class="role-select" name="roles">
+          <option value="CHEF">CHEF</option>
+          <option value="BARTENDER">BARTENDER</option>
+          <option value="WAITER" selected>WAITER</option>
+        </select><br>
         <label><strong>City: </strong></label>
         <input type="text" placeholder="city" [(ngModel)] = "address$.city" [ngModelOptions] = "{  standalone : true }"><br><br>
         <label><strong>PostalCode: </strong></label>

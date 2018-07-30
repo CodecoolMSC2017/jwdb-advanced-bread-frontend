@@ -142,7 +142,7 @@
  
      .modal-footer {
          padding: 2px 16px;
-         padding-bottom: 50px;
+         padding-bottom: 70px;
          background-color: #fff;
          color: white;
          border-bottom-right-radius: 8px;
@@ -233,16 +233,26 @@
            *:focus{
                outline: none;
            }
- 
-.radio-role label {
-display: inline-block;
-width: 90px;
-height: 20px;
-text-align: center;
-vertical-align: top;
-padding-top: 40px;
-}
-.radio-role input {
-display: block;
-margin: 0 auto -40px;
+.role-select {
+    display: inline-block;
+    position: relative;
+    padding: 8px 40px;
+    margin-bottom: 8px;
+    margin-left: 85px;
+    background:none;
+    background-color: #ECF0F1;
+    border-radius: 8px;
+    border:none;
+
+    .option {
+        padding: 8px 40px;
+        margin-bottom: 8px;
+        margin-left: 85px;
+        background:none;
+        background-color: #ECF0F1;
+        border-radius: 8px;
+        border:none;
+    }
+    
+
 }

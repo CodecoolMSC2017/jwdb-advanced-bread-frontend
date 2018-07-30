@@ -88,7 +88,7 @@ export class RestaurantsComponent implements OnInit {
     }
     this.created$ = {name : '',
     email : '',
-    address : this.address$, 
+    address : this.address$,
     phone : '',
     owner_id : this.user.id
   }
