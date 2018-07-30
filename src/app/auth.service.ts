@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-import { User } from './user';
 import { LoginDetails } from './login-details';
 
 @Injectable({
@@ -13,8 +11,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  getAuth(loginDetails: LoginDetails): Observable<User> {
-    return this.http.get<User>('/api/auth', {
+  getAuth(loginDetails: LoginDetails){
+    return this.http.get('/api/auth', {
       headers: new HttpHeaders({
         'Authorization': 'Basic ' + window.btoa(loginDetails.username + ':' + loginDetails.password)
       })

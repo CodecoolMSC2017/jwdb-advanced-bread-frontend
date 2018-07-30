@@ -36,6 +36,7 @@ export class RestaurantsComponent implements OnInit {
   user = JSON.parse(sessionStorage.getItem('user'));
   restaurants$ : Object;
   employees$ : Object;
+  newRestaurant$ : Object;
   address$ : Object = {
     street :'',
     city:'',
@@ -71,7 +72,9 @@ export class RestaurantsComponent implements OnInit {
   }
 
   add(){
-    this.data.postRestaurant(this.created$)
+    this.data.postRestaurant(this.created$).subscribe(
+      data => this.newRestaurant$ = data
+    )
     this.data.getRestaurants().subscribe(
       data => this.restaurants$ = data
     )
