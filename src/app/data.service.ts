@@ -65,4 +65,7 @@ export class DataService {
     return this.http.post("/api/restaurant/"+restaurantId+"/table", table);
   }
 
+  postSeat(tableId, seat) {
+    return this.http.post("api/table/"+tableId+"/seat", seat);
+  }
 }

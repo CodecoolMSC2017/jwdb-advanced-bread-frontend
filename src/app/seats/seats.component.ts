@@ -38,6 +38,11 @@ export class SeatsComponent implements OnInit {
   restaurantId : Object;
   table$ : Object;
   seats$ : Object;
+  newSeat$ : Object;
+  numOfSeats : Object;
+  created$ : Object = {
+    table : this.table$
+  }
 
   constructor(private route: ActivatedRoute, private data: DataService) {
     this.route.params.subscribe( params => this.tableId = params.tableId)
@@ -50,4 +55,27 @@ export class SeatsComponent implements OnInit {
     this.data.getTable(this.restaurantId,this.tableId).subscribe(data => this.table$ = data)
   }
 
+  show():void{
+    let button = document.getElementById("myModal")
+    button.classList.remove("hidden");
+  }
+
+  hide():void{
+    let button = document.getElementById("myModal")
+    button.classList.add("hidden");
+  }
+
+  add(){
+    for(let i = 0; i < this.numOfSeats; i++) {
+      this.data.postSeat(this.tableId, this.created$).subscribe((data) => {
+        this.newSeat$ = data,
+        this.data.getSeats(this.tableId).subscribe(
+          resp => this.seats$ = resp
+        )
+      });
+    }
+    this.hide();
+    this.numOfSeats = ''
+    this.created$ = {table : ''}
+  }
 }
