@@ -75,7 +75,6 @@ export class TablesComponent implements OnInit {
       )
     });
     this.hide();
-    this.created$ = {name : ''
-  }
+    this.created$ = {name : ''}
   }
 }
