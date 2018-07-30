@@ -61,4 +61,8 @@ export class DataService {
     return this.http.post("/api/owner/restaurant/"+restaurantId+"/employee", employee);
   }
 
+  postTable(restaurantId, table){
+    return this.http.post("/api/restaurant/"+restaurantId+"/table", table);
+  }
+
 }

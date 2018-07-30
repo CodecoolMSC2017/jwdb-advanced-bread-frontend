@@ -38,6 +38,10 @@ export class TablesComponent implements OnInit {
   restaurant$ : Object;
   tables$ : Object;
   orders$ : Object;
+  newTable$ : Object;
+  created$ : Object = {
+    name : ''
+  }
 
 
   constructor(private data: DataService, private route: ActivatedRoute) {
@@ -51,6 +55,27 @@ export class TablesComponent implements OnInit {
     this.data.getRestaurant(this.restaurantId).subscribe(
       data => this.restaurant$ = data
     )
-    
+  }
+
+  show():void{
+    let button = document.getElementById("myModal")
+    button.classList.remove("hidden");
+  }
+
+  hide():void{
+    let button = document.getElementById("myModal")
+    button.classList.add("hidden");
+  }
+
+  add(){
+    this.data.postTable(this.restaurantId, this.created$).subscribe((data) => {
+      this.newTable$ = data,
+      this.data.getTables(this.restaurantId).subscribe(
+        resp => this.tables$ = resp
+      )
+    });
+    this.hide();
+    this.created$ = {name : ''
+  }
   }
 }
