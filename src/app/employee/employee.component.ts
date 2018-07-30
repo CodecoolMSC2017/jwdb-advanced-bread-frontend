@@ -37,6 +37,22 @@ export class EmployeeComponent implements OnInit {
   restaurantId : Object;
   employees$ : Object;
   restaurant$ : Object;
+  newEmployee$ : Object;
+  address$ : Object = {
+    street :'',
+    city:'',
+    postalCode:'',
+    state:'',
+    country : ''
+  }
+  created$ : Object = {
+    email : '',
+    firstName : '', 
+    lastName : '',
+    role : '',
+    restaurant : this.restaurant$,
+    address : this.address$
+  }
 
 
   constructor(private data: DataService, private route: ActivatedRoute) {
@@ -50,6 +66,24 @@ export class EmployeeComponent implements OnInit {
     this.data.getRestaurant(this.restaurantId).subscribe(
       data => this.restaurant$ = data
     )
-    console.log(this.restaurant$)
+  }
+
+  show():void{
+    let button = document.getElementById("myModal")
+    button.classList.remove("hidden");
+  }
+
+  hide():void{
+    let button = document.getElementById("myModal")
+    button.classList.add("hidden");
+  }
+
+  add(){
+    this.data.postEmployee(this.restaurantId, this.created$).subscribe(
+      data => this.newEmployee$ = data
+    )
+    this.data.getEmployees().subscribe(
+      data => this.employees$ = data
+    )
   }
 }
