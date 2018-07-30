@@ -1,4 +1,4 @@
-<h1 *ngIf = "restaurant$">{{ restaurant$.name }}'s Employees <a class="add-button" (click)="show()"><span><button><i class="material-icons">add</i></button></span></a></h1>
+<h1 *ngIf = "restaurant$"><p>{{ restaurant$.name }}'s Employees</p><a class="add-button" (click)="show()"><span><button><i class="material-icons">add</i></button></span></a></h1>
 <ul [@listStagger] = 'employees$'>
   <li *ngFor = "let employee of employees$">
     <a routerLink = "/restaurant/{{ restaurant$.id }}/employee/{{ employee.id }}"><strong>{{ employee.firstName }} {{ employee.lastName}}</strong></a>
@@ -27,9 +27,9 @@
         <label><strong>Role: </strong></label>
 
         <div class="radio-role">
-        <label class="radio">Bartender<input type="radio" [(ngModel)] = "created$.role" value="BARTENDER" [ngModelOptions] = "{  standalone : true }"></label>
-        <label class="radio">Chef<input type="radio" [(ngModel)] = "created$.role"  value="CHEF" [ngModelOptions] = "{  standalone : true }"></label>
-        <label class="radio">Waiter<input type="radio" [(ngModel)] = "created$.role" value="WAITER" [ngModelOptions] = "{  standalone : true }"></label><br>
+          <button><img href="http://icons.iconarchive.com/icons/iconsmind/outline/256/Chef-Hat-icon.png"></button>
+          <button><img href="http://icons.iconarchive.com/icons/iconsmind/outline/256/Chef-Hat-icon.png"></button>
+          <button><img href="http://icons.iconarchive.com/icons/iconsmind/outline/256/Chef-Hat-icon.png"></button>
         </div>
 
         <label><strong>City: </strong></label>

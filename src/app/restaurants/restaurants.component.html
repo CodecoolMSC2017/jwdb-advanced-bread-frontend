@@ -4,7 +4,6 @@
 <ul [@listStagger] = 'restaurants$'>
     <li *ngFor = "let restaurant of restaurants$"> 
     <a routerLink = "" class="button"><strong>{{ restaurant.name }}</strong></a>
-    <!--<a><span id = "edit-icon-span"><i id = "edit-icon" class="material-icons">edit</i></span></a>-->
     <ul>
       <li><strong>Street : </strong>  {{ restaurant.address.street }}</li>
       <li><strong>City : </strong>  {{ restaurant.address.city }}</li>
@@ -34,7 +33,7 @@
         <div class="modal-body">
           <form>
             <label><strong>Name: </strong></label>
-            <input type="text" placeholder="name" [(ngModel)] = "created$.name" [ngModelOptions] = "{  standalone : true }"><br><br>
+            <input type="text" placeholder="name" [(ngModel)] = "created$.name" [ngModelOptions] = "{  standalone : true }" required><br><br>
             <label><strong>Street: </strong></label>
             <input type="text" placeholder="street" [(ngModel)] = "address$.street" [ngModelOptions] = "{  standalone : true }"><br><br>
             <label><strong>City: </strong></label>

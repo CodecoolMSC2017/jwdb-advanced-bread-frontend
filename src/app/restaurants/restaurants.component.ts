@@ -72,12 +72,25 @@ export class RestaurantsComponent implements OnInit {
   }
 
   add(){
-    this.data.postRestaurant(this.created$).subscribe(
-      data => this.newRestaurant$ = data
-    )
-    this.data.getRestaurants().subscribe(
-      data => this.restaurants$ = data
-    )
+    this.data.postRestaurant(this.created$).subscribe((data) => {
+      this.newRestaurant$ = data,
+      this.data.getRestaurants().subscribe(
+        resp => this.restaurants$ = resp
+      )
+    });
+    this.hide();
+    this.address$ = {
+      street :'',
+      city:'',
+      postalCode:'',
+      state:'',
+      country : ''
+    }
+    this.created$ = {name : '',
+    email : '',
+    address : this.address$, 
+    phone : '',
+    owner_id : this.user.id
   }
-
+  }
 }
