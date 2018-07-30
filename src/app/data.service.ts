@@ -68,4 +68,8 @@ export class DataService {
   postSeat(tableId, seat) {
     return this.http.post("api/table/"+tableId+"/seat", seat);
   }
+
+  sendEmail(email) {
+    return this.http.post("api/send/invite", email);
+  }
 }
