@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +34,10 @@ export class DataService {
   
   postRestaurant(restaurant){
     return this.http.post("/api/owner/restaurant",restaurant);
+  }
+
+  deleteRestaurant(restaurantId){
+   this.http.delete("/api/owner/restaurant/"+restaurantId);
   }
 
   getProfile(){

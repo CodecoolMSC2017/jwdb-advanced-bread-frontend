@@ -37,6 +37,7 @@ export class RestaurantsComponent implements OnInit {
   restaurants$ : Object;
   employees$ : Object;
   newRestaurant$ : Object;
+  deleted$:Object;
   address$ : Object = {
     street :'',
     city:'',
@@ -93,4 +94,13 @@ export class RestaurantsComponent implements OnInit {
     owner_id : this.user.id
   }
   }
+
+  delete(restaurantId){
+    this.data.deleteRestaurant(restaurantId).subscribe((data) =>{
+      this.deleted$ = data,
+      this.data.getRestaurants().subscribe(
+      data => this.restaurants$ = data
+    )
+    }
+    )}
 }

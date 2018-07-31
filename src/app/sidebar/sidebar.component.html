@@ -1,5 +1,5 @@
-<nav>
-  <ul>
+<nav *ngIf="user">
+  <ul >
     <li class = "menu-button">
       <a routerLink = "" [class.activated] = "currentUrl == '/'">
         <i class = "material-icons">home</i><span class = "menu-button-text">HOME</span>
@@ -20,6 +20,11 @@
               <i class="material-icons">assignment</i><span class = "menu-button-text">ORDERS</span>
             </a>
           </li>
+          <li class = "menu-button" *ngIf="loggedIn$.role === 'WAITER'">
+              <a routerLink = "order/restaurant" [class.activated] = "currentUrl == '/order/restaurant'">
+                <i class="material-icons">assignment</i><span class = "menu-button-text">ORDERS</span>
+              </a>
+            </li> 
       <li id = "logoutA" class = "menu-button">
           <a (click)="logOut()">
             <i class="material-icons">power_settings_new</i><span class = "menu-button-text">LOG OUT</span></a>

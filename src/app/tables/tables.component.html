@@ -5,7 +5,7 @@
     <ul >
       <li> <strong>{{ table.name }}</strong></li>
       
-    <li class="submenu" *ngIf="table">
+    <li class="submenu" *ngIf="restaurant$">
         
         <a [routerLink]="['/restaurant',restaurant$.id,'table',table.id,'seat']">
           <button class="submenu-button">SEATS</button>

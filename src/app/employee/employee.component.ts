@@ -38,6 +38,7 @@ export class EmployeeComponent implements OnInit {
   employees$ : Object;
   restaurant$ : Object;
   newEmployee$ : Object;
+  emailResponse$:Object;
   address$ : Object = {
     street :'',
     city:'',
@@ -78,12 +79,16 @@ export class EmployeeComponent implements OnInit {
     button.classList.add("hidden");
   }
 
-  add(){
-    this.data.postEmployee(this.restaurantId, this.created$).subscribe(
-      data => this.newEmployee$ = data
-    )
-    this.data.getEmployees().subscribe(
+  add(email){
+    this.data.postEmployee(this.restaurantId, this.created$).subscribe((data) => {
+      this.newEmployee$ = data,
+        this.data.sendEmail(email).subscribe(
+        resp => this.emailResponse$ = resp 
+      ),
+      this.data.getEmployees().subscribe(
       data => this.employees$ = data
+    )
+    } 
     )
   }
 }

@@ -1,31 +1,24 @@
+.submenu-button {
+    margin-left: 167.3px;
+    i {
+        float: left;
+        padding-left: 42.5px;
+        margin-right: -3px;
+    }
 
+    .submenu-button-text {
+        font-size: 14px;
+        padding-right:60px;
+        margin: 0px;
+        margin-top: 5px;
+        margin-left: 10px;
+        float: left;
+        font-weight: bold;
+        font-family: 'Roboto',sans-serif;
+    }
+}
 
-
-#edit-icon { 
-    margin-left:530px;
-    color: grey;
-    float: right;
-    font-size: 40px;
-    
- }
- 
- #edit-icon-span {
-     padding: 0px;
-     margin: 0px;
-     margin-top: -30px;
-     float: right;
-     text-align: center;
-     opacity: 0.6;
-     transition: 0.3s;
-   }
-   
- #edit-icon-span :hover{
-     opacity: 1;
-     color:#343333;
- }
- 
- 
- .add-button {
+.add-button {
      
      float: right;
      margin-top:-82px;
