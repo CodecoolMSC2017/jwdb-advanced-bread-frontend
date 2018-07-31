@@ -68,12 +68,12 @@ export class SeatsComponent implements OnInit {
   add(){
     for(let i = 0; i < this.numOfSeats; i++) {
       this.data.postSeat(this.tableId, this.created$).subscribe((data) => {
-        this.newSeat$ = data,
-        this.data.getSeats(this.tableId).subscribe(
-          resp => this.seats$ = resp
-        )
+        this.newSeat$ = data
       });
     }
+    this.data.getSeats(this.tableId).subscribe(
+      resp => this.seats$ = resp
+    )
     this.hide();
     this.numOfSeats = ''
     this.created$ = {table : ''}
