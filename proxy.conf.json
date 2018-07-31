@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://bread-service.herokuapp.com/",
+    "target": "http://localhost:8080",
     "secure": false,
     "pathRewrite": {
       "^/api": ""
