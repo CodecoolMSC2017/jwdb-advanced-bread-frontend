@@ -4,7 +4,7 @@
 <ul *ngIf="tables$" [@listStagger]='tables$'>
   <li *ngFor="let table of tables$">
     <ul >
-      <li> <strong>{{ table.name }}</strong>
+      <li> <p><strong>{{ table.name }}</strong></p>
         <div class="buttons" id="buttons" >
         <span class="assign-button" id="assign" *ngIf="!table.employee">
           <a (click)="assign(table)">
@@ -24,6 +24,61 @@
       </li>
       <li *ngIf="table.employee"><strong>AssignedTo: </strong>{{ table.employee.firstName}} {{ table.employee.lastName}}</li>
       <li *ngIf="!table.employee"><strong>AssignedTo: </strong>-</li>
+      <li><strong>Time: </strong></li>
+      <div id="orders" class="hidden">
+      <li *ngFor="let seat of table.seatDtoSet">
+        <ul *ngIf="seat">
+          <li><strong>Seat: </strong>{{ seat.id }}</li>
+          
+        </ul>
+      </li>
+    </div>
+    <li><a (click)="showOrders(table.id)"><span class="view-button"><button>VIEW ORDERS</button></span></a><a (click)="showInvoiceModal()"><span class="view-button"><button>CREATE INVOICE</button></span></a></li>
     </ul>
   </li>
 </ul>
+
+<div id="orderViewModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" (click)="hideOrderModal()">&times;</span>
+          <h1>ORDERS</h1>
+        </div>
+        <div class="modal-body">
+          <ul *ngIf="orders$">
+              <li *ngFor="let seat of orders$.seatDtoSet">
+                <ul>
+                <li><strong>Seat: </strong>{{ seat.id }}</li>
+                <li *ngFor="let order of seat.customerOrderSet">
+                  <ul>
+                    <li><strong>Item name: </strong>{{ order.orderItem.item.name }}</li>
+                    <li><strong>Quantity: </strong>{{ order.orderItem.quantity }}</li>
+                    <li *ngIf="!order.orderItem.comment"><strong>Comment: </strong>-</li>                    
+                    <li *ngIf="order.orderItem.comment"><strong>Comment: </strong>{{ order.orderItem.comment }}</li>
+                  </ul>
+                </li>
+              </ul>
+              </li>
+          </ul>
+        <div class="modal-footer">
+        </div>
+      </div>
+    
+    </div>
+
+
+<div id="invoiceModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" (click)="hideInvoiceModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <h2>Create invoice?</h2>
+         
+             <button class="cancel-button button"></button><button class="create-button button"></button>
+         
+        <div class="modal-footer">
+        </div>
+      </div>
+    
+    </div>

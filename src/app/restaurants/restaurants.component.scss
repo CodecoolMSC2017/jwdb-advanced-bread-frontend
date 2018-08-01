@@ -76,16 +76,6 @@
         from {top:-300px; opacity:0}
         to {top:0; opacity:1}
     }
-
-    @-webkit-keyframes animatedisappear {
-        from {top:0; opacity:1} 
-        to {top:300px; opacity:0}
-    }
-
-    @keyframes animatedisappear {
-        from {top:0; opacity:1}
-        to {top:300px; opacity:0}
-    }
     
     .close {
         color: grey;
@@ -208,25 +198,3 @@
               outline: none;
           }
 
-.delete-button{
-    float: right;
-    button {
-        padding:10px;
-        background:none;
-        border:none;
-        border-radius:8px;
-
-        i{
-            color: red;
-            
-        }
-    }
-
-    button:hover{
-        background: rgb(213, 45, 45);
-        i{
-            color: #fff;
-        }
-    }
-    
-}

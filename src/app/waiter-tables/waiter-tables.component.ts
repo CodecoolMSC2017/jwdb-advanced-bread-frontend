@@ -38,6 +38,7 @@ export class WaiterTablesComponent implements OnInit {
   tables$:Object;
   restaurantId:Object;
   restaurant$:Object;
+  orders$: Object;
 
   constructor(private route:ActivatedRoute,private waiterData:WaiterService,private data:DataService,private router:ActivatedRoute) {
     this.router.params.subscribe( (param) => {
@@ -50,7 +51,6 @@ export class WaiterTablesComponent implements OnInit {
   ngOnInit() {
       this.waiterData.getTables().subscribe(
         data => this.tables$ = data
-        
       )
     } 
     
@@ -71,21 +71,32 @@ export class WaiterTablesComponent implements OnInit {
     })
   }
 
-  showUnassignButton(){
-    let unassignButton = document.getElementById("unassign")
-    unassignButton.classList.remove("hidden")
+  showOrders(tableId){
+    this.waiterData.getOrdersByTable(tableId).subscribe((data) => {
+      this.orders$ = data,
+      this.showOrderModal()
+    }
+     
+    )
   }
-  showAssignButton(){
-    let assignButton = document.getElementById("assign")
-    assignButton.classList.remove("hidden")
-  }
-  hideDeassignButton(){
-    let unassignButton = document.getElementById("unassign")
-    unassignButton.classList.add("hidden")
-  }
-  hideAssignButton(){
-    let assignButton = document.getElementById("assign")
-    assignButton.classList.add("hidden")
+  showOrderModal(){
+    let modal = document.getElementById("orderViewModal")
+    modal.classList.remove("hidden");
   }
 
+  hideOrderModal(){
+    let modal = document.getElementById("orderViewModal")
+    modal.classList.add("hidden")
+  }
+
+  showInvoiceModal(){
+    let modal = document.getElementById("invoiceModal")
+    modal.classList.remove("hidden");
+  }
+
+
+  hideInvoiceModal(){
+    let modal = document.getElementById("invoiceModal")
+    modal.classList.add("hidden")
+  }
 }

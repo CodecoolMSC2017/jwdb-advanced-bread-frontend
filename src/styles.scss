@@ -72,5 +72,28 @@ body {
                 background-color:rgb(7, 176, 41); 
             }
         }
+
+        .delete-button{
+            float: right;
+            button {
+                padding:10px;
+                background:none;
+                border:none;
+                border-radius:8px;
+        
+                i{
+                    color: red;
+                    
+                }
+            }
+        
+            button:hover{
+                background: rgb(213, 45, 45);
+                i{
+                    color: #fff;
+                }
+            }
+            
+        }
     }
 }

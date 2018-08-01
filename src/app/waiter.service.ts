@@ -14,6 +14,10 @@ export class WaiterService {
     return this.http.get('/api/waiter/table');
   }
 
+  getOrdersByTable(tableId){
+    return this.http.get("/api/order/table/"+tableId);
+  }
+
   assign(table):Observable<void>{
     return this.http.put<void>("/api/waiter/table/assign",table);
   }

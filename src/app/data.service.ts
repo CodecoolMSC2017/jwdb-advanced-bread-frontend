@@ -79,4 +79,16 @@ export class DataService {
   sendEmail(email) {
     return this.http.post("api/send/invite", email);
   }
+
+  deleteSeat(tableId,seatId):Observable<void>{
+    return this.http.delete<void>("/api/table/"+tableId+"/seat/"+seatId);
+  }
+
+  deleteEmployee(restaurantId,employeeId):Observable<void>{
+    return this.http.delete<void>("/api/owner/restaurant/"+restaurantId+"/employee/"+employeeId);
+  }
+
+  deleteTable(restaurantId,tableId):Observable<void>{
+    return this.http.delete<void>("/api/restaurant/"+restaurantId+"/table/"+tableId);
+  }
 }
