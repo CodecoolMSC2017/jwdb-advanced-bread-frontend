@@ -3,7 +3,7 @@
 <ul *ngIf="tables$" [@listStagger]='tables$'>
   <li *ngFor="let table of tables$">
     <ul >
-      <li> <strong>{{ table.name }}</strong></li>
+      <li> <strong>{{ table.name }}</strong></li><span class="delete-button"><a (click)="delete(restaurant$.id,table.id)"><button><i class="material-icons">delete</i></button></a></span>
       
     <li class="submenu" *ngIf="restaurant$">
         

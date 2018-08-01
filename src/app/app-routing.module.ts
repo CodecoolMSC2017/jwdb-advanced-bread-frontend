@@ -11,6 +11,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { TablesComponent } from './tables/tables.component';
 import { SeatsComponent } from './seats/seats.component';
 import { OrdersComponent } from './orders/orders.component';
+import { WaiterTablesComponent } from './waiter-tables/waiter-tables.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+
 
 const routes: Routes = [
   { 
@@ -59,8 +62,17 @@ const routes: Routes = [
     path: 'order/restaurant' ,
     component: OrdersComponent,
     canActivate: [LoginGuard] 
+  },
+  {
+    path: 'waiter/table' ,
+    component: WaiterTablesComponent,
+    canActivate: [LoginGuard] 
+  },
+  {
+    path: 'invoice/table/:tableId' ,
+    component: InvoiceComponent,
+    canActivate: [LoginGuard] 
   }
-
 ];
 
 @NgModule({

@@ -77,4 +77,12 @@ export class TablesComponent implements OnInit {
     this.hide();
     this.created$ = {name : ''}
   }
+
+  delete(restaurantId,tableId){
+    this.data.deleteTable(restaurantId,tableId).subscribe(() => {
+      this.data.getTables(this.restaurantId).subscribe(
+        data => this.tables$ = data
+      )
+    })
+  }
 }

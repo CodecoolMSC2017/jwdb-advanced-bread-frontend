@@ -10,7 +10,7 @@
         <i class = "material-icons">account_box</i><span class = "menu-button-text">PROFILE</span>
       </a>
     </li>
-    <li class = "menu-button">
+    <li class = "menu-button" *ngIf="loggedIn$.role === 'OWNER' || loggedIn$.role === 'MANAGER'">
         <a routerLink = "restaurant" [class.activated] = "currentUrl == '/restaurant'">
           <i class="material-icons">restaurant</i><span class = "menu-button-text">RESTAURANT</span>
         </a>
@@ -21,13 +21,13 @@
             </a>
           </li>
           <li class = "menu-button" *ngIf="loggedIn$.role === 'WAITER'">
-              <a routerLink = "order/restaurant" [class.activated] = "currentUrl == '/order/restaurant'">
-                <i class="material-icons">assignment</i><span class = "menu-button-text">ORDERS</span>
-              </a>
-            </li> 
+            <a routerLink="/waiter/table" [class.activated] = "currentUrl == '/waiter/table'">
+              <i class="material-icons">ballot</i><span class = "menu-button-text">TABLES</span>
+            </a>
+          </li>
       <li id = "logoutA" class = "menu-button">
           <a (click)="logOut()">
-            <i class="material-icons">power_settings_new</i><span class = "menu-button-text">LOG OUT</span></a>
+            <i class="material-icons">keyboard_backspace</i><span class = "menu-button-text">LOG OUT</span></a>
         </li>
   </ul>
 </nav>

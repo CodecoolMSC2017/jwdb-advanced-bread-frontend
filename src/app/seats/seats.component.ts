@@ -78,4 +78,12 @@ export class SeatsComponent implements OnInit {
     this.numOfSeats = ''
     this.created$ = {table : ''}
   }
+
+  delete(tableId,seatId){
+    this.data.deleteSeat(tableId,seatId).subscribe(() => {
+      this.data.getSeats(tableId).subscribe(
+        data => this.seats$ = data
+      )
+    })
+  }
 }

@@ -96,8 +96,7 @@ export class RestaurantsComponent implements OnInit {
   }
 
   delete(restaurantId){
-    this.data.deleteRestaurant(restaurantId).subscribe((data) =>{
-      this.deleted$ = data,
+    this.data.deleteRestaurant(restaurantId).subscribe(() =>{
       this.data.getRestaurants().subscribe(
       data => this.restaurants$ = data
     )

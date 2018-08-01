@@ -80,15 +80,21 @@ export class EmployeeComponent implements OnInit {
   }
 
   add(email){
-    this.data.postEmployee(this.restaurantId, this.created$).subscribe((data) => {
+    this.data.postEmployee(this.restaurantId, this.created$).subscribe((data) =>{ 
       this.newEmployee$ = data,
-        this.data.sendEmail(email).subscribe(
-        resp => this.emailResponse$ = resp 
-      ),
-      this.data.getEmployees().subscribe(
+      this.data.getEmployeesByRestaurant(this.restaurantId).subscribe(
       data => this.employees$ = data
+    ),
+    this.hide()
+  }
     )
-    } 
-    )
+  }
+
+  delete(restaurantId,employeeId){
+    this.data.deleteEmployee(restaurantId,employeeId).subscribe(()=>{
+      this.data.getEmployeesByRestaurant(restaurantId).subscribe(
+        data => this.employees$ = data
+      )
+    })
   }
 }
