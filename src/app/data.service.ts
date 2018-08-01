@@ -32,12 +32,12 @@ export class DataService {
     return this.http.get("/api/owner/restaurant/"+restaurantId);
   }
   
-  postRestaurant(restaurant){
+  postRestaurant(restaurant) {
     return this.http.post("/api/owner/restaurant",restaurant);
   }
 
-  deleteRestaurant(restaurantId){
-   this.http.delete("/api/owner/restaurant/"+restaurantId);
+  deleteRestaurant(restaurantId): Observable<void> {
+    return this.http.delete<void>("/api/owner/restaurant/"+restaurantId);
   }
 
   getProfile(){
