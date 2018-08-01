@@ -10,7 +10,15 @@ export class WaiterService {
 
   constructor(private http:HttpClient) { }
 
-  getTables(restaurantId){
-    return this.http.get('/api/restaurant/'+restaurantId+'/table');
+  getTables(){
+    return this.http.get('/api/waiter/table');
+  }
+
+  assign(table):Observable<void>{
+    return this.http.put<void>("/api/waiter/table/assign",table);
+  }
+
+  deassign(table):Observable<void>{
+    return this.http.put<void>("api/waiter/table/unassign",table);
   }
 }

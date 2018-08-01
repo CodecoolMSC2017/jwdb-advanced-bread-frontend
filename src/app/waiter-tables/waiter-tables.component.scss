@@ -1,0 +1,54 @@
+li {
+    display: block
+}
+.buttons {
+    float: right;
+    button {
+        background: none;
+        background-color: #fff;
+        border:none;
+        border-radius: 8px; 
+        padding:8px 12px;
+    }
+
+    .assign-button {
+        i {
+            color : rgb(7, 176, 41);
+        }
+    }
+
+    .assign-button:hover{
+        button{
+            background-color: rgb(7, 176, 41);         
+         }
+        
+        i {
+            color: #fff;
+        }
+    }
+
+
+    .unassign-button{
+        i {
+            color: rgb(249, 74, 74);
+        }
+    }
+
+    .unassign-button :hover {
+        button{
+          background-color: rgb(249, 74, 74);  
+        }
+        
+        i {
+            color: #fff;
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+*:focus{
+    outline: none;
+}

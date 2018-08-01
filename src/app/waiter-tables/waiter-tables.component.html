@@ -1,3 +1,29 @@
-<p>
-  waiter-tables works!
-</p>
+
+<h1>Tables</h1>
+
+<ul *ngIf="tables$" [@listStagger]='tables$'>
+  <li *ngFor="let table of tables$">
+    <ul >
+      <li> <strong>{{ table.name }}</strong>
+        <div class="buttons" id="buttons" >
+        <span class="assign-button" id="assign" *ngIf="!table.employee">
+          <a (click)="assign(table)">
+            <button>
+              <i class="material-icons">person_add</i>
+            </button>
+          </a>
+        </span>
+        <span class="unassign-button" id="unassign" *ngIf="table.employee && (table.employee.user.id === loggedIn$.user.id)">
+          <a (click)="unassign(table)">
+            <button>
+              <i class="material-icons">remove</i>
+            </button>
+          </a>
+        </span>
+      </div>
+      </li>
+      <li *ngIf="table.employee"><strong>AssignedTo: </strong>{{ table.employee.firstName}} {{ table.employee.lastName}}</li>
+      <li *ngIf="!table.employee"><strong>AssignedTo: </strong>-</li>
+    </ul>
+  </li>
+</ul>

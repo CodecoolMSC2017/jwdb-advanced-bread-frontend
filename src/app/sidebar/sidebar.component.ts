@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit {
    loggedIn$:Object;
   ngOnInit() {
     this.data.getProfile().subscribe(
-      data => this.loggedIn$ = data
+       data => this.loggedIn$ = data,       
     )
   }
 

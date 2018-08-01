@@ -62,7 +62,7 @@ const routes: Routes = [
     canActivate: [LoginGuard] 
   },
   {
-    path: 'waiter/restaurant/:restaurantId/table' ,
+    path: 'waiter/table' ,
     component: WaiterTablesComponent,
     canActivate: [LoginGuard] 
   }
