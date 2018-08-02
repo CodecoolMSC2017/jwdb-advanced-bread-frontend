@@ -91,4 +91,28 @@ export class DataService {
   deleteTable(restaurantId,tableId):Observable<void>{
     return this.http.delete<void>("/api/restaurant/"+restaurantId+"/table/"+tableId);
   }
+
+  getMenus(restaurantId){
+    return this.http.get("api/menu/"+restaurantId);
+  }
+
+  getMenu(restaurantId, menuId) {
+    return this.http.get("api/menu/"+restaurantId+"/"+menuId);
+  }
+
+  postMenu(restaurantId, menu){
+    return this.http.post("api/menu/"+restaurantId, menu);
+  }
+
+  deleteMenu(restaurantId, menuId):Observable<void>{
+    return this.http.delete<void>("api/menu/"+restaurantId+"/"+menuId);
+  }
+
+  getItemsByMenu(restaurantId, menuId){
+    return this.http.get("api/menu/"+restaurantId+"/"+menuId+"/items");
+  }
+
+  getIngredientsByItemId(itemId, restaurantId) {
+    return this.http.get("api/owner/restaurant/"+restaurantId+"ingredient"+itemId);
+  }
 }
