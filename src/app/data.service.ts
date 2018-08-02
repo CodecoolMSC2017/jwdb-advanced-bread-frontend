@@ -113,6 +113,6 @@ export class DataService {
   }
 
   getIngredientsByItemId(itemId, restaurantId) {
-    return this.http.get("api/owner/restaurant/"+restaurantId+"ingredient"+itemId);
+    return this.http.get("api/owner/restaurant/"+restaurantId+"ingredient"+"/item/"+itemId);
   }
 }
