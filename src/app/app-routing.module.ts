@@ -14,6 +14,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { WaiterTablesComponent } from './waiter-tables/waiter-tables.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   { 
@@ -72,6 +73,8 @@ const routes: Routes = [
     path: 'invoice/table/:tableId' ,
     component: InvoiceComponent,
     canActivate: [LoginGuard] 
+    path: 'registration',
+    component: RegistrationComponent,
   }
 ];
 

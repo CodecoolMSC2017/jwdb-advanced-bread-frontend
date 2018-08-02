@@ -23,6 +23,7 @@ import { SeatsComponent } from './seats/seats.component';
 import { OrdersComponent } from './orders/orders.component';
 import { WaiterTablesComponent } from './waiter-tables/waiter-tables.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
     OrdersComponent,
     WaiterTablesComponent,
     InvoiceComponent
+    RegistrationComponent
   ],
   imports: [
     AppRoutingModule,
