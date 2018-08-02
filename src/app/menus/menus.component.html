@@ -1,0 +1,36 @@
+<h1 *ngIf = "menus$"><p>Menus</p><a class="add-button" (click)="show()"><span><button><i class="material-icons">add</i></button></span></a></h1>
+
+<ul [@listStagger] = 'menus$'>
+    <li *ngFor = "let menu of menus$"> 
+    <a *ngIf = "menu" (click) = "getItemsByMenu(restaurantId, menu.id)" class="button"><strong>{{ menu.title }}</strong></a><span class="delete-button"><a (click)="delete(menu.id)"><button><i class="material-icons">delete</i></button></a></span>
+    <ul>
+      <li class="submenu">
+        <a routerLink="/menu/{{ restaurantId }}/{{ menu.id }}/items"><button class="submenu-button">ITEMS</button></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div *ngIf = "menu$" id="itemModal" class="modal hidden">
+    
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close" (click)="hide()">&times;</span>
+      <h1>{{ menu$.title}}'s items</h1>
+    </div>
+    <div class="modal-body">
+      <ul *ngIf = "items$">
+        <li *ngFor = "let item of items$">
+          <a (click) = "getIngredientsByItemId(item.id, restaurantId, menu.id)" class="button">{{item.name}}</a>
+          <h3>{{item.category}}, {{item.subcategory}}</h3>
+          <h3>{{item.price}} Huf</h3>
+        </li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <p>
+
+    </div>
+  </div>
+
+</div>

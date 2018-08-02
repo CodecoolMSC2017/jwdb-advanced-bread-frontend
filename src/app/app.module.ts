@@ -23,7 +23,12 @@ import { SeatsComponent } from './seats/seats.component';
 import { OrdersComponent } from './orders/orders.component';
 import { WaiterTablesComponent } from './waiter-tables/waiter-tables.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+<<<<<<< HEAD
 import { RegistrationComponent } from './registration/registration.component';
+=======
+import { MenusComponent } from './menus/menus.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
+>>>>>>> 032dfe1c3b15dcc5bf88d386315a2c1212739504
 
 @NgModule({
   declarations: [
@@ -41,8 +46,14 @@ import { RegistrationComponent } from './registration/registration.component';
     SeatsComponent,
     OrdersComponent,
     WaiterTablesComponent,
+<<<<<<< HEAD
     InvoiceComponent
     RegistrationComponent
+=======
+    InvoiceComponent,
+    MenusComponent,
+    IngredientsComponent
+>>>>>>> 032dfe1c3b15dcc5bf88d386315a2c1212739504
   ],
   imports: [
     AppRoutingModule,
