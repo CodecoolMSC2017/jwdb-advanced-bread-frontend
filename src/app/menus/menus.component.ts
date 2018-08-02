@@ -57,12 +57,13 @@ export class MenusComponent implements OnInit {
     )
   }
 
-  show(): void {
+  show() {
     let button = document.getElementById("itemModal")
+    console.log(button)
     button.classList.remove("hidden");
   }
 
-  hide(): void {
+  hide() {
     let button = document.getElementById("itemModal")
     button.classList.add("hidden");
   }

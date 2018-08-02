@@ -38,13 +38,14 @@ export class InvoiceComponent implements OnInit {
 
   showNotifyModal(){
     let modal = document.getElementById("notifyModal")
+    console.log(modal)
     modal.classList.remove("hidden")
   }
 
   hideNotifyModal(){
     let modal = document.getElementById("notifyModal")
     modal.classList.add("hidden")
-    this.router.navigate['/waiter/table']
+    this.router.navigate(['/waiter/table'])
   }
 
 }

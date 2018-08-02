@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
-import { Restaurant } from '../restaurant';
-import { Address } from '../address';
 
 @Component({
   selector: 'app-restaurants',
@@ -40,9 +38,20 @@ export class RestaurantsComponent implements OnInit {
   employees$ : Object;
   newRestaurant$ : Object;
   deleted$:Object;
-  address$ : Address;
-  created$:Restaurant;
-    
+  address$ : Object = {
+    street :'',
+    city:'',
+    postalCode:'',
+    state:'',
+    country : ''
+  }
+  created$:Object = {
+    name : '',
+    email : '',
+    address : this.address$, 
+    phone : '',
+    owner_id : this.user.id
+  }
   
 
   constructor(private data: DataService) { }
