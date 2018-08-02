@@ -34,6 +34,7 @@ import { DataService } from '../data.service';
 })
 export class WaiterTablesComponent implements OnInit {
 
+  invoiceTableId:Object;
   loggedIn$:Object;
   tables$:Object;
   restaurantId:Object;
@@ -79,6 +80,12 @@ export class WaiterTablesComponent implements OnInit {
      
     )
   }
+
+  createInvoice(tableId){
+    this.invoiceTableId = tableId,
+    this.showInvoiceModal();
+  }
+
   showOrderModal(){
     let modal = document.getElementById("orderViewModal")
     modal.classList.remove("hidden");

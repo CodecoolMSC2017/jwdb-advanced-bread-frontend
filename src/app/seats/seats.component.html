@@ -3,10 +3,9 @@
 <ul [@listStagger] = 'seats$'>
     <li *ngFor = "let seat of seats$">
     <ul>
-      <li><strong>SeatID : </strong>{{ seat.id }}</li><span class="delete-button"><a (click)="delete(table$.id,seat.id)"><button><i class="material-icons">delete</i></button></a></span>
-      <li class="submenu">
-          <a routerLink=""><button class="submenu-button"><i class="material-icons">add</i><span class="submenu-button-text">ADD ORDER</span></button></a>
-      </li>
+        <span class="delete-button"><a (click)="delete(table$.id,seat.id)"><button><i class="material-icons">delete</i></button></a></span>
+      <li><strong>SeatID : </strong>{{ seat.id }}</li>
+      
     </ul>
     </li>
   </ul>

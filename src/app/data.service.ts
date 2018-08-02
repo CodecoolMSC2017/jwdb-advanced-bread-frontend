@@ -67,7 +67,7 @@ export class DataService {
   postEmployee(restaurantId, employee){
     return this.http.post("/api/owner/restaurant/"+restaurantId+"/employee", employee);
   }
-
+  
   postTable(restaurantId, table){
     return this.http.post("/api/restaurant/"+restaurantId+"/table", table);
   }
@@ -90,5 +90,41 @@ export class DataService {
 
   deleteTable(restaurantId,tableId):Observable<void>{
     return this.http.delete<void>("/api/restaurant/"+restaurantId+"/table/"+tableId);
+  }
+  
+  getRegistered(employeeId, restaurantId) {
+    const params = new URLSearchParams();
+    params.append('employeeId',employeeId);
+    params.append('restaurantId',restaurantId);
+    console.log('api/register?employeeId=' + employeeId + '&restaurantId='+ restaurantId);
+    return this.http.get('api/register?employeeId=' + employeeId + '&restaurantId='+ restaurantId);
+  }
+
+  postUser(employeeId,user) {
+    return this.http.put('/api/register/' + employeeId, user);
+  }
+
+  getMenus(restaurantId){
+    return this.http.get("api/menu/"+restaurantId);
+  }
+
+  getMenu(restaurantId, menuId) {
+    return this.http.get("api/menu/"+restaurantId+"/"+menuId);
+  }
+
+  postMenu(restaurantId, menu){
+    return this.http.post("api/menu/"+restaurantId, menu);
+  }
+
+  deleteMenu(restaurantId, menuId):Observable<void>{
+    return this.http.delete<void>("api/menu/"+restaurantId+"/"+menuId);
+  }
+
+  getItemsByMenu(restaurantId, menuId){
+    return this.http.get("api/menu/"+restaurantId+"/"+menuId+"/items");
+  }
+
+  getIngredientsByItemId(itemId, restaurantId) {
+    return this.http.get("api/owner/restaurant/"+restaurantId+"ingredient"+"/item/"+itemId);
   }
 }

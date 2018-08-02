@@ -25,4 +25,12 @@ export class WaiterService {
   deassign(table):Observable<void>{
     return this.http.put<void>("api/waiter/table/unassign",table);
   }
+
+  createInvoice(tableId){
+    return this.http.get("/api/order/table/"+tableId+"/invoice");
+  }
+
+  pay( invoice):Observable<void>{
+    return this.http.put<void>("/api/order/invoice/set-paid",invoice);
+  }
 }

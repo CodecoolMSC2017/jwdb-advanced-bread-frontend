@@ -1,0 +1,24 @@
+#price {
+    margin-left: 55%;
+    display: inline;
+    p {
+        display: inline;
+    }
+}
+
+.borders {
+    border-top: 3px solid grey;
+}
+
+.thick-border {
+    border-top:15px solid rgb(12, 208, 51);
+}
+
+.logo {
+    float: right;
+    margin-top:-40px;
+    img{
+        height: 50px;
+        width:50px;
+    }
+}
