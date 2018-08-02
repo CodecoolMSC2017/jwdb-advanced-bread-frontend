@@ -82,12 +82,28 @@ export class EmployeeComponent implements OnInit {
   add(email){
     this.data.postEmployee(this.restaurantId, this.created$).subscribe((data) =>{ 
       this.newEmployee$ = data,
+      this.hide(),
       this.data.getEmployeesByRestaurant(this.restaurantId).subscribe(
       data => this.employees$ = data
-    ),
-    this.hide()
+    )
+    
   }
     )
+    this.address$ = {
+      street :'',
+      city:'',
+      postalCode:'',
+      state:'',
+      country : ''
+    }
+    this.created$ = {
+      email : '',
+      firstName : '', 
+      lastName : '',
+      role : '',
+      restaurant : this.restaurant$,
+      address : this.address$
+    }
   }
 
   delete(restaurantId,employeeId){

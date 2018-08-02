@@ -16,9 +16,24 @@
 
 .logo {
     float: right;
-    margin-top:-40px;
+    margin-top:-80px;
     img{
-        height: 50px;
-        width:50px;
+        height: 60px;
+        width:60px;
     }
+}
+
+.about{
+    font-size: 10px;
+    .about-text{
+       margin-top:-8px;
+    } 
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    max-width: 350px;
 }

@@ -6,22 +6,38 @@
     <li>
       <div class="about">
         <ul>
-          <li>bread.llc</li>
-          <li>{{ invoice$.restaurantAdressdress.street }}</li>
-          <li>{{ invoice$.restaurantAdress.city }}</li>
-          <li>{{ invoice$.restaurantAdress.postalCode }}</li>
-          <li>{{ invoice$.restaurantAdress.state }}</li>
+          <li class="about-text">bread.llc</li>
+          <li class="about-text">{{ invoice$.restaurantAddress.street }}</li>
+          <li class="about-text">{{ invoice$.restaurantAddress.city }}</li>
+          <li class="about-text">{{ invoice$.restaurantAddress.postalCode }}</li>
+          <li class="about-text">{{ invoice$.restaurantAddress.state }}</li>
         </ul>
       </div>
       <div class="logo">
         <span><img src="/assets/bread.png"></span>
       </div>
     </li>
-    <li><strong>Date: </strong> {{ invoice$.date[0] }}-{{ invoice$.date[1] }}-{{ invoice$.date[2] }}  {{ invoice$.date[3] }}:{{ invoice$.date[4] }}</li>
+    <li><strong>Date: </strong> {{ invoice$.created[0] }}-{{ invoice$.created[1] }}-{{ invoice$.created[2] }}  {{ invoice$.created[3] }}:{{ invoice$.created[4] }}</li>
 
     <li class="borders"></li>
-   <li id ="price"><strong>Total price: </strong><p> {{  invoice$.total }} HUF </p></li>
+   <li id ="price"><strong>Total price: </strong><p> {{  invoice$.totalPrice }} HUF </p></li>
    <li class="borders"></li>
+    <li >
+      <table>
+        <tr>
+          <th>QTY</th>
+          <th>DESCRIPTION</th>
+          <th>UNIT PRICE</th>
+          <th>TOTAL</th>
+        </tr>
+        <tr *ngFor="let item of invoice$.invoiceItemDtos">
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.itemName }}</td>
+          <td>{{ item.unitPrice }} HUF</td>
+          <td>{{ item.totalPrice }} HUF</td>
+        </tr>
+      </table>
+    </li>
   </ul>
 </li>
 </ul>
