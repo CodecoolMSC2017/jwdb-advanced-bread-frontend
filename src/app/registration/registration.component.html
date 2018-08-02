@@ -1,0 +1,25 @@
+<div class="register">
+  <div class="register-screen">
+      <div class="app-title">
+          <h1>Register</h1>
+      </div>
+
+      <div class="register-form">
+          <div class="control-group">
+          <input type="text" class="register-field" value="" placeholder="username"[(ngModel)] = "created$.username" >
+          <label class="register-field-icon fui-user" for="register-name"></label>
+          </div>
+
+          <div class="control-group">
+          <input type="password" class="register-field" value="" placeholder="password"  [(ngModel)] = "created$.password">
+          <label class="register-field-icon fui-lock" for="register-pass"></label>
+          </div>
+
+          <div class="control-group">
+            <input type="password" class="register-field" value="" placeholder="confirm password"  [(ngModel)] = "created$.confirmationPassword">
+            <label class="register-field-icon fui-lock" for="register-conf"></label>
+            </div>
+          <a class="btn btn-primary btn-large btn-block" (click)= "add()">Register</a>
+      </div>
+  </div>
+</div>
