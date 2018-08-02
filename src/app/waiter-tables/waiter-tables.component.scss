@@ -245,8 +245,42 @@ input {
           background:none;
           border:none;
           border-radius:8px;
+          padding:8px 40px;
+          font-size: 16px;
+          font-weight:bold;
+          font-family: 'Roboto',sans-serif;
+          
+          
       }
 
       h2{
           text-align: center;
       }
+
+      .cancel-button {
+          background-color: #fff;
+          border:2px solid rgb(244, 87, 87);
+          color: rgb(244, 87, 87);
+          margin-left:22.5%;
+          margin-right:10%;
+          
+      }
+
+      .create-button {
+        background-color: #fff;
+        border:2px solid rgb(7, 176, 41);
+        color: rgb(7, 176, 41);
+        
+        
+        
+    }
+
+    .create-button:hover{
+        background-color: rgb(7, 176, 41);
+        color:#fff ;
+    }
+
+    .cancel-button:hover{
+        background-color: rgb(244, 87, 87);
+        color:#fff;
+    }

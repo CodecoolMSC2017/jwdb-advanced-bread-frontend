@@ -74,6 +74,8 @@ const routes: Routes = [
     path: 'invoice/table/:tableId' ,
     component: InvoiceComponent,
     canActivate: [LoginGuard] 
+  },
+  {
     path: 'registration',
     component: RegistrationComponent,
   },

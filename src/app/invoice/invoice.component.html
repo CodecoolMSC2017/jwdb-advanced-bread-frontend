@@ -1,3 +1,27 @@
-<p>
-  invoice works!
-</p>
+<h1>Invoice</h1>
+
+<ul>
+  <li>
+  <ul *ngIf="invoice$">
+    <li>
+      <div class="about">
+        <ul>
+          <li>bread.llc</li>
+          <li>{{ invoice$.restaurantAdressdress.street }}</li>
+          <li>{{ invoice$.restaurantAdress.city }}</li>
+          <li>{{ invoice$.restaurantAdress.postalCode }}</li>
+          <li>{{ invoice$.restaurantAdress.state }}</li>
+        </ul>
+      </div>
+      <div class="logo">
+        <span><img src="/assets/bread.png"></span>
+      </div>
+    </li>
+    <li><strong>Date: </strong> {{ invoice$.date[0] }}-{{ invoice$.date[1] }}-{{ invoice$.date[2] }}  {{ invoice$.date[3] }}:{{ invoice$.date[4] }}</li>
+
+    <li class="borders"></li>
+   <li id ="price"><strong>Total price: </strong><p> {{  invoice$.total }} HUF </p></li>
+   <li class="borders"></li>
+  </ul>
+</li>
+</ul>
