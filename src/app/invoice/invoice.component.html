@@ -6,7 +6,7 @@
     <li>
       <div class="about">
         <ul>
-          <li class="about-text">bread.llc</li>
+          <li class="about-text"><strong>bread.llc</strong></li>
           <li class="about-text">{{ invoice$.restaurantAddress.street }}</li>
           <li class="about-text">{{ invoice$.restaurantAddress.city }}</li>
           <li class="about-text">{{ invoice$.restaurantAddress.postalCode }}</li>
@@ -27,17 +27,33 @@
         <tr>
           <th>QTY</th>
           <th>DESCRIPTION</th>
-          <th>UNIT PRICE</th>
-          <th>TOTAL</th>
+          <th>UNIT PRICE</th> 
         </tr>
         <tr *ngFor="let item of invoice$.invoiceItemDtos">
           <td>{{ item.quantity }}</td>
           <td>{{ item.itemName }}</td>
           <td>{{ item.unitPrice }} HUF</td>
-          <td>{{ item.totalPrice }} HUF</td>
         </tr>
       </table>
     </li>
+     <li>
+          <a (click)="pay(invoice$)"><span class="pay-button"><button>PAY</button></span></a>
+      </li>
   </ul>
 </li>
 </ul>
+
+
+<div id="invoiceModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+          <h2>PAYMENT SUCCESSFUL</h2>
+       
+           <button (click)="hideNotifyModal()" class="ok-button">OK</button>
+      <div class="modal-footer">
+    </div>
+  </div>
+</div>
+</div>

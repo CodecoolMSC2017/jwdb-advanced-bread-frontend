@@ -37,3 +37,154 @@ th {
 td {
     max-width: 350px;
 }
+.pay-button{
+    margin-left:40%;
+    button {
+      border:none;
+    border-radius:8px;
+    background: none;
+    border:2px solid rgb(7, 176, 41);  
+    color: rgb(7, 176, 41);
+    background: #fff;
+    padding:8px 25px;
+    }
+}
+
+.pay-button:hover {
+    button {
+        color: #fff;
+        background-color: rgb(7, 176, 41);
+        
+    }
+}
+
+*:focus{
+    outline:none;
+}
+
+.modal {
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 18%; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    
+    
+    
+}
+
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: auto;
+    padding: 0;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    border-radius: 8px;
+
+    h1{
+        margin-left:30px;
+    }
+}
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+.close {
+    color: grey;
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    padding: 2px 16px;
+    background-color: #fff;
+    color: rgb(7, 176, 41);
+}
+
+.modal-body {
+    padding: 2px 16px;
+    border-radius: 8px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    padding-bottom: 10px;
+    background-color: #fff;
+    color: white;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+
+.ok-button {
+    margin-left:35%;
+    border:none;
+    border-radius:8px;
+    background: none;
+    border:2px solid rgb(7, 176, 41);  
+    color: rgb(7, 176, 41);
+    background: #fff;
+    padding:8px 40px;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+
+.ok-button:hover {
+    color: #fff;
+    background-color: rgb(7, 176, 41);
+}
+
+
+.pay-button{
+    margin-left:40%;
+    button {
+      border:none;
+    border-radius:8px;
+    background: none;
+    border:2px solid rgb(7, 176, 41);  
+    color: rgb(7, 176, 41);
+    background: #fff;
+    padding:8px 25px;
+    }
+}
+
+.pay-button:hover {
+    button {
+        color: #fff;
+        background-color: rgb(7, 176, 41);
+        
+    }
+}
+
+.hidden {
+    display: none;
+}
