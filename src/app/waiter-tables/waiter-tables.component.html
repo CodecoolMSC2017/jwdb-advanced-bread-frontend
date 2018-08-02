@@ -33,8 +33,8 @@
         </ul>
       </li>
     </div>
-    <li><a (click)="showOrders(table.id)"><span class="view-button"><button>VIEW ORDERS</button></span></a
-      ><a (click)="createInvoice(table.id)"><span class="view-button"><button>CREATE INVOICE</button></span></a>
+    <li><a (click)="showOrders(table.id)"><span class="view-button"><button>VIEW ORDERS</button></span></a>
+      <a (click)="createInvoice(table.id)"><span class="view-button"><button>CREATE INVOICE</button></span></a>
       <a *ngIf="table.employee && (table.employee.user.id === loggedIn$.user.id)"><span class="view-button"><button>TAKE ORDER</button></span></a></li>
     </ul>
   </li>
@@ -79,7 +79,7 @@
          
              <button (click)="hideInvoiceModal()" class="cancel-button button">No</button><a [routerLink]="['/invoice','table',invoiceTableId]"><button class="create-button button">Yes</button></a>
         <div class="modal-footer">
-        </div>
       </div>
-    
     </div>
+  </div>
+</div>
