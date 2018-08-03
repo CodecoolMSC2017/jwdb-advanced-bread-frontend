@@ -11,9 +11,9 @@
   </li>
 </ul>
 
-<div *ngIf = "menu$" id="itemModal" class="modal hidden">
+<div id="itemModal" class="modal hidden">
     
-  <div class="modal-content">
+  <div class="modal-content" *ngIf="menu$">
     <div class="modal-header">
       <span class="close" (click)="hide()">&times;</span>
       <h1>{{ menu$.title}}'s items</h1>
@@ -23,12 +23,11 @@
         <li *ngFor = "let item of items$">
           <a (click) = "getIngredientsByItemId(item.id, restaurantId, menu.id)" class="button">{{item.name}}</a>
           <h3>{{item.category}}, {{item.subcategory}}</h3>
-          <h3>{{item.price}} Huf</h3>
+          <h3>{{item.price}} HUF</h3>
         </li>
       </ul>
     </div>
     <div class="modal-footer">
-      <p>
 
     </div>
   </div>
