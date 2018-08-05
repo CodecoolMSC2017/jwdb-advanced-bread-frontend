@@ -2,9 +2,10 @@
 body {
     margin :0;
     background-image: url("/assets/background.svg");
-    background-repeat: no-repeat;
-    padding-bottom:500px;
+    background-size:cover; 
     font-family: 'Montserrat', sans-serif;
+    background-repeat:no-repeat; 
+    background-position: fixed;
     height: 100vh;
 }
 

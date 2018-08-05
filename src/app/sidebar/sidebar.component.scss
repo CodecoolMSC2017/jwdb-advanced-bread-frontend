@@ -21,7 +21,7 @@ nav {
                 margin-left: 10px;
                 float: left;
                 font-family: 'Roboto', sans-serif;
-                color: black;
+                color: grey;
             }
 
             a {
@@ -34,25 +34,45 @@ nav {
             }
             i {
                 float: left;
-                color: black;
+                color: grey;
             }
 
             .activated{
-                background-color: rgb(7, 176, 41);
-            
+                .menu-button::before {
+                   background-color: rgb(7, 176, 41); 
+                }
+
+                .menu-button-text{
+                    color:black;
+                }
+
+                i{
+                    color: black;
+                } 
+
                 
             }
         }
 
-        .menu-button :hover{
-            background-color: rgb(211, 211, 211);
+        .menu-button::before{
+            width:5px;
+            position: absolute;
+            background-color: transparent;
+            content: "";
+            left:0;
+            height:64px;
+        
+        }
+
+        .menu-button:hover:before{
+            background-color: rgb(7, 176, 41);
             
         }
     } 
 
 }
-#logoutA :hover {
-    background: red;
+#logoutA:hover::before {
+    background-color: red;
 
     i{
         color:white;
@@ -86,5 +106,9 @@ nav {
     i{
         float: left;
     }
+}
+
+::before ::after {
+   box-sizing: border-box;
 }
 
