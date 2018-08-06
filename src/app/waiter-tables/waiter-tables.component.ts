@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WaiterService } from '../waiter.service';
-import { ActivatedRoute } from '@angular/router'; 
+import { ActivatedRoute, Router } from '@angular/router'; 
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { DataService } from '../data.service';
 
@@ -41,7 +41,7 @@ export class WaiterTablesComponent implements OnInit {
   restaurant$:Object;
   orders$: Object;
 
-  constructor(private route:ActivatedRoute,private waiterData:WaiterService,private data:DataService,private router:ActivatedRoute) {
+  constructor(private waiterData:WaiterService,private data:DataService,private router:ActivatedRoute,private route: Router) {
     this.router.params.subscribe( (param) => {
        this.restaurantId = param.restaurantId,
       this.data.getProfile().subscribe(
@@ -105,5 +105,9 @@ export class WaiterTablesComponent implements OnInit {
   hideInvoiceModal(){
     let modal = document.getElementById("invoiceModal")
     modal.classList.add("hidden")
+  }
+
+  takeOrder(restaurantId,tableId){
+    this.route.navigate(['orders/restaurant/'+restaurantId+'/table/'+tableId]);
   }
 }

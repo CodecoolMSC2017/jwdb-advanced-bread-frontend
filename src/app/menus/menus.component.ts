@@ -55,6 +55,7 @@ export class MenusComponent implements OnInit {
     this.data.getMenus(this.restaurantId).subscribe(
       data => this.menus$ = data
     )
+    console.log(this.menus$)
   }
 
   show() {
@@ -80,17 +81,17 @@ export class MenusComponent implements OnInit {
   }
 
   delete(menuId) {
-    this.data.deleteMenu(this.restaurantId, menuId).subscribe(() => {
+    this.data.deleteMenu(menuId).subscribe(() => {
       this.data.getMenus(this.restaurantId).subscribe(
         data => this.menus$ = data
       )
     }
     )
   }
-  getItemsByMenu(restaurantId, menuId) {
-    this.data.getItemsByMenu(restaurantId, menuId).subscribe((data) => {
+  getItemsByMenu(menuId) {
+    this.data.getItemsByMenu(menuId).subscribe((data) => {
       this.items$ = data,
-        this.data.getMenu(restaurantId, menuId).subscribe((data) => {
+        this.data.getMenu(menuId).subscribe((data) => {
           this.menu$ = data,
             this.show()
         })
@@ -98,13 +99,34 @@ export class MenusComponent implements OnInit {
   }
   getIngredientsByItemId(itemId, restaurantId, menuId) {
     this.data.getIngredientsByItemId(itemId, restaurantId).subscribe((data) => {
-      this.ingredients$ = this.data.getItemsByMenu(restaurantId, menuId).subscribe((data) => {
+      this.ingredients$ = this.data.getItemsByMenu(menuId).subscribe((data) => {
         this.items$ = data,
-          this.data.getMenu(restaurantId, menuId).subscribe((data) => {
+          this.data.getMenu(menuId).subscribe((data) => {
             this.menu$ = data,
               this.show()
           })
       })
     })
+  }
+
+  activate(restaurantId,menu){
+    this.data.changeMenuActivity(restaurantId,menu).subscribe(() => {
+      this.data.getMenus(restaurantId).subscribe(
+        data => this.menus$ = data
+      )
+    }
+      
+    
+    )
+  }
+
+  deactivate(restaurantId,menu){
+    this.data.changeMenuActivity(restaurantId,menu).subscribe(
+      () => {
+        this.data.getMenus(restaurantId).subscribe(
+          data => this.menus$ = data
+        )
+      }
+    );
   }
 }

@@ -14,8 +14,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { WaiterTablesComponent } from './waiter-tables/waiter-tables.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { MenusComponent } from './menus/menus.component';
-
 import { RegistrationComponent } from './registration/registration.component';
+import { TakeOrdersComponent } from './take-orders/take-orders.component';
 
 const routes: Routes = [
   { 
@@ -82,6 +82,11 @@ const routes: Routes = [
   {
     path: 'menu/:restaurantId' ,
     component: MenusComponent,
+    canActivate: [LoginGuard] 
+  },
+  {
+    path: 'orders/restaurant/:restaurantId/table/:tableId',
+    component: TakeOrdersComponent,
     canActivate: [LoginGuard] 
   }
 ];

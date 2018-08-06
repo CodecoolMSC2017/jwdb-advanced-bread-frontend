@@ -1,0 +1,47 @@
+.items{
+    display: inline-block;
+    width: 350px;
+    margin-left:20px;
+}
+
+.orders{
+    display: inline-block;
+    width:350px;
+}
+
+
+.add-button {
+    
+    float:right;
+    margin-top:-68px;
+    margin-right:-20px;
+    padding-top:35.5px;
+    padding-bottom:35.5px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    
+    button {
+        margin:0;
+    border:none;
+    
+    background:none;
+
+    i {
+        color:rgb(7, 176, 41);
+        font-size: 40px;
+    }
+    }
+}
+
+.add-button:hover {
+    background-color:rgb(7, 176, 41);
+    button {
+        i{
+            color:#fff;
+        }
+    }
+}
+
+*:focus{
+    outline:none;
+}

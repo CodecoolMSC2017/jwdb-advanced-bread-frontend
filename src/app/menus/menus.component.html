@@ -2,8 +2,12 @@
 
 <ul [@listStagger] = 'menus$'>
     <li *ngFor = "let menu of menus$"> 
-    <a *ngIf = "menu" (click) = "getItemsByMenu(restaurantId, menu.id)" class="button"><strong>{{ menu.title }}</strong></a><span class="delete-button"><a (click)="delete(menu.id)"><button><i class="material-icons">delete</i></button></a></span>
+    <a *ngIf = "menu" (click) = "getItemsByMenu(menu.id)" class="button"><strong>{{ menu.title }}</strong></a><span class="delete-button"><a (click)="delete(menu.id)"><button><i class="material-icons">delete</i></button></a></span>
     <ul>
+      <li>
+          <a *ngIf="!menu.active" (click)="activate(restaurantId,menu)"><span class="activate-button"><button>+ ACTIVATE</button></span></a>
+          <a *ngIf="menu.active"(click)="deactivate(restaurantID,menu)"><span class="deactivate-button"><button>- DEACTIVATE</button></span></a>
+      </li>
       <li class="submenu">
         <a routerLink="/menu/{{ restaurantId }}/{{ menu.id }}/items"><button class="submenu-button">ITEMS</button></a>
       </li>

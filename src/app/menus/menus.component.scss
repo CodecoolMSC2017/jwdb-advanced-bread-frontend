@@ -114,87 +114,57 @@
     }
     
 
-    input {
-        text-align: center;
-        background-color: #ECF0F1;
-        border: 2px solid transparent;
-        border-radius: 3px;
-        font-size: 13px;
-        font-weight: 200;
-        padding: 6px 0;
-        width: 250px;
-        transition: border .5s;
+    .activate-button {
         float:right;
-        margin-left:auto;
-        margin-bottom: 3px;
-        margin-right:70px;
-        }
-
-        ::-webkit-input-placeholder{
-            color:rgb(180, 182, 183);
+            
+        
+            button {
+                border:none;
+                border-radius: 8px;
+                background:none;
+                background-color:#fff;
+                color:rgb(7, 176, 41);
+                font-family: 'Roboto',sans-serif;
+                padding:4px 25px;
+                margin-left:30px;
+                font-weight: bold;
+            }
         }
         
-        input:focus {
-        border: 2px solid rgb(7, 176, 41);
-        box-shadow: none;
+        .activate-button:hover {
+            
+            button {
+                background-color: rgb(7, 176, 41);
+                color:#fff;    
+            }
         }
 
-        .btn {
-            border: 2px solid rgb(81, 228, 108);
-            background: rgb(81, 228, 108);;
-            color: rgb(0, 0, 0);
-            font-size: 16px;
-            line-height: 15px;
-            padding: 5px 0;
-            text-decoration: none;
-            text-shadow: none;
-            text-align: center;
-            border-radius: 3px;
-            box-shadow: none;
-            transition: 0.25s;
-            display: block;
-            width: 150px;
-            margin-right:40px;
-            float: right;
-          }
-          
-          .btn:hover {
-            background-color:rgb(7, 176, 41) ;
-            border: 2px solid rgb(7, 176, 41);
-          
-          }
+        .deactivate-button {
+            float:right;
+                
+            
+                button {
+                    border:none;
+                    border-radius: 8px;
+                    background:none;
+                    background-color:#fff;
+                    color:red;
+                    font-family: 'Roboto',sans-serif;
+                    padding:4px 25px;
+                    margin-left:30px;
+                    font-weight: bold;
+                }
+            }
 
-          label {
-              margin-left: 30px;
-              float: left;
-          }
 
-          .cancel-btn {
-            border: 2px solid rgb(244, 87, 87);
-            background: rgb(244, 87, 87);
-            color: rgb(0, 0, 0);
-            font-size: 16px;
-            line-height: 15px;
-            padding: 5px 0;
-            text-decoration: none;
-            text-shadow: none;
-            text-align: center;
-            border-radius: 3px;
-            box-shadow: none;
-            transition: 0.25s;
-            display: block;
-            width: 150px;
-            margin-left:40px;
-            float: left;
-          }
+            .deactivate-button:hover {
+                
+                button {
+                    background-color: red;
+                    color:#fff;    
+                }
+            }
 
-          .cancel-btn:hover {
-            background-color:rgb(232, 32, 32) ;
-            border: 2px solid rgb(232, 32, 32);
-          
-          }
-
-          *:focus{
-              outline: none;
-          }
-
+            *:focus{
+                outline: none;
+            }
