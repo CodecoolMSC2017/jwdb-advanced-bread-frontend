@@ -132,5 +132,9 @@ export class DataService {
     return this.http.put<void>("/api/menu/"+restaurantId+"/activity",menu);
   }
 
+  getActiveMenu(restaurantId){
+    return this.http.get("/api/menu/restaurant/"+restaurantId+"/active");
+  }
+
   
 }

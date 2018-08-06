@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <div class="orders">
+    <ul>
+      <li></li>
+    </ul>
+  </div>
+  <div class="items">
+    <ul *ngIf = "activeMenu$">
+      <li *ngFor = "let item of activeMenu$.items">
+        
+        <ul>
+          <li><strong>Name: </strong>{{ item.name }}</li>
+          <span class="add-button"(click)="takeNewOrder(item.id,1,'-')"><button><i class="material-icons">add</i></button></span>
+          <li><strong>Unit price: </strong>{{ item.price }} HUF</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
