@@ -105,26 +105,32 @@ export class DataService {
   }
 
   getMenus(restaurantId){
-    return this.http.get("api/menu/"+restaurantId);
+    return this.http.get("api/menu/restaurant/"+restaurantId);
   }
 
-  getMenu(restaurantId, menuId) {
-    return this.http.get("api/menu/"+restaurantId+"/"+menuId);
+  getMenu(menuId) {
+    return this.http.get("api/menu/"+menuId);
   }
 
   postMenu(restaurantId, menu){
     return this.http.post("api/menu/"+restaurantId, menu);
   }
 
-  deleteMenu(restaurantId, menuId):Observable<void>{
-    return this.http.delete<void>("api/menu/"+restaurantId+"/"+menuId);
+  deleteMenu( menuId):Observable<void>{
+    return this.http.delete<void>("api/menu/"+menuId);
   }
 
-  getItemsByMenu(restaurantId, menuId){
-    return this.http.get("api/menu/"+restaurantId+"/"+menuId+"/items");
+  getItemsByMenu( menuId){
+    return this.http.get("api/menu/"+menuId+"/items");
   }
 
   getIngredientsByItemId(itemId, restaurantId) {
     return this.http.get("api/owner/restaurant/"+restaurantId+"ingredient"+"/item/"+itemId);
   }
+
+  changeMenuActivity(restaurantId,menu):Observable<void>{
+    return this.http.put<void>("/api/menu/"+restaurantId+"/activity",menu);
+  }
+
+  
 }
