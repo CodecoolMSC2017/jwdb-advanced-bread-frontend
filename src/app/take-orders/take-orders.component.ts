@@ -19,6 +19,7 @@ export class TakeOrdersComponent implements OnInit {
   loggedIn$:any;
   restaurantId: Object;
   newOrder$:Object;
+  seatId:number;
 
   constructor(private route:ActivatedRoute,private data:DataService,private waiterService: WaiterService) {
     this.route.params.subscribe(
@@ -48,11 +49,35 @@ export class TakeOrdersComponent implements OnInit {
     orderItem.comment=comment;
     orderItem.quantity=quantity;
 
-    
-    this.waiterService.takeOrder(11,orderItem).subscribe(
-        data => this.newOrder$ = data
-    )
+    this.waiterService.takeOrder(this.seatId,orderItem).subscribe((data) =>{
+      this.newOrder$ = data,
+      this.waiterService.getOrdersBySeat(this.seatId).subscribe(
+        data => this.orders$ = data
+      )
     }
+       
+    )
+  }
+
+  chooseSeat(seatId:number){
+    this.seatId=seatId;
+    this.getOrdersBySeat(seatId)
+  }
+
+  getOrdersBySeat(seatId){
+    this.waiterService.getOrdersBySeat(seatId).subscribe(
+      data => this.orders$ = data
+    )
+  }
+
+  deleteOrder(orderItemId){
+    this.waiterService.deleteOrder(this.seatId,orderItemId).subscribe(()=>{
+      this.waiterService.getOrdersBySeat(this.seatId).subscribe(data=> this.orders$ = data)
+    }
+      
+    )
+  }
+  
     
   
 

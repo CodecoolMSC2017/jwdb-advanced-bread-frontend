@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrderItem } from './order-item';
 
@@ -37,5 +37,13 @@ export class WaiterService {
 
   takeOrder(seatId,orderItem:OrderItem){
     return this.http.post("/api/order/seat/"+seatId,orderItem);
+  }
+
+  getOrdersBySeat(seatId){
+    return this.http.get("/api/order/seat/"+seatId+"/active");  
+  }
+
+  deleteOrder(seatId,orderItemId:string):Observable<void>{
+    return this.http.delete<void>("/api/order/seat/"+seatId,{params: new HttpParams().set('orderItemId',orderItemId)})
   }
 }
