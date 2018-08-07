@@ -27,6 +27,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { MenusComponent } from './menus/menus.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { TakeOrdersComponent } from './take-orders/take-orders.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { PasswordChangeComponent } from './password-change/password-change.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { TakeOrdersComponent } from './take-orders/take-orders.component';
     InvoiceComponent,
     MenusComponent,
     IngredientsComponent,
-    TakeOrdersComponent
+    TakeOrdersComponent,
+    ForgotPasswordComponent,
+    PasswordChangeComponent
   ],
   imports: [
     AppRoutingModule,
