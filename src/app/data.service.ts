@@ -76,8 +76,8 @@ export class DataService {
     return this.http.post("api/table/"+tableId+"/seat", seat);
   }
 
-  sendEmail(email) {
-    return this.http.post("api/send/invite", email);
+  sendEmail(user) {
+    return this.http.post("api/send", user);
   }
 
   deleteSeat(tableId,seatId):Observable<void>{
@@ -136,5 +136,12 @@ export class DataService {
     return this.http.get("/api/menu/restaurant/"+restaurantId+"/active");
   }
 
+  getUser(userId, username) : Observable<any> {
+    return this.http.get("api/changepw?userId="+ userId+"&username="+username);
+  }
+
+  changePassword(userId, passwordChange): Observable<any>{
+    return this.http.put("api/changepw", passwordChange);
+  }
   
 }
