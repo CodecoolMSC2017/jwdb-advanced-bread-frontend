@@ -1,22 +1,29 @@
 .items{
     display: inline-block;
-    width: 350px;
+    width: 400px;
     margin-left:20px;
+    height:500px;
+    overflow-y: scroll;
+    
 }
 
 .orders{
     display: inline-block;
-    width:350px;
+    width:400px;
+    overflow: scroll;
+    height: 500px;
+    
+
 }
 
 
 .add-button {
     
     float:right;
-    margin-top:-68px;
+    margin-top:-48px;
     margin-right:-20px;
-    padding-top:35.5px;
-    padding-bottom:35.5px;
+    padding-top:25px;
+    padding-bottom:25px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     
@@ -45,3 +52,47 @@
 *:focus{
     outline:none;
 }
+
+
+ul {
+    all:unset;
+    
+    li {
+        margin-right:10px;
+    }
+}
+
+.li {
+    max-width:60px;
+    display: inline-block;
+
+    
+}
+
+.seats {
+    margin-top:30px;
+    
+}
+
+.active {
+    border:2px solid rgb(7, 176, 41);
+}
+.hidden{
+    display: none;
+}
+
+.close {
+    color: grey;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top:-35px;  
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+

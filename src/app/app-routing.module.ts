@@ -16,39 +16,40 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { MenusComponent } from './menus/menus.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TakeOrdersComponent } from './take-orders/take-orders.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { PasswordChangeComponent } from './password-change/password-change.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
-    redirectTo: '/dashboard', 
+  {
+    path: '',
+    redirectTo: '/dashboard',
     pathMatch: 'full' },
-  { 
-    path: 'dashboard', 
-    component: DashboardComponent, 
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
     canActivate: [LoginGuard] },
-  { 
-    path: 'login', 
+  {
+    path: 'login',
     component: LoginComponent },
   {
     path: 'restaurant/:restaurantId/employee' ,
     component: EmployeeComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   },
   {
     path: 'restaurant' ,
     component: RestaurantsComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   },
   {
     path: 'restaurant/:restaurantId/employee/:employeeId' ,
     component: EmployeeDetailComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   },
   {
     path: 'profile' ,
     component: ProfileComponent,
-    canActivate: [LoginGuard] 
-  
+    canActivate: [LoginGuard]
   },
   {
     path: 'restaurant/:restaurantId/table' ,
@@ -58,36 +59,44 @@ const routes: Routes = [
   {
     path: 'restaurant/:restaurantId/table/:tableId/seat' ,
     component: SeatsComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   },
   {
     path: 'order/restaurant' ,
     component: OrdersComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   },
   {
     path: 'waiter/table' ,
     component: WaiterTablesComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   },
   {
     path: 'invoice/table/:tableId' ,
     component: InvoiceComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   },
   {
     path: 'registration',
     component: RegistrationComponent,
   },
   {
+    path: 'forgotpassword',
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'changepassword',
+    component: PasswordChangeComponent,
+  },
+  {
     path: 'menu/:restaurantId' ,
     component: MenusComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   },
   {
     path: 'orders/restaurant/:restaurantId/table/:tableId',
     component: TakeOrdersComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   }
 ];
 
