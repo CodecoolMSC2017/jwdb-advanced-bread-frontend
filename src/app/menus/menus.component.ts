@@ -3,6 +3,8 @@ import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
+import { Menu } from '../menu';
+import { Item } from '../item';
 
 @Component({
   selector: 'app-menus',
@@ -41,10 +43,9 @@ export class MenusComponent implements OnInit {
   newMenu$: Object;
   deleted$: Object;
   items$: Object;
+  allItems$: Array<Item>;
   ingredients$: Object;
-  created$: Object = {
-    title: ''
-  }
+  created$ = new Menu();
 
 
   constructor(private data: DataService, private route: ActivatedRoute) {
@@ -55,13 +56,22 @@ export class MenusComponent implements OnInit {
     this.data.getMenus(this.restaurantId).subscribe(
       data => this.menus$ = data
     )
-    console.log(this.menus$)
   }
 
   show() {
     let button = document.getElementById("itemModal")
-    console.log(button)
     button.classList.remove("hidden");
+  }
+
+  showAdd() {
+    this.getAllItems(this.restaurantId);
+    let button = document.getElementById("addItemModal")
+    button.classList.remove("hidden");
+  }
+
+  hideAdd() {
+    let button = document.getElementById("addItemModal")
+    button.classList.add("hidden");
   }
 
   hide() {
@@ -70,14 +80,19 @@ export class MenusComponent implements OnInit {
   }
 
   add() {
-    this.data.postMenu(this.restaurantId, this.created$).subscribe((data) => {
-      this.newMenu$ = data,
-        this.data.getMenus(this.restaurantId).subscribe(
-          resp => this.menus$ = resp
-        )
+    for(let i = 0; i < this.allItems$.length; i++) {
+      if(this.allItems$[i].value == true) {
+        this.created$.items.push(this.allItems$[i]);
+      }
+    }
+    this.data.postMenu(this.created$).subscribe((data) => {
+      this.newMenu$ = data
+      this.data.getMenus(this.restaurantId).subscribe(
+        data => this.menus$ = data
+      )
     });
-    this.hide();
-    this.created$ = { title: '' }
+    this.hideAdd();
+    this.created$ = new Menu;
   }
 
   delete(menuId) {
@@ -128,5 +143,11 @@ export class MenusComponent implements OnInit {
         )
       }
     );
+  }
+
+  getAllItems(restaurantId) {
+    this.data.getAllItems(restaurantId).subscribe(
+      data => this.allItems$ = data
+    )
   }
 }
