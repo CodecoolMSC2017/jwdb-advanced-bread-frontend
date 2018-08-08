@@ -51,7 +51,7 @@
               <li *ngFor="let seat of orders$.seatDtoSet">
                 <ul>
                 <li><strong>Seat: </strong>{{ seat.id }}</li>
-                <li *ngFor="let order of seat.customerOrderSet">
+                <li *ngFor="let order of seat.customerOrderList">
                   <ul>
                     <li><strong>Item name: </strong>{{ order.orderItem.item.name }}</li>
                     <li><strong>Quantity: </strong>{{ order.orderItem.quantity }}</li>

@@ -26,20 +26,28 @@
     </li>
     </ul>
   </div>
-  <div class="items">
-    <h1>Foods</h1>
+ 
+  <div class="items"> 
+    <div class="search-bar">
+      <form >
+          <input type="text" placeholder="Search..." [(ngModel)]="searchString" [ngModelOptions] = "{  standalone : true }">
+      </form>
+    </div>
+    <div class="content">
+    <h1 [ngClass]="{'hidden': searchString!=''}">Foods</h1>
     <ul *ngIf = "activeMenu$">
-      <li *ngFor = "let item of activeMenu$.items" [ngClass]="{'hidden': item.category==='DRINK'}">
+      <li *ngFor = "let item of activeMenu$.items" [ngClass]="{'hidden': item.category==='DRINK' || !includeString(item.name) }">
         <ul>
           <li><strong>Name: </strong>{{ item.name }}</li>
           <span class="add-button"(click)="takeNewOrder(item.id,1,'-')"><button><i class="material-icons">add</i></button></span>
           <li><strong>Unit price: </strong>{{ item.price }} HUF</li>
+
         </ul>
       </li>
     </ul>
-    <h1>Drinks</h1>
+    <h1 [ngClass]="{'hidden': searchString!=''}">Drinks</h1>
     <ul *ngIf = "activeMenu$">
-        <li *ngFor = "let item of activeMenu$.items" [ngClass]="{'hidden': item.category==='FOOD'}">
+        <li *ngFor = "let item of activeMenu$.items" [ngClass]="{'hidden': item.category==='FOOD' || !includeString(item.name)}">
           <ul>
             <li><strong>Name: </strong>{{ item.name }}</li>
             <span class="add-button"(click)="takeNewOrder(item.id,1,'-')"><button><i class="material-icons">add</i></button></span>
@@ -47,5 +55,6 @@
           </ul>
         </li>
       </ul>
+      </div>
   </div>
 </div>
