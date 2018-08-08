@@ -20,6 +20,7 @@ export class TakeOrdersComponent implements OnInit {
   restaurantId: Object;
   newOrder$:Object;
   seatId:number;
+  searchString:string = '';
 
   constructor(private route:ActivatedRoute,private data:DataService,private waiterService: WaiterService) {
     this.route.params.subscribe(
@@ -76,6 +77,19 @@ export class TakeOrdersComponent implements OnInit {
     }
       
     )
+  }
+
+  includeString(itemName:string):boolean{
+    if(this.searchString === ''){
+      return true;
+    }
+    if (itemName.includes(this.searchString)){
+      return true
+    }
+    else {
+      return false;
+    }
+    
   }
   
     
