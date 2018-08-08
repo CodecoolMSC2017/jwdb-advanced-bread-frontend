@@ -83,7 +83,7 @@ export class TakeOrdersComponent implements OnInit {
     if(this.searchString === ''){
       return true;
     }
-    if (itemName.includes(this.searchString)){
+    if (itemName.toLocaleLowerCase().includes(this.searchString.toLocaleLowerCase())){
       return true
     }
     else {

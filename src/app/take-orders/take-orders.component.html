@@ -14,8 +14,10 @@
     <p *ngIf="!seatId">
       Please choose a seat!
     </p>
+    
     <ul *ngIf="orders$">
       <li>
+        <!--<p *ngIf="orders$.customerOrderList.lenght === 0">No Orders</p>-->
         <ul>
       <li *ngFor="let order of orders$.customerOrderList  ">
         <ul>
