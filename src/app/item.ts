@@ -7,4 +7,5 @@ export class Item {
     category : String;
     ingredients : Array<Ingredient>;
     restaurant : Restaurant;
+    value? : boolean;
 }

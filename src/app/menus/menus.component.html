@@ -1,4 +1,4 @@
-<h1 *ngIf = "menus$"><p>Menus</p><a class="add-button" (click)="show()"><span><button><i class="material-icons">add</i></button></span></a></h1>
+<h1 *ngIf = "menus$"><p>Menus</p><a class="add-button" (click)="showAdd()"><span><button><i class="material-icons">add</i></button></span></a></h1>
 
 <ul [@listStagger] = 'menus$'>
     <li *ngFor = "let menu of menus$"> 
@@ -6,7 +6,7 @@
     <ul>
       <li>
           <a *ngIf="!menu.active" (click)="activate(restaurantId,menu)"><span class="activate-button"><button>+ ACTIVATE</button></span></a>
-          <a *ngIf="menu.active"(click)="deactivate(restaurantID,menu)"><span class="deactivate-button"><button>- DEACTIVATE</button></span></a>
+          <a *ngIf="menu.active"(click)="deactivate(restaurantId,menu)"><span class="deactivate-button"><button>- DEACTIVATE</button></span></a>
       </li>
       <li class="submenu">
         <a routerLink="/menu/{{ restaurantId }}/{{ menu.id }}/items"><button class="submenu-button">ITEMS</button></a>
@@ -16,7 +16,6 @@
 </ul>
 
 <div id="itemModal" class="modal hidden">
-    
   <div class="modal-content" *ngIf="menu$">
     <div class="modal-header">
       <span class="close" (click)="hide()">&times;</span>
@@ -36,4 +35,24 @@
     </div>
   </div>
 
+</div>
+<div id="addItemModal" class="modal hidden">
+  <div class="modal-content" *ngIf="allItems$">
+    <div class="modal-header">
+      <span class="close" (click)="hideAdd()">&times;</span>
+      <h1>Add new menu</h1>
+    </div>
+    <div class="modal-body">
+      <ul *ngIf = "allItems$">
+        <form>
+          <input type="text" placeholder="Menu name" [(ngModel)] = "created$.title" [ngModelOptions]="{standalone: true}">
+          <button (click) ="add()">Add</button>
+          <li *ngFor = "let item of allItems$">
+            {{item.name}}
+            <input type="checkbox" name="item" [(ngModel)] = "item.value">
+          </li>
+        </form>
+      </ul>
+    </div>
+  </div>
 </div>

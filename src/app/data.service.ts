@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Item } from './item';
 
 
 
@@ -112,8 +113,8 @@ export class DataService {
     return this.http.get("api/menu/"+menuId);
   }
 
-  postMenu(restaurantId, menu){
-    return this.http.post("api/menu/"+restaurantId, menu);
+  postMenu(menu){
+    return this.http.post("api/menu",menu);
   }
 
   deleteMenu( menuId):Observable<void>{
@@ -144,4 +145,7 @@ export class DataService {
     return this.http.put("api/changepw", passwordChange);
   }
   
+  getAllItems(restaurantId):Observable<any> {
+    return this.http.get("/api/owner/restaurant/"+restaurantId+"/item",{params:new HttpParams().set('category', "all")});
+  }
 }
