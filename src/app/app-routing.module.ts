@@ -18,6 +18,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { TakeOrdersComponent } from './take-orders/take-orders.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
+import { SplitCheckComponent } from './split-check/split-check.component';
+
 
 const routes: Routes = [
   {
@@ -96,6 +98,11 @@ const routes: Routes = [
   {
     path: 'orders/restaurant/:restaurantId/table/:tableId',
     component: TakeOrdersComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'order/table/:tableId/split',
+    component: SplitCheckComponent,
     canActivate: [LoginGuard]
   }
 ];

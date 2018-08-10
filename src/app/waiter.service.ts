@@ -46,4 +46,12 @@ export class WaiterService {
   deleteOrder(seatId,orderItemId:string):Observable<void>{
     return this.http.delete<void>("/api/order/seat/"+seatId,{params: new HttpParams().set('orderItemId',orderItemId)})
   }
+
+  splitInvoice(seatIds:Array<number>){
+    let paramList = new HttpParams()
+    for(let i = 0; i < seatIds.length ; i++){
+      paramList = paramList.append('seatId',seatIds[i].toString())
+    }
+    return this.http.get("/api/order/invoice",{params:paramList})
+  }
 }

@@ -1,0 +1,75 @@
+<h3 [ngClass]="{'not-to-show': seatIds.length !== 0}">Please choose a seat!</h3>
+<div class="seats">   
+    <ul *ngIf="seats$">
+      <li class="li"*ngFor="let seat of seats$ , let i = index" [ngClass]="{'active': isActive(seat.id) ,'hidden': isAlreadyPayed(seat.id)}">
+        <ul>
+          <li (click)="addSeatToInvoice(seat.id)">
+            <p>Seat: {{ i+1 }}</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div [ngClass]="{'hidden': seatIds.length === 0}">
+    <button  (click)="createInvoice()">Confirm</button>
+  </div>
+   
+<div class="invoice-display" *ngIf="invoice$">
+    <ul>
+        <li>
+        <ul  >
+          <li>
+            <div class="about">
+              <ul>
+                <li class="about-text"><strong>bread.llc</strong></li>
+                <li class="about-text">{{ invoice$.restaurantAddress.street }}</li>
+                <li class="about-text">{{ invoice$.restaurantAddress.city }}</li>
+                <li class="about-text">{{ invoice$.restaurantAddress.postalCode }}</li>
+                <li class="about-text">{{ invoice$.restaurantAddress.state }}</li>
+              </ul>
+            </div>
+            <div class="logo">
+              <span><img src="/assets/bread.png"></span>
+            </div>
+          </li>
+          <li><strong>Date: </strong> {{ invoice$.created[0] }}-{{ invoice$.created[1] }}-{{ invoice$.created[2] }}  {{ invoice$.created[3] }}:{{ invoice$.created[4] }}</li>
+      
+          <li >
+            <table>
+              <tr>
+                <th>QTY</th>
+                <th>DESCRIPTION</th>
+                <th>UNIT PRICE</th> 
+              </tr>
+              <tr *ngFor="let item of invoice$.invoiceItemDtos">
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.itemName }}</td>
+                <td>{{ item.unitPrice }} HUF</td>
+              </tr>
+            </table>
+          </li>
+      
+          <li class="borders"></li>
+          <li id ="price"><strong>Total price: </strong><p> {{  invoice$.totalPrice }} HUF </p></li>
+          <li class="borders"></li>
+           <li>
+                <a (click)="pay(invoice$)"><span class="pay-button"><button>PAY</button></span></a>
+            </li>
+        </ul>
+      </li>
+      </ul>
+</div>
+
+<div id="notifyModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+          <h2>PAYMENT SUCCESSFUL</h2>
+       
+           <button (click)="hideNotifyModal()" class="ok-button">OK</button>
+      <div class="modal-footer">
+    </div>
+  </div>
+</div>
+</div>
