@@ -1,0 +1,22 @@
+
+<h1>My Orders</h1>
+
+
+<h2 *ngIf="!myTables">You are not assigned to a table!</h2>
+<ul [@listStagger]='myTables'>
+  <li *ngFor="let table of myTables">
+    <span [ngClass]="{'hidden': containsShowable(table.id)}" class="content-show-button"><button (click)="showContent(table.id)"><i class="material-icons">keyboard_arrow_down</i></button></span>
+    <span [ngClass]="{'hidden': !containsShowable(table.id)}" class="content-show-button"><button (click)="hideContent(table.id)"><i class="material-icons">keyboard_arrow_up</i></button></span>    
+    <ul >
+      <li><p><strong>{{ table.name }}</strong></p></li>
+      <li id="{{ table.id }}" class="table-content hidden" *ngFor="let seat of table.seatDtoSet; let i = index">
+          <ul [@listStagger]='table.seatDtoSet'>
+            <li>Itt vagyok</li>
+          </ul>
+      </li>
+      <li><a (click)="showOrders(table.id)"><span class="view-button"><button>VIEW ORDERS</button></span></a>
+      <a (click)="createInvoice(table.id)"><span class="view-button"><button>CREATE INVOICE</button></span></a>
+      <a (click)="takeOrder(table.id)"><span class="view-button"><button>TAKE ORDER</button></span></a></li>
+    </ul>
+  </li>
+</ul>

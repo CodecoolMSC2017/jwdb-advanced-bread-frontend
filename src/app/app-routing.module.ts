@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
 import { EmployeeComponent } from './employee/employee.component';
@@ -19,16 +18,19 @@ import { TakeOrdersComponent } from './take-orders/take-orders.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
 import { SplitCheckComponent } from './split-check/split-check.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { BarComponent } from './bar/bar.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/statistics',
     pathMatch: 'full' },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    path: 'statistics',
+    component: StatisticsComponent,
     canActivate: [LoginGuard] },
   {
     path: 'login',
@@ -104,7 +106,19 @@ const routes: Routes = [
     path: 'order/table/:tableId/split',
     component: SplitCheckComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path: 'bar',
+    component: BarComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'my-orders',
+    component: MyOrdersComponent,
+    canActivate: [LoginGuard]
   }
+
+
 ];
 
 @NgModule({

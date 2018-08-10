@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Item } from './item';
 import { Seat } from './seat';
+import { Profile } from './profile';
 
 
 
@@ -42,8 +43,8 @@ export class DataService {
     return this.http.delete<void>("/api/owner/restaurant/"+restaurantId);
   }
 
-  getProfile(){
-    return this.http.get("/api/profile");
+  getProfile():Observable<Profile>{
+    return this.http.get<Profile>("/api/profile");
   }
 
   getTables(restaurantId) {

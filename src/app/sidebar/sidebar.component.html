@@ -2,7 +2,7 @@
   <ul *ngIf="loggedIn$">
     <li class = "menu-button">
       <a routerLink = "" [class.activated] = "currentUrl == '/'">
-        <i class = "material-icons">home</i><span class = "menu-button-text">HOME</span>
+        <i class = "material-icons">bar_chart</i><span class = "menu-button-text">STATISTICS</span>
       </a>
     </li>
     <li class = "menu-button">
@@ -15,11 +15,21 @@
           <i class="material-icons">restaurant</i><span class = "menu-button-text">RESTAURANT</span>
         </a>
       </li>
-        <li class = "menu-button">
+        <li class = "menu-button" *ngIf="loggedIn$.role === 'OWNER' || loggedIn$.role === 'MANAGER'">
             <a routerLink = "order/restaurant" [class.activated] = "currentUrl == '/order/restaurant'">
               <i class="material-icons">assignment</i><span class = "menu-button-text">ORDERS</span>
             </a>
           </li>
+          <li class = "menu-button" *ngIf="loggedIn$.role === 'WAITER'">
+              <a routerLink = "my-orders" [class.activated] = "currentUrl == '/my-orders'">
+                <i class="material-icons">assignment</i><span class = "menu-button-text"> MY ORDERS</span>
+              </a>
+            </li>
+            <li class = "menu-button" *ngIf="loggedIn$.role === 'BARTENDER'">
+                <a routerLink = "bar" [class.activated] = "currentUrl == '/bar'">
+                  <i class="material-icons">local_bar</i><span class = "menu-button-text">BAR</span>
+                </a>
+              </li>
           <li class = "menu-button" *ngIf="loggedIn$.role === 'WAITER'">
             <a routerLink="/waiter/table" [class.activated] = "currentUrl == '/waiter/table'">
               <i class="material-icons">ballot</i><span class = "menu-button-text">TABLES</span>

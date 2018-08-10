@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { httpInterceptorProviders } from './http-interceptors';
@@ -30,11 +29,13 @@ import { TakeOrdersComponent } from './take-orders/take-orders.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
 import { SplitCheckComponent } from './split-check/split-check.component';
+import { BarComponent } from './bar/bar.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     LoginComponent,
     EmployeeComponent,
     SidebarComponent,
@@ -55,7 +56,10 @@ import { SplitCheckComponent } from './split-check/split-check.component';
     TakeOrdersComponent,
     ForgotPasswordComponent,
     PasswordChangeComponent,
-    SplitCheckComponent
+    SplitCheckComponent,
+    BarComponent,
+    StatisticsComponent,
+    MyOrdersComponent
   ],
   imports: [
     AppRoutingModule,

@@ -3,6 +3,7 @@ import { WaiterService } from '../waiter.service';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { DataService } from '../data.service';
+import { Table } from '../table';
 
 @Component({
   selector: 'app-waiter-tables',
@@ -36,7 +37,7 @@ export class WaiterTablesComponent implements OnInit {
 
   invoiceTableId:Object;
   loggedIn$:Object;
-  tables$:Object;
+  tables$:Table[];
   restaurantId:Object;
   restaurant$:Object;
   orders$: Object;
