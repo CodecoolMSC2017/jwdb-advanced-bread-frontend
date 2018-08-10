@@ -75,9 +75,9 @@
           <span class="close" (click)="hideInvoiceModal()">&times;</span>
         </div>
         <div class="modal-body">
-            <h2>Create invoice?</h2>
+            <h2>Do you want to split the check?</h2>
          
-             <button (click)="hideInvoiceModal()" class="cancel-button button">No</button><a [routerLink]="['/invoice','table',invoiceTableId]"><button class="create-button button">Yes</button></a>
+            <a [routerLink]="['/invoice','table',invoiceTableId]"><button class="split-button button">No</button></a><a [routerLink]="['/order','table' ,invoiceTableId,'split']"> <button class="create-button button">Yes</button></a>
         <div class="modal-footer">
       </div>
     </div>

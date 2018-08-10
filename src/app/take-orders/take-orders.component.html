@@ -21,7 +21,7 @@
         <ul>
       <li *ngFor="let order of orders$.customerOrderList  ">
         <ul>
-          <li>{{ order.orderItem.quantity }} x {{ order.orderItem.item.name }}</li><span (click)="deleteOrder(order.orderItem.id)" class="close">&times;</span>
+          <li class="order-terminal">{{ order.orderItem.quantity }} x {{ order.orderItem.item.name }}</li><span (click)="deleteOrder(order.orderItem.id)" class="close">&times;</span>
         </ul>
       </li>
     </ul>
@@ -40,7 +40,7 @@
     <ul *ngIf = "activeMenu$">
       <li *ngFor = "let item of activeMenu$.items" [ngClass]="{'hidden': item.category==='DRINK' || !includeString(item.name) }">
         <ul>
-          <li><strong>Name: </strong>{{ item.name }}</li>
+          <li class="item-name"><strong>Name: </strong>{{ item.name }}</li>
           <span class="add-button"(click)="takeNewOrder(item.id,1,'-')"><button><i class="material-icons">add</i></button></span>
           <li><strong>Unit price: </strong>{{ item.price }} HUF</li>
 

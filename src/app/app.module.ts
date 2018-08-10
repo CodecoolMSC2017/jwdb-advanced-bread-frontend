@@ -29,6 +29,7 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { TakeOrdersComponent } from './take-orders/take-orders.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
+import { SplitCheckComponent } from './split-check/split-check.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PasswordChangeComponent } from './password-change/password-change.compo
     IngredientsComponent,
     TakeOrdersComponent,
     ForgotPasswordComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    SplitCheckComponent
   ],
   imports: [
     AppRoutingModule,

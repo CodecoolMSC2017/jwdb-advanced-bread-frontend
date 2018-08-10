@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Item } from './item';
+import { Seat } from './seat';
 
 
 
@@ -29,7 +30,7 @@ export class DataService {
     return this.http.get("/api/owner/restaurant");
   }
 
-  getRestaurant(restaurantId){
+  getRestaurant(restaurantId):Observable<any>{
     return this.http.get("/api/owner/restaurant/"+restaurantId);
   }
   
@@ -53,8 +54,8 @@ export class DataService {
     return this.http.get("/api/restaurant/"+restaurantId+"/table/"+tableId);
   }
 
-  getSeats(tableId){
-    return this.http.get("api/table/"+tableId+"/seat");
+  getSeats(tableId):Observable<Seat[]>{
+    return this.http.get<Seat[]>("api/table/"+tableId+"/seat");
   }
 
   getOrders(restaurantId){
