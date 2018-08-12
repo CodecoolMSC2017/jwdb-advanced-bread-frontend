@@ -16,8 +16,8 @@ export class WaiterService {
     return this.http.get<Table[]>('/api/waiter/table');
   }
 
-  getOrdersByTable(tableId){
-    return this.http.get("/api/order/table/"+tableId);
+  getOrdersByTable(tableId):Observable<any[]>{
+    return this.http.get<any[]>("/api/order/table/"+tableId);
   }
 
   assign(table):Observable<void>{
@@ -40,8 +40,8 @@ export class WaiterService {
     return this.http.post("/api/order/seat/"+seatId,orderItem);
   }
 
-  getOrdersBySeat(seatId){
-    return this.http.get("/api/order/seat/"+seatId+"/active");  
+  getOrdersBySeat(seatId):Observable<any[]>{
+    return this.http.get<any[]>("/api/order/seat/"+seatId+"/active");  
   }
 
   deleteOrder(seatId,orderItemId:string):Observable<void>{

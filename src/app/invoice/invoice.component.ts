@@ -11,8 +11,8 @@ import { DataService } from '../data.service';
 })
 export class InvoiceComponent implements OnInit {
 
-  invoice$: Object;
-  tableId:Object;
+  invoice$: any;
+  tableId:number;
 
 
   constructor(private waiterService: WaiterService,private route:ActivatedRoute,private router: Router) {

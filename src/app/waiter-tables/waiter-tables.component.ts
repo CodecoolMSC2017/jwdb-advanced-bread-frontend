@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { DataService } from '../data.service';
 import { Table } from '../table';
+import { Profile } from '../profile';
+import { Restaurant } from '../restaurant';
 
 @Component({
   selector: 'app-waiter-tables',
@@ -35,12 +37,12 @@ import { Table } from '../table';
 })
 export class WaiterTablesComponent implements OnInit {
 
-  invoiceTableId:Object;
-  loggedIn$:Object;
+  invoiceTableId:number;
+  loggedIn$:Profile;
   tables$:Table[];
-  restaurantId:Object;
-  restaurant$:Object;
-  orders$: Object;
+  restaurantId:number;
+  restaurant$:Restaurant;
+  orders$: any[];
 
   constructor(private waiterData:WaiterService,private data:DataService,private router:ActivatedRoute,private route: Router) {
     this.router.params.subscribe( (param) => {

@@ -17,7 +17,6 @@
     
     <ul *ngIf="orders$">
       <li>
-        <!--<p *ngIf="orders$.customerOrderList.lenght === 0">No Orders</p>-->
         <ul>
       <li *ngFor="let order of orders$.customerOrderList  ">
         <ul>
@@ -29,7 +28,7 @@
     </ul>
   </div>
  
-  <div class="items"> 
+  <div class="items" *ngIf="seatId"> 
     <div class="search-bar">
       <form >
           <input type="text" placeholder="Search..." [(ngModel)]="searchString" [ngModelOptions] = "{  standalone : true }">

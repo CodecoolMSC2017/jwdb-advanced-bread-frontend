@@ -7,16 +7,40 @@
   <li *ngFor="let table of myTables">
     <span [ngClass]="{'hidden': containsShowable(table.id)}" class="content-show-button"><button (click)="showContent(table.id)"><i class="material-icons">keyboard_arrow_down</i></button></span>
     <span [ngClass]="{'hidden': !containsShowable(table.id)}" class="content-show-button"><button (click)="hideContent(table.id)"><i class="material-icons">keyboard_arrow_up</i></button></span>    
-    <ul >
+    <ul *ngIf="table">
       <li><p><strong>{{ table.name }}</strong></p></li>
       <li id="{{ table.id }}" class="table-content hidden" *ngFor="let seat of table.seatDtoSet; let i = index">
-          <ul [@listStagger]='table.seatDtoSet'>
-            <li>Itt vagyok</li>
+          <ul >
+            <li>
+              <ul [@listStagger]='seat.customerOrderList'>
+                <li><strong>Seat {{ i+1 }}</strong> </li>
+                <li *ngFor="let order of seat.customerOrderList">
+                  <ul>
+                    <li>{{ order.orderItem.quantity }} x {{ order.orderItem.item.name }}</li>
+                  </ul>
+                </li>
+              </ul>  
+            </li>
           </ul>
       </li>
-      <li><a (click)="showOrders(table.id)"><span class="view-button"><button>VIEW ORDERS</button></span></a>
+      <li>
       <a (click)="createInvoice(table.id)"><span class="view-button"><button>CREATE INVOICE</button></span></a>
       <a (click)="takeOrder(table.id)"><span class="view-button"><button>TAKE ORDER</button></span></a></li>
     </ul>
   </li>
 </ul>
+
+
+<div id="invoiceModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" (click)="hideInvoiceModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+          <h2>Do you want to split the check?</h2>
+          <a [routerLink]="['/invoice','table',invoiceTableId]"><button class="split-button button">No</button></a><a [routerLink]="['/order','table' ,invoiceTableId,'split']"> <button class="create-button button">Yes</button></a>
+      <div class="modal-footer">
+    </div>
+  </div>
+</div>
+</div>

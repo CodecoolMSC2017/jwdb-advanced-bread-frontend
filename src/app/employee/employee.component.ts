@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute } from '@angular/router';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import { Employee } from '../employee';
+import { Address } from '../address';
+import { Restaurant } from '../restaurant';
 
 
 @Component({
@@ -34,26 +37,14 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 })
 export class EmployeeComponent implements OnInit {
 
-  restaurantId : Object;
-  employees$ : Object;
-  restaurant$ : Object;
-  newEmployee$ : Object;
+  restaurantId : number;
+  employees$ : Employee[];
+  restaurant$ : Restaurant;
+  newEmployee$ : Employee;
   emailResponse$:Object;
-  address$ : Object = {
-    street :'',
-    city:'',
-    postalCode:'',
-    state:'',
-    country : ''
-  }
-  created$ : Object = {
-    email : '',
-    firstName : '', 
-    lastName : '',
-    role : '',
-    restaurant : this.restaurant$,
-    address : this.address$
-  }
+  address$ : Address = new Address();
+  created$ : Employee = new Employee();
+  
 
 
   constructor(private data: DataService, private route: ActivatedRoute) {
@@ -80,31 +71,17 @@ export class EmployeeComponent implements OnInit {
   }
 
   add(email){
+    this.created$.address = this.address$;
     this.data.postEmployee(this.restaurantId, this.created$).subscribe((data) =>{ 
       this.newEmployee$ = data,
       this.hide(),
+      this.address$ = new Address()
+      this.created$ = new Employee()
       this.data.getEmployeesByRestaurant(this.restaurantId).subscribe(
       data => this.employees$ = data
-    )
+    )}
     
-  }
-    )
-    this.address$ = {
-      street :'',
-      city:'',
-      postalCode:'',
-      state:'',
-      country : ''
-    }
-    this.created$ = {
-      email : '',
-      firstName : '', 
-      lastName : '',
-      role : '',
-      restaurant : this.restaurant$,
-      address : this.address$
-    }
-  }
+  )}
 
   delete(restaurantId,employeeId){
     this.data.deleteEmployee(restaurantId,employeeId).subscribe(()=>{

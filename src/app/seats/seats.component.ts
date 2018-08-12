@@ -3,6 +3,8 @@ import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import { Table } from '../table';
+import { Seat } from '../seat';
 
 @Component({
   selector: 'app-seats',
@@ -34,15 +36,13 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 })
 export class SeatsComponent implements OnInit {
 
-  tableId : Object;
-  restaurantId : Object;
-  table$ : Object;
-  seats$ : Object;
-  newSeat$ : Object;
-  numOfSeats : Object;
-  created$ : Object = {
-    table : this.table$
-  }
+  tableId : number;
+  restaurantId : number;
+  table$ : Table;
+  seats$ : Seat[];
+  newSeat$ : Seat;
+  numOfSeats : number = 0;
+  created$ : Seat;
 
   constructor(private route: ActivatedRoute, private data: DataService) {
     this.route.params.subscribe( params => this.tableId = params.tableId)
@@ -75,8 +75,8 @@ export class SeatsComponent implements OnInit {
       resp => this.seats$ = resp
     )
     this.hide();
-    this.numOfSeats = ''
-    this.created$ = {table : ''}
+    this.numOfSeats = 0;
+    this.created$ = new Seat();
   }
 
   delete(tableId,seatId){

@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { Item } from './item';
 import { Seat } from './seat';
 import { Profile } from './profile';
+import { Employee } from './employee';
+import { Menu } from './menu';
+import { Ingredient } from './ingredient';
+import { Restaurant } from './restaurant';
+import { Table } from './table';
 
 
 
@@ -19,24 +24,24 @@ export class DataService {
     return this.http.get("/api/owner/employee");
   }
 
-  getEmployeesByRestaurant(restaurantId) {
-    return this.http.get("/api/owner/restaurant/"+restaurantId+"/employee");
+  getEmployeesByRestaurant(restaurantId):Observable<Employee[]> {
+    return this.http.get<Employee[]>("/api/owner/restaurant/"+restaurantId+"/employee");
   }
 
-  getEmployee(restaurantId,userId){
-    return this.http.get("/api/owner/restaurant/"+restaurantId+"/employee/"+userId);
+  getEmployee(restaurantId,userId):Observable<Employee>{
+    return this.http.get<Employee>("/api/owner/restaurant/"+restaurantId+"/employee/"+userId);
   }
 
-  getRestaurants(){
-    return this.http.get("/api/owner/restaurant");
+  getRestaurants():Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>("/api/owner/restaurant");
   }
 
   getRestaurant(restaurantId):Observable<any>{
     return this.http.get("/api/owner/restaurant/"+restaurantId);
   }
   
-  postRestaurant(restaurant) {
-    return this.http.post("/api/owner/restaurant",restaurant);
+  postRestaurant(restaurant):Observable<Restaurant> {
+    return this.http.post<Restaurant>("/api/owner/restaurant",restaurant);
   }
 
   deleteRestaurant(restaurantId): Observable<void> {
@@ -47,36 +52,36 @@ export class DataService {
     return this.http.get<Profile>("/api/profile");
   }
 
-  getTables(restaurantId) {
-    return this.http.get("/api/restaurant/"+restaurantId+"/table");
+  getTables(restaurantId):Observable<Table[]> {
+    return this.http.get<Table[]>("/api/restaurant/"+restaurantId+"/table");
   }
 
-  getTable(restaurantId,tableId){
-    return this.http.get("/api/restaurant/"+restaurantId+"/table/"+tableId);
+  getTable(restaurantId,tableId):Observable<Table>{
+    return this.http.get<Table>("/api/restaurant/"+restaurantId+"/table/"+tableId);
   }
 
   getSeats(tableId):Observable<Seat[]>{
     return this.http.get<Seat[]>("api/table/"+tableId+"/seat");
   }
 
-  getOrders(restaurantId){
-    return this.http.get("/api/order/restaurant/"+restaurantId);
+  getOrders(restaurantId):Observable<any[]>{
+    return this.http.get<any[]>("/api/order/restaurant/"+restaurantId);
   }
 
   getItems(){
     return this.http.get("/api/owner/items");
   }
 
-  postEmployee(restaurantId, employee){
-    return this.http.post("/api/owner/restaurant/"+restaurantId+"/employee", employee);
+  postEmployee(restaurantId, employee):Observable<Employee>{
+    return this.http.post<Employee>("/api/owner/restaurant/"+restaurantId+"/employee", employee);
   }
   
-  postTable(restaurantId, table){
-    return this.http.post("/api/restaurant/"+restaurantId+"/table", table);
+  postTable(restaurantId, table):Observable<Table>{
+    return this.http.post<Table>("/api/restaurant/"+restaurantId+"/table", table);
   }
 
-  postSeat(tableId, seat) {
-    return this.http.post("api/table/"+tableId+"/seat", seat);
+  postSeat(tableId, seat):Observable<Seat> {
+    return this.http.post<Seat>("api/table/"+tableId+"/seat", seat);
   }
 
   sendEmail(user) {
@@ -107,36 +112,36 @@ export class DataService {
     return this.http.put('/api/register/' + employeeId, user);
   }
 
-  getMenus(restaurantId){
-    return this.http.get("api/menu/restaurant/"+restaurantId);
+  getMenus(restaurantId):Observable<Menu[]>{
+    return this.http.get<Menu[]>("api/menu/restaurant/"+restaurantId);
   }
 
-  getMenu(menuId) {
-    return this.http.get("api/menu/"+menuId);
+  getMenu(menuId):Observable<Menu> {
+    return this.http.get<Menu>("api/menu/"+menuId);
   }
 
-  postMenu(menu){
-    return this.http.post("api/menu",menu);
+  postMenu(menu):Observable<Menu>{
+    return this.http.post<Menu>("api/menu",menu);
   }
 
   deleteMenu( menuId):Observable<void>{
     return this.http.delete<void>("api/menu/"+menuId);
   }
 
-  getItemsByMenu( menuId){
-    return this.http.get("api/menu/"+menuId+"/items");
+  getItemsByMenu( menuId):Observable<Item[]>{
+    return this.http.get<Item[]>("api/menu/"+menuId+"/items");
   }
 
-  getIngredientsByItemId(itemId, restaurantId) {
-    return this.http.get("api/owner/restaurant/"+restaurantId+"ingredient"+"/item/"+itemId);
+  getIngredientsByItemId(itemId, restaurantId):Observable<Ingredient[]> {
+    return this.http.get<Ingredient[]>("api/owner/restaurant/"+restaurantId+"ingredient"+"/item/"+itemId);
   }
 
   changeMenuActivity(restaurantId,menu):Observable<void>{
     return this.http.put<void>("/api/menu/"+restaurantId+"/activity",menu);
   }
 
-  getActiveMenu(restaurantId){
-    return this.http.get("/api/menu/restaurant/"+restaurantId+"/active");
+  getActiveMenu(restaurantId):Observable<Menu>{
+    return this.http.get<Menu>("/api/menu/restaurant/"+restaurantId+"/active");
   }
 
   getUser(userId, username) : Observable<any> {

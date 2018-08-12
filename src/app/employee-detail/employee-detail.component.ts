@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { Employee } from '../employee';
 
 @Component({
   selector: 'app-details',
@@ -10,17 +11,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EmployeeDetailComponent implements OnInit {
 
-  employee$ : Object;
-  restaurantId$ : Object;
+  employee$ : Employee;
+  restaurantId : number;
 
   constructor(private data : DataService, private route : ActivatedRoute) {
     this.route.params.subscribe(params => this.employee$ = params.employeeId)
-    this.route.params.subscribe(params => this.restaurantId$ = params.restaurantId)   
+    this.route.params.subscribe(params => this.restaurantId = params.restaurantId)   
   
    }
 
   ngOnInit() {
-   this.data.getEmployee(this.restaurantId$,this.employee$).subscribe(
+   this.data.getEmployee(this.restaurantId,this.employee$).subscribe(
       data => this.employee$ = data
     )
   }

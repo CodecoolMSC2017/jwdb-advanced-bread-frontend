@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import { Restaurant } from '../restaurant';
+import { Address } from '../address';
+import { Employee } from '../employee';
 
 @Component({
   selector: 'app-restaurants',
@@ -34,24 +37,12 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 export class RestaurantsComponent implements OnInit {
 
   user = JSON.parse(sessionStorage.getItem('user'));
-  restaurants$ : Object;
-  employees$ : Object;
-  newRestaurant$ : Object;
-  deleted$:Object;
-  address$ : Object = {
-    street :'',
-    city:'',
-    postalCode:'',
-    state:'',
-    country : ''
-  }
-  created$:Object = {
-    name : '',
-    email : '',
-    address : this.address$, 
-    phone : '',
-    owner_id : this.user.id
-  }
+  restaurants$ : Restaurant[];
+  employees$ : Employee[];
+  newRestaurant$ : Restaurant;
+  address$ : Address = new Address();
+  created$:Restaurant = new Restaurant();
+  
   
 
   constructor(private data: DataService) { }
@@ -73,26 +64,17 @@ export class RestaurantsComponent implements OnInit {
   }
 
   add(){
+    this.created$.address = this.address$
+    this.created$.owner_id = this.user.id
     this.data.postRestaurant(this.created$).subscribe((data) => {
       this.newRestaurant$ = data,
       this.data.getRestaurants().subscribe(
         resp => this.restaurants$ = resp
       )
     });
-    this.hide();
-    this.address$ = {
-      street :'',
-      city:'',
-      postalCode:'',
-      state:'',
-      country : ''
-    }
-    this.created$ = {name : '',
-    email : '',
-    address : this.address$,
-    phone : '',
-    owner_id : this.user.id
-  }
+    this.hide()
+    this.address$ = new Address()
+    this.created$ = new Restaurant()
   }
 
   delete(restaurantId){

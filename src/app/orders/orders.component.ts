@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import { Restaurant } from '../restaurant';
 
 @Component({
   selector: 'app-orders',
@@ -33,9 +34,9 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 })
 export class OrdersComponent implements OnInit {
 
-  currentRestaurant$ : Object;
-  restaurants$ : Object;
-  orders$ : Object;
+  currentRestaurant$ : Restaurant;
+  restaurants$ : Restaurant[];
+  orders$ : any[];
 
 
   constructor(private data: DataService) { }

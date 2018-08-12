@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WaiterService } from '../waiter.service';
 import { Table } from '../table';
 import { Employee } from '../employee';
@@ -39,15 +39,14 @@ import { element } from 'protractor';
   ]
 })
 export class MyOrdersComponent implements OnInit {
-
-  orders$:Object;
   allTables$:Table[];
   myTables:Table[];
   loggedIn$:Profile;
   showableTableId= new Array<number>();
+  invoiceTableId:number;
   
 
-  constructor(private dataService: DataService, private waiterService: WaiterService) {
+  constructor(private dataService: DataService, private waiterService: WaiterService,private route:Router) {
     this.dataService.getProfile().subscribe((data) => {
         this.loggedIn$ = data
         this.waiterService.getTables().subscribe((data) => {
@@ -66,7 +65,7 @@ export class MyOrdersComponent implements OnInit {
 
   getOrdersByTable(tableId){
     this.waiterService.getOrdersByTable(tableId).subscribe(
-      data => this.orders$ = data
+      data => this.myTables = data
     )
   }
 
@@ -106,5 +105,25 @@ export class MyOrdersComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  createInvoice(tableId){
+    this.invoiceTableId = tableId,
+    this.showInvoiceModal();
+  }
+
+  showInvoiceModal(){
+    let modal = document.getElementById("invoiceModal")
+    modal.classList.remove("hidden");
+  }
+
+
+  hideInvoiceModal(){
+    let modal = document.getElementById("invoiceModal")
+    modal.classList.add("hidden")
+  }
+
+  takeOrder(tableId){
+    this.route.navigate(['orders/restaurant/'+this.loggedIn$.restaurantId+'/table/'+tableId]);
   }
 }

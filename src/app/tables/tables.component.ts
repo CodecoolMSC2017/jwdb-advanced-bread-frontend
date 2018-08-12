@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute } from '@angular/router';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import { Restaurant } from '../restaurant';
+import { Table } from '../table';
 
 
 @Component({
@@ -34,14 +36,12 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 })
 export class TablesComponent implements OnInit {
 
-  restaurantId : Object;
-  restaurant$ : Object;
-  tables$ : Object;
-  orders$ : Object;
-  newTable$ : Object;
-  created$ : Object = {
-    name : ''
-  }
+  restaurantId : number;
+  restaurant$ : Restaurant;
+  tables$ : Table[];
+  orders$ : any[];
+  newTable$ : Table;
+  created$ : Table = new Table();
 
 
   constructor(private data: DataService, private route: ActivatedRoute) {
@@ -75,7 +75,7 @@ export class TablesComponent implements OnInit {
       )
     });
     this.hide();
-    this.created$ = {name : ''}
+    this.created$ = new Table();
   }
 
   delete(restaurantId,tableId){

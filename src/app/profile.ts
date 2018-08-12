@@ -7,5 +7,5 @@ export class Profile {
     address:Address;
     email:string;
     role:string;
-    restauranId:number;
+    restaurantId:number;
 }

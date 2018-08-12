@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import { Profile } from '../profile';
 
 @Component({
   selector: 'app-profile',
@@ -31,10 +32,8 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
     ])
   ]
 })
-export class ProfileComponent implements OnInit {
-  user = JSON.parse(sessionStorage.getItem('user'));
-  
-  user$ : Object;
+export class ProfileComponent implements OnInit {  
+  user$ : Profile;
 
 
   constructor(private data : DataService) { }

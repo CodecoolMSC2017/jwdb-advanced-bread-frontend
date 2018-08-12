@@ -5,6 +5,7 @@ import { trigger, style, transition, animate, keyframes, query, stagger } from '
 import { ActivatedRoute } from '@angular/router';
 import { Menu } from '../menu';
 import { Item } from '../item';
+import { Ingredient } from '../ingredient';
 
 @Component({
   selector: 'app-menus',
@@ -37,14 +38,13 @@ import { Item } from '../item';
 export class MenusComponent implements OnInit {
 
   user = JSON.parse(sessionStorage.getItem('user'));
-  restaurantId: Object;
-  menus$: Object;
-  menu$: Object;
-  newMenu$: Object;
-  deleted$: Object;
-  items$: Object;
-  allItems$: Array<Item>;
-  ingredients$: Object;
+  restaurantId: number;
+  menus$: Menu[];
+  menu$: Menu;
+  newMenu$: Menu;
+  items$: Item[];
+  allItems$: Item[];
+  ingredients$: Ingredient[];
   created$ = new Menu();
 
 
@@ -114,7 +114,8 @@ export class MenusComponent implements OnInit {
   }
   getIngredientsByItemId(itemId, restaurantId, menuId) {
     this.data.getIngredientsByItemId(itemId, restaurantId).subscribe((data) => {
-      this.ingredients$ = this.data.getItemsByMenu(menuId).subscribe((data) => {
+      this.ingredients$ = data,
+       this.data.getItemsByMenu(menuId).subscribe((data) => {
         this.items$ = data,
           this.data.getMenu(menuId).subscribe((data) => {
             this.menu$ = data,

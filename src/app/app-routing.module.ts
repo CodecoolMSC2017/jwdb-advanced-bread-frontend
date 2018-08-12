@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
@@ -27,11 +27,14 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/statistics',
-    pathMatch: 'full' },
+    pathMatch: 'full', 
+    canActivate: [LoginGuard]
+  },
   {
     path: 'statistics',
     component: StatisticsComponent,
-    canActivate: [LoginGuard] },
+    canActivate: [LoginGuard] 
+  },
   {
     path: 'login',
     component: LoginComponent },

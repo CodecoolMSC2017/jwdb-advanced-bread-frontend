@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { DataService } from '../data.service';
 import { OrderItem } from '../order-item';
+import { Menu } from '../menu';
+import { Seat } from '../seat';
+import { Profile } from '../profile';
 
 @Component({
   selector: 'app-take-orders',
@@ -12,13 +15,13 @@ import { OrderItem } from '../order-item';
 })
 export class TakeOrdersComponent implements OnInit {
 
-  activeMenu$:Object;
-  seats$:Object;
-  orders$:Object;
-  tableId:Object;
-  loggedIn$:any;
-  restaurantId: Object;
-  newOrder$:Object;
+  activeMenu$:Menu;
+  seats$:Seat[];
+  orders$:any[];
+  tableId:number;
+  loggedIn$:Profile;
+  restaurantId: number;
+  newOrder$:any;
   seatId:number;
   searchString:string = '';
 
@@ -35,13 +38,13 @@ export class TakeOrdersComponent implements OnInit {
     this.data.getProfile().subscribe(
       data => this.loggedIn$ = data
     )    
-    this.data.getActiveMenu(this.restaurantId).subscribe(
-      data => this.activeMenu$ = data
-    )
+    
    }
 
   ngOnInit() {
-    
+    this.data.getActiveMenu(this.restaurantId).subscribe(
+      data => this.activeMenu$ = data
+    )
   }
 
   takeNewOrder(itemId:number,quantity:number,comment:string){
