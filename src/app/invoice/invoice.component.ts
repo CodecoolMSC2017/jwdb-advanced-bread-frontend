@@ -45,7 +45,7 @@ export class InvoiceComponent implements OnInit {
   hideNotifyModal(){
     let modal = document.getElementById("notifyModal")
     modal.classList.add("hidden")
-    this.router.navigate(['/waiter/table'])
+    this.router.navigate(['/my-orders'])
   }
 
 }

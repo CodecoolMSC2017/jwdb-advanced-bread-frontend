@@ -45,6 +45,15 @@ li {
             font-size:40px;
         }
     }
+
+    .disabled{
+        background: none;
+        opacity: 0.65;
+        cursor: not-allowed;
+        i{
+            color: grey;
+        }
+    }
 }
 
 
@@ -54,6 +63,14 @@ li {
         i {
             color:#fff;
             
+        }
+    }
+    .disabled{
+        background: none;
+        opacity: 0.65;
+        cursor: not-allowed;
+        i{
+            color: grey;
         }
     }
 }

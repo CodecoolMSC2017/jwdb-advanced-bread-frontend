@@ -42,7 +42,7 @@ export class MyOrdersComponent implements OnInit {
   allTables$:Table[];
   myTables:Table[];
   loggedIn$:Profile;
-  showableTableId= new Array<number>();
+  showableContentIds= new Array<number>();
   invoiceTableId:number;
   
 
@@ -78,30 +78,40 @@ export class MyOrdersComponent implements OnInit {
     });
     return myTables;
   }
-  showContent(tableId:number){
-    this.showableTableId.push(tableId)
+  showContent(seatDtoId:number){
+    this.showableContentIds.push(seatDtoId)
     this.displayContent()
   }
 
   displayContent(){
     this.myTables.forEach(element => {
-      if(this.showableTableId.includes(element.id)){
-          document.getElementById(element.id.toString()).classList.remove('hidden');
+      if(this.showableContentIds.includes(element.id)){
+        for(let i = 0; i<document.getElementsByClassName(element.id.toString()).length;i++){
+          document.getElementsByClassName(element.id.toString()).item(i).classList.remove('hidden');
+        }
+        
+          
       }
       else{
-        document.getElementById(element.id.toString()).classList.add('hidden');
+        if(document.getElementsByClassName(element.id.toString())!== null){
+          for(let i = 0;i<document.getElementsByClassName(element.id.toString()).length;i++){
+            document.getElementsByClassName(element.id.toString()).item(i).classList.add('hidden');
+          }
+          
+        }
+        
       }
     });
   }
 
   hideContent(tableId:number){
-    this.showableTableId.splice(this.showableTableId.indexOf(tableId),1)
+    this.showableContentIds.splice(this.showableContentIds.indexOf(tableId),1)
     this.displayContent();
 
   }
 
-  containsShowable(tableId):boolean{
-    if(this.showableTableId.includes(tableId)){
+  containsShowable(seatDtoId):boolean{
+    if(this.showableContentIds.includes(seatDtoId)){
       return true;
     }
     return false;

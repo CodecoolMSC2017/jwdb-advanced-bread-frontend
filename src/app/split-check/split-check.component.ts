@@ -82,7 +82,7 @@ export class SplitCheckComponent implements OnInit {
     });
     this.seatIds=new Array<number>();
     if(this.isEveryOrderPaid()){
-      this.router.navigate(['waiter/table'])
+      this.router.navigate(['/my-orders'])
     }
   }
   isAlreadyPayed(seatId){
