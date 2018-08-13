@@ -100,16 +100,15 @@ export class DataService {
     return this.http.delete<void>("/api/restaurant/"+restaurantId+"/table/"+tableId);
   }
   
-  getRegistered(employeeId, restaurantId) {
+  getRegistered(employeeId, restaurantId):Observable<Employee> {
     const params = new URLSearchParams();
     params.append('employeeId',employeeId);
     params.append('restaurantId',restaurantId);
-    console.log('api/register?employeeId=' + employeeId + '&restaurantId='+ restaurantId);
-    return this.http.get('api/register?employeeId=' + employeeId + '&restaurantId='+ restaurantId);
+    return this.http.get<Employee>('api/register?employeeId=' + employeeId + '&restaurantId='+ restaurantId);
   }
 
-  postUser(employeeId,user) {
-    return this.http.put('/api/register/' + employeeId, user);
+  postUser(employeeId,user): Observable<Employee>{
+    return this.http.put<Employee>('/api/register/' + employeeId, user);
   }
 
   getMenus(restaurantId):Observable<Menu[]>{

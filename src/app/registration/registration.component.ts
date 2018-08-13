@@ -1,6 +1,8 @@
 import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Employee } from '../employee';
+import { Registrate } from '../registrate';
 
 @Component({
   selector: 'app-registration',
@@ -10,23 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
   employeeId: string;
   restaurantId: string;
-  newEmployee$: Object;
+  newEmployee$: Employee;
 
-  employee$: Object;
+  employee$: Employee;
 
-  created$:Object = {
-    username : '',
-    password : '',
-    confirmationPassword : ''
-  };
-
-  error$:Object = {
-    timestamp: '',
-    status: '',
-    error: '',
-    message: '',
-    path: ''
-  }
+  created$:Registrate;
 
   constructor(private data:DataService, private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(params => {
@@ -47,8 +37,7 @@ export class RegistrationComponent implements OnInit {
       alert("Registration success");
       this.router.navigate(['login']);
     }, error => {
-      this.error$ = error;
-      alert(error.message)
+      alert(error.error.message)
     });
     }
   

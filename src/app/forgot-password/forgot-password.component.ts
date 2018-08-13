@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
-  response$: Object;
+  response$: any;
 
-  user$: Object;
+  user$: any;
 
-  userSend$: Object = {
+  userSend$: any = {
     email: ''
   };
 

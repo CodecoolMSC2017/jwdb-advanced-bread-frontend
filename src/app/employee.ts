@@ -10,5 +10,6 @@ export class Employee {
     role : string;
     restaurant : Restaurant;
     address : Address;
+    phone:string;
     user:User
 }
