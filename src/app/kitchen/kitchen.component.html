@@ -6,6 +6,8 @@
     <div class="timer"> 
         {{ index.timer[0] }}:{{ index.timer[1] }}
       </div>
+      <span class="food-made-span"><button (click)="made(index)"><i class="material-icons">done</i></button></span>
+      
     <ul>
       
       <li><p>{{ index.orderedItem.item.name }}</p></li>

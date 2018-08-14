@@ -1,7 +1,6 @@
 import { Item } from './item';
 export class OrderItem {
-    id:number;
-    item:Item;
+    itemId:number;
     quantity:number;
     comment:string;
 }

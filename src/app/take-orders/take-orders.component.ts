@@ -49,7 +49,7 @@ export class TakeOrdersComponent implements OnInit {
 
   takeNewOrder(itemId:number,quantity:number,comment:string){
     let orderItem = new OrderItem();
-    orderItem.id=itemId;
+    orderItem.itemId=itemId;
     orderItem.comment=comment;
     orderItem.quantity=quantity;
 
