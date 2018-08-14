@@ -55,7 +55,7 @@ export class KitchenComponent implements OnInit {
 
   made(itemId:number){
     this.items$.forEach(element => {
-      if(element.orderItem.id === itemId){
+      if(element.orderItem.itemId === itemId){
         this.kitchenService.itemMade(element).subscribe(
           data => this.items$ = data
         )
