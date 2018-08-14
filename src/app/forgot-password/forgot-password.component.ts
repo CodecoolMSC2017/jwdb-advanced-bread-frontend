@@ -2,6 +2,7 @@ import { User } from './../user';
 import { DataService } from './../data.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Send } from '../send';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,29 +12,14 @@ import { Router } from '@angular/router';
 export class ForgotPasswordComponent implements OnInit {
   response$: any;
 
-  user$: any;
-
-  userSend$: any = {
-    email: ''
-  };
+  userSend$: Send;
 
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  /*
-  checkIfExists() {
-    this.data.getUser(this.userSend$).subscribe(data => {
-      this.user$ = data;
-    }, error => {
-      alert(error.error.message);
-    });
-  }
-  */
-
-  sendEmail() {
-    // this.checkIfExists();
+  sendEmail() { 
     this.data.sendEmail(this.userSend$).subscribe(data => {
       this.response$ = data;
       alert('Email sent');

@@ -42,7 +42,7 @@ export class SeatsComponent implements OnInit {
   seats$ : Seat[];
   newSeat$ : Seat;
   numOfSeats : number = 0;
-  created$ : Seat;
+  created$ : Seat = new Seat();
 
   constructor(private route: ActivatedRoute, private data: DataService) {
     this.route.params.subscribe( params => this.tableId = params.tableId)
@@ -67,6 +67,7 @@ export class SeatsComponent implements OnInit {
 
   add(){
     for(let i = 0; i < this.numOfSeats; i++) {
+      this.created$.active=true;
       this.data.postSeat(this.tableId, this.created$).subscribe((data) => {
         this.newSeat$ = data
       });

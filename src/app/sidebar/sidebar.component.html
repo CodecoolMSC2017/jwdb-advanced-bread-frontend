@@ -35,6 +35,11 @@
               <i class="material-icons">ballot</i><span class = "menu-button-text">TABLES</span>
             </a>
           </li>
+          <li class = "menu-button" *ngIf="loggedIn$.role === 'CHEF'">
+              <a routerLink="kitchen" [class.activated] = "currentUrl == '/kitchen'">
+                <i class="material-icons">ballot</i><span class = "menu-button-text">KITCHEN</span>
+              </a>
+            </li>
       <li id = "logoutA" class = "menu-button">
           <a (click)="logOut()">
             <i class="material-icons">keyboard_backspace</i><span class = "menu-button-text">LOG OUT</span></a>

@@ -1,0 +1,16 @@
+<h1>Kitchen</h1>
+
+
+<ul [@listStagger]="items$">
+  <li *ngFor="let index of items$">
+    <div class="timer"> 
+        {{ index.timer[0] }}:{{ index.timer[1] }}
+      </div>
+    <ul>
+      
+      <li><p>{{ index.orderedItem.item.name }}</p></li>
+      <li *ngIf="index.orderedItem.comment"><strong>Comment: </strong>{{ index.orderedItem.comment }}</li>
+      <li *ngIf="!index.orderedItem.comment"><strong>Comment: </strong> - </li>
+    </ul>
+  </li>
+</ul>

@@ -1,5 +1,7 @@
+import { Item } from './item';
 export class OrderItem {
-    itemId:number;
+    id:number;
+    item:Item;
     quantity:number;
     comment:string;
 }

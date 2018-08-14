@@ -32,6 +32,8 @@ import { SplitCheckComponent } from './split-check/split-check.component';
 import { BarComponent } from './bar/bar.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { KitchenComponent } from './kitchen/kitchen.component';
+
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     SplitCheckComponent,
     BarComponent,
     StatisticsComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    KitchenComponent
   ],
   imports: [
     AppRoutingModule,
