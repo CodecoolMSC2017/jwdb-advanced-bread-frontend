@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "https://bread-services.herokuapp.com",
+      "target": "http://bread-service.herokuapp.com",
       "secure": false,
       "pathRewrite": {
         "^/api": ""
