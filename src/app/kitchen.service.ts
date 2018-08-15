@@ -14,7 +14,7 @@ export class KitchenService {
     return this.http.get<Food[]>("/api/kitchen",{params:new HttpParams().set('category','food')});
   }
 
-  itemMade(food):Observable<any[]>{
-    return this.http.patch<Food[]>("/api",food);
+  itemMade(food):Observable<Food[]>{
+    return this.http.put<Food[]>("/api/kitchen",food);
   }
 }

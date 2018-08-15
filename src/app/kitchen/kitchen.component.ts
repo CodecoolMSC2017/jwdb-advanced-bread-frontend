@@ -40,27 +40,24 @@ export class KitchenComponent implements OnInit {
   items$:Food[];
 
   constructor(private kitchenService:KitchenService,private router:Router) {
-    this.kitchenService.getItemsToMake().subscribe((data) => {
-      this.items$ = data
-      
-     this.timer()
-     console.log(this.items$)
-    }
-    )
+    
    }
 
   ngOnInit() {
-    
+    this.kitchenService.getItemsToMake().subscribe((data) => {
+      this.items$ = data
+      this.timer()      
+    }
+    )
   }
 
-  made(itemId:number){
-    this.items$.forEach(element => {
-      if(element.orderItem.itemId === itemId){
-        this.kitchenService.itemMade(element).subscribe(
-          data => this.items$ = data
-        )
-      }
-    });
+  made(madeFood:Food){
+    madeFood.orderedItem.ready=true;
+    this.kitchenService.itemMade(madeFood).subscribe((data)=> {
+      this.items$ = data
+      this.timer();
+      }  
+    )
   }
 
   timer(){

@@ -66,25 +66,23 @@ export class SeatsComponent implements OnInit {
   }
 
   add(){
-    for(let i = 0; i < this.numOfSeats; i++) {
-      this.created$.active=true;
-      this.data.postSeat(this.tableId, this.created$).subscribe((data) => {
-        this.newSeat$ = data
-      });
-    }
-    this.data.getSeats(this.tableId).subscribe(
-      resp => this.seats$ = resp
-    )
+    this.data.postSeat(this.tableId, this.created$,this.numOfSeats).subscribe((data) => {
+      this.newSeat$ = data
+      this.data.getSeats(this.tableId).subscribe(
+        resp => this.seats$ = resp
+      )
+    });
     this.hide();
     this.numOfSeats = 0;
     this.created$ = new Seat();
   }
 
   delete(tableId,seatId){
-    this.data.deleteSeat(tableId,seatId).subscribe(() => {
-      this.data.getSeats(tableId).subscribe(
-        data => this.seats$ = data
-      )
-    })
+    this.seats$.forEach(element => {
+      if(element.id === seatId){
+        this.seats$.splice(this.seats$.indexOf(element),1)
+      }
+    });
+    this.data.deleteSeat(tableId,seatId).subscribe()
   }
 }

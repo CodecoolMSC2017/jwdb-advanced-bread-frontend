@@ -2,17 +2,15 @@
 
 
 <ul [@listStagger]="items$">
-  <li *ngFor="let index of items$">
+  <li *ngFor="let food of items$">
     <div class="timer"> 
-        {{ index.timer[0] }}:{{ index.timer[1] }}
+       {{ food.timer[0] }}:{{ food.timer[1] }}
       </div>
-      <span class="food-made-span"><button (click)="made(index)"><i class="material-icons">done</i></button></span>
-      
+      <span class="food-made-span"><button (click)="made(food)"><i class="material-icons">done</i></button></span>
     <ul>
-      
-      <li><p>{{ index.orderedItem.item.name }}</p></li>
-      <li *ngIf="index.orderedItem.comment"><strong>Comment: </strong>{{ index.orderedItem.comment }}</li>
-      <li *ngIf="!index.orderedItem.comment"><strong>Comment: </strong> - </li>
+      <li><p>{{ food.orderedItem.item.name }}</p></li>
+      <li *ngIf="food.orderedItem.comment"><strong>Comment: </strong>{{ food.orderedItem.comment }}</li>
+      <li *ngIf="!food.orderedItem.comment"><strong>Comment: </strong> - </li>
     </ul>
   </li>
 </ul>

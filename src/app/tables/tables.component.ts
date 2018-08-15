@@ -79,10 +79,11 @@ export class TablesComponent implements OnInit {
   }
 
   delete(restaurantId,tableId){
-    this.data.deleteTable(restaurantId,tableId).subscribe(() => {
-      this.data.getTables(this.restaurantId).subscribe(
-        data => this.tables$ = data
-      )
-    })
+    this.tables$.forEach(element => {
+      if(element.id === tableId){
+          this.tables$.splice(this.tables$.indexOf(element),1);
+      }
+    });
+    this.data.deleteTable(restaurantId,tableId).subscribe()
   }
 }

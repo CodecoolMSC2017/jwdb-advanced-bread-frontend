@@ -38,7 +38,6 @@ export class InvoiceComponent implements OnInit {
 
   showNotifyModal(){
     let modal = document.getElementById("notifyModal")
-    console.log(modal)
     modal.classList.remove("hidden")
   }
 

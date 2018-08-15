@@ -5,6 +5,7 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 import { Restaurant } from '../restaurant';
 import { Address } from '../address';
 import { Employee } from '../employee';
+import { Profile } from '../profile';
 
 @Component({
   selector: 'app-restaurants',
@@ -42,6 +43,7 @@ export class RestaurantsComponent implements OnInit {
   newRestaurant$ : Restaurant;
   address$ : Address = new Address();
   created$:Restaurant = new Restaurant();
+  loggedIn$ : Profile;
   
   
 
@@ -50,6 +52,9 @@ export class RestaurantsComponent implements OnInit {
   ngOnInit() {
     this.data.getRestaurants().subscribe(
       data => this.restaurants$ = data
+    )
+    this.data.getProfile().subscribe(
+      data => this.loggedIn$ = data
     )
   }
 
@@ -78,10 +83,12 @@ export class RestaurantsComponent implements OnInit {
   }
 
   delete(restaurantId){
-    this.data.deleteRestaurant(restaurantId).subscribe(() =>{
-      this.data.getRestaurants().subscribe(
-      data => this.restaurants$ = data
-    )
-    }
-    )}
+    this.restaurants$.forEach(element => {
+      if(element.id === restaurantId){
+          this.restaurants$.splice(this.restaurants$.indexOf(element),1);
+      }
+    });
+    this.data.deleteRestaurant(restaurantId).subscribe()
+      
+  }
 }

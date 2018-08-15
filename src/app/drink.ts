@@ -1,11 +1,5 @@
-import { Item } from './item';
 import { OrderItem } from './order-item';
-export class Food {
+export class Drink {
     orderedItem:OrderItem;
     orderingTime:number[];
-    timer:string[];
-  
 }
-
-
-

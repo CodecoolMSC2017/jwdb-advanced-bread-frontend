@@ -80,8 +80,8 @@ export class DataService {
     return this.http.post<Table>("/api/restaurant/"+restaurantId+"/table", table);
   }
 
-  postSeat(tableId, seat):Observable<Seat> {
-    return this.http.post<Seat>("api/table/"+tableId+"/seat", seat);
+  postSeat(tableId, seat, numOfSeats:number):Observable<Seat> {
+    return this.http.post<Seat>("api/table/"+tableId+"/seat", {'value':numOfSeats});
   }
 
   sendEmail(user) {

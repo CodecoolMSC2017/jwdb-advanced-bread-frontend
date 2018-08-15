@@ -1,3 +1,14 @@
-<p>
-  bar works!
-</p>
+<h1>Bar</h1>
+
+
+<h2 *ngIf="items$ && items$.length===0">Good job! All active orders been made! ;)</h2>
+<ul  *ngIf="items$ &&items$.length!==0" [@listStagger]="items$">
+  <li *ngFor="let drink of items$">
+      <span class="drink-made-span"><button (click)="made(drink)"><i class="material-icons">done</i></button></span>
+    <ul>
+      <li><p>{{ drink.orderedItem.item.name }}</p></li>
+      <li *ngIf="drink.orderedItem.comment"><strong>Comment: </strong>{{ drink.orderedItem.comment }}</li>
+      <li *ngIf="!drink.orderedItem.comment"><strong>Comment: </strong> - </li>
+    </ul>
+  </li>
+</ul>
