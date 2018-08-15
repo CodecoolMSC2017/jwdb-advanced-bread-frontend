@@ -3,7 +3,7 @@
 
 <ul [@listStagger] = 'restaurants$'>
     <li *ngFor = "let restaurant of restaurants$"> 
-    <a class="button"><strong>{{ restaurant.name }}</strong></a><span class="delete-button"><a (click)="delete(restaurant.id)"><button><i class="material-icons">delete</i></button></a></span>
+    <a class="button"><strong>{{ restaurant.name }}</strong></a><span class="delete-button"><a (click)="delete(restaurant.id)" *ngIf="loggedIn$.role === 'OWNER'"><button><i class="material-icons">delete</i></button></a></span>
     <ul>
       <li><strong>Street : </strong>  {{ restaurant.address.street }}</li>
       <li><strong>City : </strong>  {{ restaurant.address.city }}</li>
