@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; 
+import { DatePipe } from '@angular/common';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { DataService } from '../data.service';
 import { KitchenService } from '../kitchen.service';
@@ -38,6 +39,7 @@ import { Food } from '../food';
 export class KitchenComponent implements OnInit {
 
   items$:Food[];
+  time:string[] = new DatePipe('en-US').transform(new Date(),'yyyy-MM-dd-hh-mm-ss').split("-");
 
   constructor(private kitchenService:KitchenService,private router:Router) {
     
@@ -46,9 +48,10 @@ export class KitchenComponent implements OnInit {
   ngOnInit() {
     this.kitchenService.getItemsToMake().subscribe((data) => {
       this.items$ = data
-      this.timer()      
+      this.timer()
     }
-    )
+  )
+    
   }
 
   made(madeFood:Food){
@@ -65,6 +68,7 @@ export class KitchenComponent implements OnInit {
       element.timer=new Array<string>();
       element.timer[0]= '0';
       element.timer[1]= '0';
+
       setTimeout(()=>{{
           const secondInterval = setInterval(()=> {
             element.timer[1] = (parseInt(element.timer[1])+1).toString(); 
@@ -79,6 +83,17 @@ export class KitchenComponent implements OnInit {
           
       }},0);
     });
+  }
+ //TODO: next sprint with timestamp
+  getTime(orderTime:number[]){
+    let timer = new Array<number>();
+    for(let i = 0; i < 6; i++){
+      timer.push(parseInt(this.time[i]))
+    }
+    for(let i = 0;i<orderTime.length;i++){
+      orderTime[i] = (parseInt(this.time[i])-orderTime[i]); 
+    }
+   
   }
 
 
