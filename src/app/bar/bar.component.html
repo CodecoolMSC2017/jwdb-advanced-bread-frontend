@@ -1,7 +1,7 @@
 <h1>Bar</h1>
 
 
-<h2 *ngIf="items$ && items$.length===0">Good job! All active orders been made! ;)</h2>
+<h2 *ngIf="items$ && items$.length===0">Good job! All active orders are done! ;)</h2>
 <ul  *ngIf="items$ &&items$.length!==0" [@listStagger]="items$">
   <li *ngFor="let drink of items$">
       <span class="drink-made-span"><button (click)="made(drink)"><i class="material-icons">done</i></button></span>
