@@ -1,0 +1,29 @@
+<div *ngIf="currentMenu$"><h1 ><p>{{ currentMenu$.title }}'s items</p><a class="add-button" (click)="show()"><button><i class="material-icons">add</i><span> ADD ITEM</span></button></a></h1>
+
+<ul [@listStagger] = 'currentMenu$.items'>
+    <li *ngFor = "let item of currentMenu$.items; let i = index">
+        <span class="delete-button"><a (click)="delete(item.id)"><button><i class="material-icons">delete</i></button></a></span>
+        <span [ngClass]="{'hidden': containsShowable(item.id) }" class="content-show-button"><button (click)="showIngredients(item.id)" [disabled]="item.ingredients.length === 0" [ngClass]="{'disabled': item.ingredients.length === 0}"><i class="material-icons">keyboard_arrow_down</i></button></span>
+        <span [ngClass]="{'hidden': !containsShowable(item.id) }"class="content-hide-button"><button (click)="hideIngredients(item.id)"><i class="material-icons">keyboard_arrow_up</i></button></span>
+    <ul>
+        
+      <li><strong>Name : </strong>  {{ item.name }}</li>
+      <li><strong>Price : </strong>  {{ item.price }}</li>
+      <li><strong>Category : </strong>  {{ item.category }}</li>
+      <li *ngIf="item.subcategory"><strong>Subcategory :</strong>  {{ item.subcategory }}</li>
+      <li *ngIf="!item.subcategory"><strong>Subcategory :</strong> -</li>
+      <li id="{{ item.id }}" class="table-content hidden {{ item.id }}" *ngFor="let ingredient of item.ingredients; let i = index">
+        <ul>
+          <li>
+            <ul>
+              <li><strong>Name: </strong>{{ingredient.name }}</li>
+              <li *ngIf="ingredient.allergen"><strong>Allergen: </strong>{{ingredient.allergen }}</li> 
+              <li *ngIf="!ingredient.allergen"><strong>Allergen: </strong>-</li>
+            </ul>  
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>

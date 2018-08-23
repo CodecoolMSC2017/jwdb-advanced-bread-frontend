@@ -50,12 +50,13 @@ export class RestaurantsComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.getRestaurants().subscribe(
-      data => this.restaurants$ = data
-    )
     this.data.getProfile().subscribe(
-      data => this.loggedIn$ = data
-    )
+      (data) => {
+        this.loggedIn$ = data
+        this.data.getRestaurants().subscribe(
+         data => this.restaurants$ = data
+       )
+      })
   }
 
   show():void{

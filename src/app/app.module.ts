@@ -33,6 +33,7 @@ import { BarComponent } from './bar/bar.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { KitchenComponent } from './kitchen/kitchen.component';
+import { MenuItemsComponent } from './menu-items/menu-items.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { KitchenComponent } from './kitchen/kitchen.component';
     BarComponent,
     StatisticsComponent,
     MyOrdersComponent,
-    KitchenComponent
+    KitchenComponent,
+    MenuItemsComponent
   ],
   imports: [
     AppRoutingModule,

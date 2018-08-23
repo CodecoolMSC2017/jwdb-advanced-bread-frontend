@@ -154,4 +154,8 @@ export class DataService {
   getAllItems(restaurantId):Observable<any> {
     return this.http.get("/api/owner/restaurant/"+restaurantId+"/item",{params:new HttpParams().set('category', "all")});
   }
+
+  addNewItemToMenu(menuId:number,item:Item):Observable<Menu>{
+    return this.http.put<Menu>('api/'+menuId+'item',item)
+  }
 }
