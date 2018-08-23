@@ -39,6 +39,7 @@ import { element } from 'protractor';
   ]
 })
 export class MyOrdersComponent implements OnInit {
+  tables$:Table;
   allTables$:Table[];
   myTables:Table[];
   loggedIn$:Profile;
