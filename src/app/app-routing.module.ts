@@ -21,6 +21,8 @@ import { SplitCheckComponent } from './split-check/split-check.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { BarComponent } from './bar/bar.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { KitchenComponent } from './kitchen/kitchen.component';
+import { MenuItemsComponent } from './menu-items/menu-items.component';
 
 
 const routes: Routes = [
@@ -118,6 +120,16 @@ const routes: Routes = [
   {
     path: 'my-orders',
     component: MyOrdersComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'kitchen',
+    component: KitchenComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'restaurant/:restaurantId/menu/:menuId/item',
+    component: MenuItemsComponent,
     canActivate: [LoginGuard]
   }
 

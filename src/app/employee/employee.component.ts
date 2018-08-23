@@ -5,6 +5,7 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 import { Employee } from '../employee';
 import { Address } from '../address';
 import { Restaurant } from '../restaurant';
+import { Profile } from '../profile';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class EmployeeComponent implements OnInit {
   emailResponse$:Object;
   address$ : Address = new Address();
   created$ : Employee = new Employee();
+  loggedIn$ : Profile;
   
 
 
@@ -57,6 +59,10 @@ export class EmployeeComponent implements OnInit {
     )
     this.data.getRestaurant(this.restaurantId).subscribe(
       data => this.restaurant$ = data
+    )
+
+    this.data.getProfile().subscribe(
+      data => this.loggedIn$ = data
     )
   }
 

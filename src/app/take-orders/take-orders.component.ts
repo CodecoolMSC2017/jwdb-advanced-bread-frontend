@@ -7,6 +7,7 @@ import { OrderItem } from '../order-item';
 import { Menu } from '../menu';
 import { Seat } from '../seat';
 import { Profile } from '../profile';
+import { PreviousRouteService } from '../previous-route.service';
 
 @Component({
   selector: 'app-take-orders',
@@ -25,7 +26,7 @@ export class TakeOrdersComponent implements OnInit {
   seatId:number;
   searchString:string = '';
 
-  constructor(private route:ActivatedRoute,private data:DataService,private waiterService: WaiterService) {
+  constructor(private route:ActivatedRoute,private data:DataService,private waiterService: WaiterService,private router:Router,private prevoiusRoute:PreviousRouteService) {
     this.route.params.subscribe(
       params => this.tableId = params.tableId
     )
@@ -93,6 +94,10 @@ export class TakeOrdersComponent implements OnInit {
       return false;
     }
     
+  }
+
+  goBack(){
+    this.router.navigate([this.prevoiusRoute.getPreviousUrl()])
   }
   
     

@@ -2,7 +2,7 @@
 <h1>My Orders</h1>
 
 
-<h2 *ngIf="!myTables">You are not assigned to a table!</h2>
+<h2 *ngIf="tables$ && myTables.length === 0">You are not assigned to a table!</h2>
 <ul [@listStagger]='myTables'>
   <li *ngFor="let table of myTables">
     <span [ngClass]="{'hidden': containsShowable(table.id) }" class="content-show-button"><button (click)="showContent(table.id)" [disabled]="table.seatDtoSet.length === 0" [ngClass]="{'disabled': table.seatDtoSet.length === 0}" ><i class="material-icons">keyboard_arrow_down</i></button></span>

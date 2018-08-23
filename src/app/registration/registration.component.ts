@@ -16,7 +16,7 @@ export class RegistrationComponent implements OnInit {
 
   employee$: Employee;
 
-  created$:Registrate;
+  created$:Registrate = new Registrate();
 
   constructor(private data:DataService, private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(params => {

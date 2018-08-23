@@ -9,7 +9,7 @@
           <a *ngIf="menu.active"(click)="deactivate(restaurantId,menu)"><span class="deactivate-button"><button>- DEACTIVATE</button></span></a>
       </li>
       <li class="submenu">
-        <a routerLink="/menu/{{ restaurantId }}/{{ menu.id }}/items"><button class="submenu-button">ITEMS</button></a>
+        <a [routerLink]="['/restaurant',restaurantId,'menu', menu.id ,'item']"><button class="submenu-button">ITEMS</button></a>
       </li>
     </ul>
   </li>

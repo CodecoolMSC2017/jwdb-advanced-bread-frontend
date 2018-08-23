@@ -1,9 +1,9 @@
 
-<h1><p>Restaurants</p><a class="add-button" (click)="show()"><span><button><i class="material-icons">add</i></button></span></a></h1>
+<h1 *ngIf="loggedIn$"><p>Restaurants</p><a class="add-button" (click)="show()" *ngIf="loggedIn$.role === 'OWNER'"><span><button><i class="material-icons">add</i></button></span></a></h1>
 
 <ul [@listStagger] = 'restaurants$'>
     <li *ngFor = "let restaurant of restaurants$"> 
-    <a class="button"><strong>{{ restaurant.name }}</strong></a><span class="delete-button"><a (click)="delete(restaurant.id)"><button><i class="material-icons">delete</i></button></a></span>
+    <a class="button"><strong>{{ restaurant.name }}</strong></a><span class="delete-button"><a (click)="delete(restaurant.id)" *ngIf="loggedIn$.role === 'OWNER'"><button><i class="material-icons">delete</i></button></a></span>
     <ul>
       <li><strong>Street : </strong>  {{ restaurant.address.street }}</li>
       <li><strong>City : </strong>  {{ restaurant.address.city }}</li>
@@ -35,7 +35,7 @@
         <div class="modal-body">
           <form>
             <label><strong>Name: </strong></label>
-            <input type="text" placeholder="name" [(ngModel)] = "created$.name" [ngModelOptions] = "{  standalone : true }" required><br><br>
+            <input type="text" placeholder="name" [(ngModel)] = "created$.name" [ngModelOptions] = "{  standalone : true }"><br><br>
             <label><strong>Street: </strong></label>
             <input type="text" placeholder="street" [(ngModel)] = "address$.street" [ngModelOptions] = "{  standalone : true }"><br><br>
             <label><strong>City: </strong></label>

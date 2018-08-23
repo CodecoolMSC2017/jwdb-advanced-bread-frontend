@@ -11,7 +11,7 @@
 
 <div id="myModal" class="modal hidden">
     
-  <div class="modal-content">
+  <div class="modal-content" *ngIf="loggedIn$">
     <div class="modal-header">
       <span class="close" (click)="hide()">&times;</span>
       <h1>Add Employee</h1>
@@ -29,7 +29,10 @@
           <option value="CHEF">CHEF</option>
           <option value="BARTENDER">BARTENDER</option>
           <option value="WAITER" selected>WAITER</option>
+          <option *ngIf="loggedIn$.role === 'OWNER'" value="MANAGER">MANAGER</option>
         </select><br>
+        <label><strong>Street: </strong></label>
+        <input type="text" placeholder="street" [(ngModel)] = "address$.street" [ngModelOptions] = "{  standalone : true }"><br><br>
         <label><strong>City: </strong></label>
         <input type="text" placeholder="city" [(ngModel)] = "address$.city" [ngModelOptions] = "{  standalone : true }"><br><br>
         <label><strong>PostalCode: </strong></label>

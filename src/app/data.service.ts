@@ -80,8 +80,8 @@ export class DataService {
     return this.http.post<Table>("/api/restaurant/"+restaurantId+"/table", table);
   }
 
-  postSeat(tableId, seat):Observable<Seat> {
-    return this.http.post<Seat>("api/table/"+tableId+"/seat", seat);
+  postSeat(tableId, seat, numOfSeats:number):Observable<Seat> {
+    return this.http.post<Seat>("api/table/"+tableId+"/seat", {'value':numOfSeats});
   }
 
   sendEmail(user) {
@@ -153,5 +153,9 @@ export class DataService {
   
   getAllItems(restaurantId):Observable<any> {
     return this.http.get("/api/owner/restaurant/"+restaurantId+"/item",{params:new HttpParams().set('category', "all")});
+  }
+
+  addNewItemToMenu(menuId:number,item:Item):Observable<Menu>{
+    return this.http.put<Menu>('api/'+menuId+'item',item)
   }
 }

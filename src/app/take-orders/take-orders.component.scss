@@ -60,14 +60,15 @@ ul {
     li {
         margin-right:10px;
     }
+
+    .li {
+        max-width:100px;
+        display: inline-block;
+        padding: -10px;
+    }
 }
 
-.li {
-    max-width:60px;
-    display: inline-block;
 
-    
-}
 
 .seats {
     margin-top:30px;
@@ -99,13 +100,13 @@ ul {
 .search-bar {
     background-color:#f2f2f2;
     position: fixed;
-    width: 370px;
+    width: 25.5%;
     padding: 5px;
     form{
         
       input {
         
-       width:350px;
+       width:95%;
     border:none;
     padding:5px 5px;
     border-radius:8px; 
@@ -118,5 +119,24 @@ ul {
 
 .content{
     margin-top: 50px;
+}
+
+.back-button{
+    background:none;
+    border-radius:8px;
+    background-color:rgb(7, 176, 41);
+    display: flex;
+    padding:8px;
+    i{
+        margin-top:3px;
+        color: #fff;
+        font-size: 17px;
+    }
+    border:none;
+    .back-button-text{
+        color:#fff;
+        font-size:17px;
+        margin-top:1px;
+    }
 }
 

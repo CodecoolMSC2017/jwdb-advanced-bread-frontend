@@ -1,3 +1,5 @@
+
+<button class="back-button" (click)="goBack()"><i class="material-icons">arrow_back_ios</i><span class="back-button-text"> Back</span></button>
 <div class="seats">
     <ul *ngIf="seats$">
       <li class="li"*ngFor="let seat of seats$ , let i = index" [ngClass]="{'active': seat.id===seatId}">

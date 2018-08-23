@@ -76,6 +76,27 @@ td {
     }
 }
 
+
+.confirm-button{
+    margin-left:40%;
+    button {
+      border:none;
+    border-radius:8px;
+    background: none;
+    border:2px solid rgb(7, 176, 41);  
+    color: rgb(7, 176, 41);
+    background: #fff;
+    padding:8px 25px;
+    }
+}
+
+.confirm-button:hover {
+    button {
+        color: #fff;
+        background-color: rgb(7, 176, 41);
+        
+    }
+}
 *:focus{
     outline:none;
 }

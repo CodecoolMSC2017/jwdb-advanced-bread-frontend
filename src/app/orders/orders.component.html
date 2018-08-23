@@ -22,8 +22,8 @@
         <li *ngFor = "let order of table.seatDtoSet">
           <ul>
             <li><strong>Order {{ order.id }} :</strong></li>
-            <li *ngFor = "let customerOrder of order.customerOrderSet">
-              <ul *ngIf = "order.customerOrderSet">
+            <li *ngFor = "let customerOrder of order.customerOrderList">
+              <ul *ngIf = "order.customerOrderList">
                 <li><strong>Time: </strong>{{ customerOrder.orderingTime[3] }}:{{ customerOrder.orderingTime[4] }}:{{ customerOrder.orderingTime[5] }}</li>
                 
                 <li><strong>Item: </strong>{{ customerOrder.orderItem.item.name }}</li>

@@ -1,0 +1,30 @@
+.drink-made-span{
+    
+float: right;
+margin-left:90%;
+button {
+    background: none;
+    background-color: #fff;
+    border:none;
+    border-radius: 8px; 
+    padding:8px 12px;
+    i {
+        color : rgb(7, 176, 41);
+        font-size:40px;
+
+    }
+}
+
+
+
+}
+
+.drink-made-span:hover{
+button{
+    background: rgb(7, 176, 41);
+
+    i{
+        color:#fff;
+    }
+}
+}
