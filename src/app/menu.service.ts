@@ -14,7 +14,7 @@ export class MenuService {
   constructor(private http:HttpClient) { }
 
   addNewItemToMenu(menuId:number,item:Item):Observable<Menu>{
-    return this.http.put<Menu>('api/'+menuId+'item',item)
+    return this.http.put<Menu>('api/menu/'+menuId+'/item',item)
   }
 
   getMenus(restaurantId:number):Observable<Menu[]>{
@@ -42,7 +42,7 @@ export class MenuService {
   }
 
   deleteItemFromMenu(menuId,itemId):Observable<void>{
-    return this.http.delete<void>('/api/menu/'+menuId,{params:new HttpParams().set('itemId',itemId.toString())})
+    return this.http.delete<void>('/api/menu/'+menuId+'/item',{params:new HttpParams().set('itemId',itemId.toString())})
   }
 
 }
