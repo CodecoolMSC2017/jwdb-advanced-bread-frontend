@@ -42,6 +42,8 @@ export class ItemsComponent implements OnInit {
   restaurant$:Restaurant;
   restaurantId:number;
   newItem :Item = new Item();
+  searchString:string = '';
+  accent_letters = {'á':'a','é':'e','í':'i','ó':'o','ö':'o','ő':'o','ú':'u','ü':'u','ű':'u'}
 
   constructor(private route:ActivatedRoute, private itemService:ItemService,private restaurantService:RestaurantService) {
     this.route.params.subscribe((params)=> {
@@ -61,6 +63,7 @@ export class ItemsComponent implements OnInit {
 
   addItem(){
     this.itemService.postItem(this.newItem,this.restaurantId).subscribe(data => this.items$.push(data))
+    this.newItem = new Item();
   }
 
   deleteItem(itemId:number){
@@ -71,4 +74,47 @@ export class ItemsComponent implements OnInit {
     });
     this.itemService.deleteItem(this.restaurantId,itemId).subscribe()
   }
+
+  includeString(item:Item):boolean{
+    let category:string = this.accent_floding(item.category.toLocaleLowerCase());
+    let subcategory:string = this.accent_floding(item.subcategory.toLocaleLowerCase());
+    let name:string = this.accent_floding(item.name.toLocaleLowerCase());
+    let searchString = this.accent_floding(this.searchString);
+        
+    if(searchString === ''){
+      return true;
+    }
+    if (name.includes(searchString.toLocaleLowerCase()) || subcategory.includes(searchString.toLocaleLowerCase()) || category.includes(searchString.toLocaleLowerCase())){
+      return true
+    }
+    else {
+      return false;
+    }
+    
+  }
+
+  accent_floding(accented_string:string){
+    if (!accented_string) { return ''; }
+    var ret = '';
+    for (var i = 0; i < accented_string.length; i++) {
+      ret += this.accent_letters[accented_string.charAt(i)] || accented_string.charAt(i);
+    }
+    return ret;
+  }
+
+  show():void{
+    this.newItem.restaurant = this.restaurant$;
+    let button = document.getElementById("myModal")
+    button.classList.remove("hidden");
+    document.body.style.overflow = 'hidden';
+    this.newItem.category = "FOOD"
+
+}
+
+hide():void{
+  let button = document.getElementById("myModal")
+  button.classList.add("hidden");
+  document.body.style.overflow = 'visible';
+  
+}
 }

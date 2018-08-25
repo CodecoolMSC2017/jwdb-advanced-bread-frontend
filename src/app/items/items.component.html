@@ -1,3 +1,48 @@
-<p>
-  items works!
-</p>
+<h1 *ngIf="restaurant$"><p>{{ restaurant$.name }}'s items</p><a class="add-button" (click)="show()"><button><i class="material-icons">add</i><span> ADD ITEM</span></button></a></h1>
+<form class="search-bar">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchString" [ngModelOptions] = "{  standalone : true }">
+</form>
+  <ul [@listStagger] = 'items$'>
+      <li *ngFor = "let item of items$" [ngClass]="{'hidden': !includeString(item)}">
+          <span class="delete-button"><a (click)="deleteItem(item.id)"><button><i class="material-icons">delete</i></button></a></span>
+        <ul>
+          
+        <li><strong>Name : </strong>  {{ item.name }}</li>
+        <li><strong>Price : </strong>  {{ item.price }}</li>
+        <li><strong>Category : </strong>  {{ item.category }}</li>
+        <li *ngIf="item.subcategory"><strong>Subcategory :</strong>  {{ item.subcategory }}</li>
+        <li *ngIf="!item.subcategory"><strong>Subcategory :</strong> -</li>
+      </ul>
+    </li>
+  </ul>
+
+
+  <div id="myModal" class="modal hidden">
+      
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close" (click)="hide()">&times;</span>
+            <h1>Add Item</h1>
+          </div>
+          <div class="modal-body">
+            <form>
+              <label><strong>Name: </strong></label>
+              <input type="text" placeholder="name" [(ngModel)] = "newItem.name" [ngModelOptions] = "{  standalone : true }"><br><br>
+              <label><strong>Price: </strong></label>
+              <input type="text" placeholder="unit price" [(ngModel)] = "newItem.price" [ngModelOptions] = "{  standalone : true }"><br><br>
+              <label><strong>Category: </strong></label>              
+              <select class="category-select" name="categorys" [(ngModel)] = "newItem.category" [ngModelOptions] = "{  standalone : true }">
+                  <option value="DRINK">DRINK</option>
+                  <option value="FOOD" selected>FOOD</option>
+                </select><br>
+              <label><strong>Subcategory: </strong></label>
+              <input type="text" placeholder="subcategory" [(ngModel)] = "newItem.subcategory" [ngModelOptions] = "{  standalone : true }"><br><br>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="add-item-button" (click)="addItem()"  >submit</button>
+            <button class="cancel-item-button" (click)="hide()" >cancel</button>
+          </div>
+        </div>
+      
+      </div>
