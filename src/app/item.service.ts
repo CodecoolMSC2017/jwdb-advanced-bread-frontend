@@ -30,4 +30,12 @@ export class ItemService {
   getById(itemId:number):Observable<Item>{
     return this.http.get<Item>('api/owner/restaurant/{restaurantId}/item/'+itemId)
   }
+
+  postItem(newItem:Item,restaurantId:number):Observable<Item>{
+    return this.http.post<Item>('/api/owner/restaurant/'+restaurantId+'/item',newItem)
+  }
+
+  deleteItem(restaurantId:number,itemId:number):Observable<void>{
+    return this.http.delete<void>('/api/owner/restaurant/'+restaurantId+'/item/'+itemId)
+  }
 }

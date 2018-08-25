@@ -5,7 +5,7 @@ import { Menu } from '../menu';
 import { MenuService } from '../menu.service';
 import { ItemService } from '../item.service';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
-import { $ } from 'jquery';
+
 
 
 @Component({
@@ -85,7 +85,11 @@ export class MenuItemsComponent implements OnInit {
         this.currentMenu$.items.splice(this.currentMenu$.items.indexOf(element),1)
       }
     });
-    this.menuService.deleteItemFromMenu(this.menuId,itemId).subscribe()
+    this.menuService.deleteItemFromMenu(this.menuId,itemId).subscribe(
+      () => {
+        this.getAddableItems()
+      }
+    )
   }
 
   showIngredients(itemId:number){
@@ -145,11 +149,12 @@ export class MenuItemsComponent implements OnInit {
     let category:string = this.accent_floding(item.category.toLocaleLowerCase());
     let subcategory:string = this.accent_floding(item.subcategory.toLocaleLowerCase());
     let name:string = this.accent_floding(item.name.toLocaleLowerCase());
+    let searchString = this.accent_floding(this.searchString);
         
-    if(this.searchString === ''){
+    if(searchString === ''){
       return true;
     }
-    if (name.includes(this.searchString.toLocaleLowerCase()) || subcategory.includes(this.searchString.toLocaleLowerCase()) || category.includes(this.searchString.toLocaleLowerCase())){
+    if (name.includes(searchString.toLocaleLowerCase()) || subcategory.includes(searchString.toLocaleLowerCase()) || category.includes(searchString.toLocaleLowerCase())){
       return true
     }
     else {

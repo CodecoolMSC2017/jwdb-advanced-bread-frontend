@@ -12,7 +12,8 @@
       <li><strong>Category : </strong>  {{ item.category }}</li>
       <li *ngIf="item.subcategory"><strong>Subcategory :</strong>  {{ item.subcategory }}</li>
       <li *ngIf="!item.subcategory"><strong>Subcategory :</strong> -</li>
-      <li id="{{ item.id }}" class="table-content hidden {{ item.id }}" *ngFor="let ingredient of item.ingredients; let i = index">
+      <p class="table-content hidden {{ item.id }}">Ingredients</p>
+      <li  class="table-content hidden {{ item.id }}" *ngFor="let ingredient of item.ingredients; let i = index">
         <ul>
           <li>
             <ul>

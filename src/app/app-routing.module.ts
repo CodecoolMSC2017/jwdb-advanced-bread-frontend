@@ -23,6 +23,7 @@ import { BarComponent } from './bar/bar.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { KitchenComponent } from './kitchen/kitchen.component';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
+import { ItemsComponent } from './items/items.component';
 
 
 const routes: Routes = [
@@ -131,8 +132,12 @@ const routes: Routes = [
     path: 'restaurant/:restaurantId/menu/:menuId/item',
     component: MenuItemsComponent,
     canActivate: [LoginGuard]
+  },
+  {
+    path: 'restaurant/:restaurantId/item',
+    component: ItemsComponent,
+    canActivate: [LoginGuard]
   }
-
 
 ];
 
