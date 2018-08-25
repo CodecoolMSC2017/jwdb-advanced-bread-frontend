@@ -62,8 +62,12 @@ export class ItemsComponent implements OnInit {
 
 
   addItem(){
+    if(!this.newItem.subcategory){
+      this.newItem.subcategory = '-';
+    }
     this.itemService.postItem(this.newItem,this.restaurantId).subscribe(data => this.items$.push(data))
     this.newItem = new Item();
+    this.hide()
   }
 
   deleteItem(itemId:number){
@@ -104,10 +108,12 @@ export class ItemsComponent implements OnInit {
 
   show():void{
     this.newItem.restaurant = this.restaurant$;
+    this.newItem.category = "FOOD"
     let button = document.getElementById("myModal")
     button.classList.remove("hidden");
     document.body.style.overflow = 'hidden';
     this.newItem.category = "FOOD"
+    
 
 }
 
