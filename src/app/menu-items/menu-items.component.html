@@ -1,4 +1,4 @@
-<div *ngIf="currentMenu$"><h1 ><p>{{ currentMenu$.title }}'s items</p><a class="add-button" (click)="show()"><button><i class="material-icons">add</i><span> ADD ITEM</span></button></a></h1>
+<div id="body-content" *ngIf="currentMenu$"><h1 ><p>{{ currentMenu$.title }}'s items</p><a class="add-button" (click)="show()"><button><i class="material-icons">add</i><span> ADD ITEM</span></button></a></h1>
 
 <ul [@listStagger] = 'currentMenu$.items'>
     <li *ngFor = "let item of currentMenu$.items; let i = index">
@@ -12,7 +12,8 @@
       <li><strong>Category : </strong>  {{ item.category }}</li>
       <li *ngIf="item.subcategory"><strong>Subcategory :</strong>  {{ item.subcategory }}</li>
       <li *ngIf="!item.subcategory"><strong>Subcategory :</strong> -</li>
-      <li id="{{ item.id }}" class="table-content hidden {{ item.id }}" *ngFor="let ingredient of item.ingredients; let i = index">
+      <p class="table-content hidden {{ item.id }}">Ingredients</p>
+      <li  class="table-content hidden {{ item.id }}" *ngFor="let ingredient of item.ingredients; let i = index">
         <ul>
           <li>
             <ul>
@@ -27,3 +28,38 @@
   </li>
 </ul>
 </div>
+
+<div id="myModal" class="modal hidden">
+      <div class="modal-content" *ngIf="addableItems$" >
+        <div class="modal-header">
+          <span class="close" (click)="hide()">&times;</span>
+          <h1>Add Items</h1>
+          <form class="search-bar">
+              <input type="text" placeholder="Search..." [(ngModel)]="searchString" [ngModelOptions] = "{  standalone : true }">
+          </form>
+        </div>
+        <div class="modal-body" *ngIf="addableItems$" >
+          <ul [@listStagger]="addableItems$">
+            <li *ngFor="let item of addableItems$" [ngClass]="{'hidden': !includeString(item) }">
+              <ul class="modal-content-items">
+                <div>
+                <li class="item-content"><strong>Name: </strong>{{ item.name }}</li>
+                <button (click)="addItem(item)" class="add-item-button"><i class="material-icons">add</i></button>                
+                
+                <li class="item-content"><strong>UnitPrice: </strong>{{ item.price }}</li>
+                <li class="item-content"><strong>Category: </strong>{{ item.category }}</li>
+                <li class="item-content"><strong>Subcategory: </strong>{{ item.subcategory }}</li>
+              </div>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <p>
+            <a class="btn cancel-btn" (click)="hide()">cancel</a>
+          </p>
+        </div>
+      </div>
+    
+    </div>
+

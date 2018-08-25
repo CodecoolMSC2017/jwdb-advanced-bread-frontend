@@ -1,5 +1,6 @@
 .content-show-button{
     float: right;
+    clear: right;
     button {
         border:none;
         background: none;
@@ -47,7 +48,7 @@
 
 .content-hide-button{
     float: right;
-
+    clear: right;
     button {
         border:none;
         background: none;
@@ -109,3 +110,138 @@
     .hidden {
         display: none;
     }
+
+.delete-button{
+    float: right;
+    clear: right;
+}
+
+*:focus{
+    outline: none;
+}
+
+.modal {
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 50px; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    
+    
+    
+}
+
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: auto;
+    padding: 0;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    border-radius: 8px;
+
+    h1{
+        margin-left:30px;
+    }
+}
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+.close {
+    color: grey;
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    padding: 2px 16px;
+    background-color: #f2f2f2;
+    color: rgb(7, 176, 41);
+}
+
+.modal-body {
+    padding: 2px 16px;
+    border-radius: 8px;
+    background-color: #f2f2f2;
+    overflow-y: scroll;
+    height:600px;
+    
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #f2f2f2;
+    color: white;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.modal-content-items{
+    border-radius: 8px;
+    background: #fff;
+    
+}
+
+.search-bar {
+        
+      input {
+        
+       width:95%;
+    border:none;
+    padding:5px 5px;
+    border-radius:8px; 
+    margin-bottom: 10px;
+    }  
+    
+    
+}
+
+.add-item-button{
+    display: inline-flex;
+    float: right;
+    border-radius: 8px;
+    border:none;
+    background: none;
+    padding:12px;
+    i{
+    color: rgb(7, 176, 41);
+    font-size: 30px;
+    font-weight: bold;
+    }
+}
+
+.add-item-button:hover{
+    background: rgb(7, 176, 41);
+    i{
+    color: #fff;
+    
+    }
+}

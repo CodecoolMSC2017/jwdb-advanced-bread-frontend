@@ -7,6 +7,7 @@ import { ItemService } from '../item.service';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 
 
+
 @Component({
   selector: 'app-menu-items',
   templateUrl: './menu-items.component.html',
@@ -43,17 +44,20 @@ export class MenuItemsComponent implements OnInit {
   addableItems$:Item[];
   restaurantId:number;
   showableContentIds = new Array<number>();
+  searchString:string = '';
+  accent_letters = {'á':'a','é':'e','í':'i','ó':'o','ö':'o','ő':'o','ú':'u','ü':'u','ű':'u'}
   
 
   constructor( private menuService:MenuService,private itemService:ItemService,private route:ActivatedRoute) {
     this.route.params.subscribe(
       (params) => {
         this.menuId = params.menuId
-        this.restaurantId = params.restauranId 
+        this.restaurantId = params.restaurantId 
       });
     this.menuService.getMenu(this.menuId).subscribe(
       data => this.currentMenu$ = data
     )
+    this.getAddableItems()
   }
 
   ngOnInit() {
@@ -63,6 +67,7 @@ export class MenuItemsComponent implements OnInit {
   addItem(item:Item){
     this.menuService.addNewItemToMenu(this.menuId,item).subscribe(
       data => this.currentMenu$ = data)
+    this.addableItems$.splice(this.addableItems$.indexOf(item),1);
   }
 
   getAddableItems(){
@@ -80,7 +85,11 @@ export class MenuItemsComponent implements OnInit {
         this.currentMenu$.items.splice(this.currentMenu$.items.indexOf(element),1)
       }
     });
-    this.menuService.deleteItemFromMenu(this.menuId,itemId).subscribe()
+    this.menuService.deleteItemFromMenu(this.menuId,itemId).subscribe(
+      () => {
+        this.getAddableItems()
+      }
+    )
   }
 
   showIngredients(itemId:number){
@@ -120,6 +129,47 @@ export class MenuItemsComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  show():void{
+      let button = document.getElementById("myModal")
+      button.classList.remove("hidden");
+      document.body.style.overflow = 'hidden';
+
+  }
+
+  hide():void{
+    let button = document.getElementById("myModal")
+    button.classList.add("hidden");
+    document.body.style.overflow = 'visible';
+    
+  }
+
+  includeString(item:Item):boolean{
+    let category:string = this.accent_floding(item.category.toLocaleLowerCase());
+    let subcategory:string = this.accent_floding(item.subcategory.toLocaleLowerCase());
+    let name:string = this.accent_floding(item.name.toLocaleLowerCase());
+    let searchString = this.accent_floding(this.searchString);
+        
+    if(searchString === ''){
+      return true;
+    }
+    if (name.includes(searchString.toLocaleLowerCase()) || subcategory.includes(searchString.toLocaleLowerCase()) || category.includes(searchString.toLocaleLowerCase())){
+      return true
+    }
+    else {
+      return false;
+    }
+    
+  }
+
+  accent_floding(accented_string:string){
+    if (!accented_string) { return ''; }
+    var ret = '';
+    for (var i = 0; i < accented_string.length; i++) {
+      ret += this.accent_letters[accented_string.charAt(i)] || accented_string.charAt(i);
+    }
+    return ret;
   }
 
 }

@@ -39,22 +39,22 @@
     <div class="content">
     <h1 [ngClass]="{'hidden': searchString!=''}">Foods</h1>
     <ul *ngIf = "activeMenu$">
-      <li *ngFor = "let item of activeMenu$.items" [ngClass]="{'hidden': item.category==='DRINK' || !includeString(item.name) }">
+      <li *ngFor = "let item of activeMenu$.items" [ngClass]="{'hidden': item.category==='DRINK' || !includeString(item) }">
         <ul>
           <li class="item-name"><strong>Name: </strong>{{ item.name }}</li>
-          <span class="add-button"(click)="takeNewOrder(item.id,1,'-')"><button><i class="material-icons">add</i></button></span>
           <li><strong>Unit price: </strong>{{ item.price }} HUF</li>
-
+          <span class="add-button"(click)="takeNewOrder(item.id,1,'-')"><button><i class="material-icons">add</i></button></span>
         </ul>
       </li>
     </ul>
     <h1 [ngClass]="{'hidden': searchString!=''}">Drinks</h1>
     <ul *ngIf = "activeMenu$">
-        <li *ngFor = "let item of activeMenu$.items" [ngClass]="{'hidden': item.category==='FOOD' || !includeString(item.name)}">
+        <li *ngFor = "let item of activeMenu$.items" [ngClass]="{'hidden': item.category==='FOOD' || !includeString(item)}">
           <ul>
             <li><strong>Name: </strong>{{ item.name }}</li>
-            <span class="add-button"(click)="takeNewOrder(item.id,1,'-')"><button><i class="material-icons">add</i></button></span>
             <li><strong>Unit price: </strong>{{ item.price }} HUF</li>
+            <span class="add-button"(click)="takeNewOrder(item.id,1,'-')"><button><i class="material-icons">add</i></button></span>
+            
           </ul>
         </li>
       </ul>

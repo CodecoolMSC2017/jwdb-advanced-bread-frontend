@@ -8,12 +8,13 @@ body {
 
 #container{
     display: grid;
-    grid-template-columns: 100px auto;
+    grid-template-columns: 200px auto;
     height: 100%;
+    
     
 
     #content {
-        padding: 30px 250px;
+        padding: 30px 100px;
 
         ul {
             list-style-type: none;
