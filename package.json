@@ -26,6 +26,7 @@
     "hoek": "^5.0.3",
     "parsejson": "0.0.3",
     "rxjs": "^6.2.2",
+    "toaster": "^0.1.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

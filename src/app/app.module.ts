@@ -34,6 +34,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { KitchenComponent } from './kitchen/kitchen.component';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
+import { ToasterService } from './toaster.service';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { MenuItemsComponent } from './menu-items/menu-items.component';
 
   ],
   providers: [
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    ToasterService
   ],
   bootstrap: [AppComponent]
 })

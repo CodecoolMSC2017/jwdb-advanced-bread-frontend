@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { Profile } from '../profile';
+import { ToasterService } from '../toaster.service';
 
 @Component({
   selector: 'app-profile',
@@ -36,13 +37,33 @@ export class ProfileComponent implements OnInit {
   user$ : Profile;
 
 
-  constructor(private data : DataService) { }
+  constructor(private data : DataService,private toasterService:ToasterService) { }
 
   ngOnInit() {
     this.data.getProfile().subscribe(
       data => this.user$ = data
     )
+    this.toasterService.success('fast','rák')
+    this.toasterService.warning('here','rák')
+    this.toasterService.error('nyak','rák')
+    this.toasterService.info('nincs rákod')
+    
+    
   
+  }
+
+
+
+  Warning(title:string,message?:string){
+    
+  }
+
+
+  Error(title:string,message?:string){
+  }
+
+
+  Info(message:string){
   }
 
 }
