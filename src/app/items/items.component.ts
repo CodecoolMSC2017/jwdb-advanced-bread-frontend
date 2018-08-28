@@ -6,6 +6,7 @@ import { Restaurant } from '../restaurant';
 import { RestaurantService } from '../restaurant.service';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { element } from 'protractor';
+import { ToasterService } from '../toaster.service';
 
 
 @Component({
@@ -45,14 +46,16 @@ export class ItemsComponent implements OnInit {
   searchString:string = '';
   accent_letters = {'á':'a','é':'e','í':'i','ó':'o','ö':'o','ő':'o','ú':'u','ü':'u','ű':'u'}
 
-  constructor(private route:ActivatedRoute, private itemService:ItemService,private restaurantService:RestaurantService) {
+  constructor(private route:ActivatedRoute, private itemService:ItemService,private restaurantService:RestaurantService,private toasterService:ToasterService) {
     this.route.params.subscribe((params)=> {
       this.restaurantId = params.restaurantId
       this.restaurantService.getRestaurant(this.restaurantId).subscribe(
-        data => this.restaurant$ = data
+        data => this.restaurant$ = data,
+        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
       )
       itemService.getAllItems(this.restaurantId).subscribe(
-        data => this.items$ = data
+        data => this.items$ = data,
+        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
       )
     })
    }
@@ -65,7 +68,11 @@ export class ItemsComponent implements OnInit {
     if(!this.newItem.subcategory){
       this.newItem.subcategory = '-';
     }
-    this.itemService.postItem(this.newItem,this.restaurantId).subscribe(data => this.items$.push(data))
+    this.itemService.postItem(this.newItem,this.restaurantId).subscribe((data) => {
+      this.items$.push(data),
+      this.toasterService.success('Item added to '+this.restaurant$.name)
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
     this.newItem = new Item();
     this.hide()
   }
@@ -74,9 +81,11 @@ export class ItemsComponent implements OnInit {
     this.items$.forEach(element => {
       if(element.id === itemId){
         this.items$.splice(this.items$.indexOf(element),1)
+        
       }
     });
-    this.itemService.deleteItem(this.restaurantId,itemId).subscribe()
+    this.itemService.deleteItem(this.restaurantId,itemId).subscribe(() => {this.toasterService.success('Item deleted')},
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
   }
 
   includeString(item:Item):boolean{

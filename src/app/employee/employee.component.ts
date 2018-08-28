@@ -6,6 +6,7 @@ import { Employee } from '../employee';
 import { Address } from '../address';
 import { Restaurant } from '../restaurant';
 import { Profile } from '../profile';
+import { ToasterService } from '../toaster.service';
 
 
 @Component({
@@ -49,20 +50,23 @@ export class EmployeeComponent implements OnInit {
   
 
 
-  constructor(private data: DataService, private route: ActivatedRoute) {
+  constructor(private data: DataService, private route: ActivatedRoute, private toasterService:ToasterService) {
     this.route.params.subscribe(params => this.restaurantId = params.restaurantId)
    }
 
   ngOnInit() {
     this.data.getEmployeesByRestaurant(this.restaurantId).subscribe(
-      data => this.employees$ = data
+      data => this.employees$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
     this.data.getRestaurant(this.restaurantId).subscribe(
-      data => this.restaurant$ = data
+      data => this.restaurant$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
 
     this.data.getProfile().subscribe(
-      data => this.loggedIn$ = data
+      data => this.loggedIn$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
   }
 
@@ -80,20 +84,25 @@ export class EmployeeComponent implements OnInit {
     this.created$.address = this.address$;
     this.data.postEmployee(this.restaurantId, this.created$).subscribe((data) =>{ 
       this.newEmployee$ = data,
+      this.toasterService.success('Employee created')
       this.hide(),
       this.address$ = new Address()
       this.created$ = new Employee()
       this.data.getEmployeesByRestaurant(this.restaurantId).subscribe(
       data => this.employees$ = data
-    )}
+    )},
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     
   )}
 
   delete(restaurantId,employeeId){
     this.data.deleteEmployee(restaurantId,employeeId).subscribe(()=>{
+      this.toasterService.success('Employee deleted')
       this.data.getEmployeesByRestaurant(restaurantId).subscribe(
-        data => this.employees$ = data
+        data => this.employees$ = data,
+        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
       )
-    })
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
   }
 }

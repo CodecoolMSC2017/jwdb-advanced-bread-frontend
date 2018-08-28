@@ -6,6 +6,7 @@ import { DataService } from '../data.service';
 import { Restaurant } from '../restaurant';
 import { element } from 'protractor';
 import { Seat } from '../seat';
+import { ToasterService } from '../toaster.service';
 
 @Component({
   selector: 'app-split-check',
@@ -21,7 +22,7 @@ export class SplitCheckComponent implements OnInit {
   alreadyPaid=new Array<number>();
   
 
-  constructor(private waiterService:WaiterService, private dataService:DataService, private route:ActivatedRoute,private router:Router) { 
+  constructor(private waiterService:WaiterService, private dataService:DataService, private route:ActivatedRoute,private router:Router,private toasterService:ToasterService) { 
     this.route.params.subscribe(
       params => this.tableId = params.tableId
     )
@@ -29,13 +30,15 @@ export class SplitCheckComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getSeats(this.tableId).subscribe(
-      data => this.seats$ = data
+      data => this.seats$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message) 
     )
   }
 
   createInvoice(){
     this.waiterService.splitInvoice(this.seatIds).subscribe(
-      data => this.invoice$ = data
+      data => this.invoice$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message) 
     )
     
   }

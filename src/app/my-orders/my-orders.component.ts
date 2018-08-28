@@ -8,6 +8,7 @@ import { Table } from '../table';
 import { Employee } from '../employee';
 import { Profile } from '../profile';
 import { element } from 'protractor';
+import { ToasterService } from '../toaster.service';
 
 
 @Component({
@@ -47,15 +48,17 @@ export class MyOrdersComponent implements OnInit {
   invoiceTableId:number;
   
 
-  constructor(private dataService: DataService, private waiterService: WaiterService,private route:Router) {
+  constructor(private dataService: DataService, private waiterService: WaiterService,private route:Router, private toasterService:ToasterService) {
     this.dataService.getProfile().subscribe((data) => {
-        this.loggedIn$ = data
+        this.loggedIn$ = data,
         this.waiterService.getTables().subscribe((data) => {
-          this.allTables$ = data
+          this.allTables$ = data,
           this.myTables = this.getMyTables();
-        }
+        },
+        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
-    }  
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message) 
     )}
 
     
@@ -66,7 +69,8 @@ export class MyOrdersComponent implements OnInit {
 
   getOrdersByTable(tableId){
     this.waiterService.getOrdersByTable(tableId).subscribe(
-      data => this.myTables = data
+      data => this.myTables = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
   }
 

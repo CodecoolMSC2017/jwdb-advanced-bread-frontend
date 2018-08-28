@@ -5,6 +5,7 @@ import { Menu } from '../menu';
 import { MenuService } from '../menu.service';
 import { ItemService } from '../item.service';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import { ToasterService } from '../toaster.service';
 
 
 
@@ -48,14 +49,15 @@ export class MenuItemsComponent implements OnInit {
   accent_letters = {'á':'a','é':'e','í':'i','ó':'o','ö':'o','ő':'o','ú':'u','ü':'u','ű':'u'}
   
 
-  constructor( private menuService:MenuService,private itemService:ItemService,private route:ActivatedRoute) {
+  constructor( private menuService:MenuService,private itemService:ItemService,private route:ActivatedRoute,private toasterService:ToasterService) {
     this.route.params.subscribe(
       (params) => {
         this.menuId = params.menuId
         this.restaurantId = params.restaurantId 
       });
     this.menuService.getMenu(this.menuId).subscribe(
-      data => this.currentMenu$ = data
+      data => this.currentMenu$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
     this.getAddableItems()
   }
@@ -66,19 +68,24 @@ export class MenuItemsComponent implements OnInit {
 
   addItem(item:Item){
     this.menuService.addNewItemToMenu(this.menuId,item).subscribe(
-      data => this.currentMenu$ = data)
+      data => this.currentMenu$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
     this.addableItems$.splice(this.addableItems$.indexOf(item),1);
+    this.toasterService.success(item.name+' added to '+this.currentMenu$.title)
+
   }
 
   getAddableItems(){
     this.itemService.getAddableItems(this.restaurantId,this.menuId).subscribe(
-      data => this.addableItems$ = data
+      data => this.addableItems$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
   }
 
   delete(itemId){
     this.itemService.getById(itemId).subscribe(
-      data => this.addableItems$.push(data)
+      data => this.addableItems$.push(data),
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
     this.currentMenu$.items.forEach(element => {
       if(element.id === itemId){
@@ -88,7 +95,9 @@ export class MenuItemsComponent implements OnInit {
     this.menuService.deleteItemFromMenu(this.menuId,itemId).subscribe(
       () => {
         this.getAddableItems()
-      }
+        this.toasterService.success('Item deleted')
+      },
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
   }
 

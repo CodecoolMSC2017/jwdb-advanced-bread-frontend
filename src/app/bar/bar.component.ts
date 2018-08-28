@@ -3,6 +3,7 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
 import { DataService } from '../data.service';
 import { BarService } from '../bar.service';
 import { Drink } from '../drink';
+import { ToasterService } from '../toaster.service';
 
 @Component({
   selector: 'app-bar',
@@ -36,19 +37,23 @@ export class BarComponent implements OnInit {
 
   items$:Drink[];
 
-  constructor(private barService:BarService) { 
+  constructor(private barService:BarService,private toasterService:ToasterService) { 
     this.barService.getItemsToMake().subscribe(
-      data => this.items$ = data
+      data => this.items$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
   }
 
   ngOnInit() {
   }
 
-  made(madeDrink:Drink){
+  made(madeDrink:Drink,madeItemName:string){
     madeDrink.orderedItem.ready=true;
     this.barService.itemMade(madeDrink).subscribe(
-      data => this.items$ = data
-    )
+      (data) => {
+        this.items$ = data
+        this.toasterService.success('CREATED ITEM',madeItemName)
+      },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
   }
 }

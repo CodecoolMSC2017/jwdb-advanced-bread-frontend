@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { Restaurant } from '../restaurant';
+import { ToasterService } from '../toaster.service';
 
 @Component({
   selector: 'app-orders',
@@ -39,21 +40,24 @@ export class OrdersComponent implements OnInit {
   orders$ : any[];
 
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService,private toasterService:ToasterService) { }
 
   ngOnInit() {
     this.data.getRestaurants().subscribe(
-      data => this.restaurants$ = data
+      data => this.restaurants$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
   }
 
   getOrdersByRestaurant(restaurantId){
     this.data.getOrders(restaurantId).subscribe(
-      data => this.orders$ = data
+      data => this.orders$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
 
     this.data.getRestaurant(restaurantId).subscribe(
-      data => this.currentRestaurant$ = data
+      data => this.currentRestaurant$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
     
   }

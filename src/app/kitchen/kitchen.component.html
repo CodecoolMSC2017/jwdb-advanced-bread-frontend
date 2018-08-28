@@ -6,7 +6,7 @@
    <!--<div class="timer"> 
        {{ food.timer[0] }}:{{ food.timer[1] }}
       </div>-->
-      <span class="food-made-span"><button (click)="made(food)"><i class="material-icons">done</i></button></span>
+      <span class="food-made-span"><button (click)="made(food,food.orderItem.item.name)"><i class="material-icons">done</i></button></span>
     <ul>
       <li><p>{{ food.orderedItem.item.name }}</p></li>
       <li *ngIf="food.orderedItem.comment"><strong>Comment: </strong>{{ food.orderedItem.comment }} </li>

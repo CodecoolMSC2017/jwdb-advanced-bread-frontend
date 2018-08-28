@@ -6,6 +6,8 @@ import { Restaurant } from '../restaurant';
 import { Address } from '../address';
 import { Employee } from '../employee';
 import { Profile } from '../profile';
+import { ToasterService } from '../toaster.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-restaurants',
@@ -47,16 +49,19 @@ export class RestaurantsComponent implements OnInit {
   
   
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService,private toasterService:ToasterService) { }
 
   ngOnInit() {
     this.data.getProfile().subscribe(
       (data) => {
         this.loggedIn$ = data
         this.data.getRestaurants().subscribe(
-         data => this.restaurants$ = data
+         data => this.restaurants$ = data,
+         error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
        )
-      })
+      },
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+    )
   }
 
   show():void{
@@ -74,10 +79,13 @@ export class RestaurantsComponent implements OnInit {
     this.created$.owner_id = this.user.id
     this.data.postRestaurant(this.created$).subscribe((data) => {
       this.newRestaurant$ = data,
+      this.toasterService.success('Restaurant added')
       this.data.getRestaurants().subscribe(
-        resp => this.restaurants$ = resp
+        resp => this.restaurants$ = resp,
+        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
       )
-    });
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message));
     this.hide()
     this.address$ = new Address()
     this.created$ = new Restaurant()
@@ -87,9 +95,12 @@ export class RestaurantsComponent implements OnInit {
     this.restaurants$.forEach(element => {
       if(element.id === restaurantId){
           this.restaurants$.splice(this.restaurants$.indexOf(element),1);
+          this.data.deleteRestaurant(restaurantId).subscribe(() => {
+            this.toasterService.success(element.name + ' deleted form your restaurants')
+          })
       }
     });
-    this.data.deleteRestaurant(restaurantId).subscribe()
+    
       
   }
 }

@@ -3,6 +3,7 @@ import { WaiterService } from '../waiter.service';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { DataService } from '../data.service';
+import { ToasterService } from '../toaster.service';
 
 declare let paypal:any;
 
@@ -31,7 +32,7 @@ export class InvoiceComponent implements OnInit,AfterViewChecked {
                 total: 5 ,
                 currency: 'HUF'
               },
-              description:'nayg káré'
+              description:'aaaaa'
               }
             ]
           }
@@ -47,7 +48,7 @@ export class InvoiceComponent implements OnInit,AfterViewChecked {
 
 
 
-  constructor(private waiterService: WaiterService,private route:ActivatedRoute,private router: Router) {
+  constructor(private waiterService: WaiterService,private route:ActivatedRoute,private router: Router,private toasterService:ToasterService) {
       this.route.params.subscribe(
         params => this.tableId = params.tableId
       )
@@ -56,15 +57,16 @@ export class InvoiceComponent implements OnInit,AfterViewChecked {
 
   ngOnInit() {
     this.waiterService.createInvoice(this.tableId).subscribe(
-      data => this.invoice$ = data
+      data => this.invoice$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
   }
 
   pay(invoice){
     this.waiterService.pay(invoice).subscribe(() => {
       this.showNotifyModal()
-    }
-      
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message) 
     )
   }
 

@@ -43,27 +43,9 @@ export class ProfileComponent implements OnInit {
     this.data.getProfile().subscribe(
       data => this.user$ = data
     )
-    this.toasterService.success('fast','rák')
-    this.toasterService.warning('here','rák')
-    this.toasterService.error('nyak','rák')
-    this.toasterService.info('nincs rákod')
+    
     
     
   
   }
-
-
-
-  Warning(title:string,message?:string){
-    
-  }
-
-
-  Error(title:string,message?:string){
-  }
-
-
-  Info(message:string){
-  }
-
 }

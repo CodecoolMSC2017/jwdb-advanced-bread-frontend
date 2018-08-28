@@ -7,6 +7,7 @@ import { KitchenService } from '../kitchen.service';
 import { element } from 'protractor';
 import { timer } from 'rxjs';
 import { Food } from '../food';
+import { ToasterService } from '../toaster.service';
 
 @Component({
   selector: 'app-kitchen',
@@ -41,7 +42,7 @@ export class KitchenComponent implements OnInit {
   items$:Food[];
   time:string[] = new DatePipe('en-US').transform(new Date(),'yyyy-MM-dd-hh-mm-ss').split("-");
 
-  constructor(private kitchenService:KitchenService,private router:Router) {
+  constructor(private kitchenService:KitchenService,private router:Router,private toasterService:ToasterService) {
     
    }
 
@@ -49,17 +50,20 @@ export class KitchenComponent implements OnInit {
     this.kitchenService.getItemsToMake().subscribe((data) => {
       this.items$ = data
       this.timer()
-    }
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
   )
     
   }
 
-  made(madeFood:Food){
+  made(madeFood:Food,foodName:string){
     madeFood.orderedItem.ready=true;
     this.kitchenService.itemMade(madeFood).subscribe((data)=> {
-      this.items$ = data
+      this.items$ = data,
+      this.toasterService.success('Made item',foodName)
       this.timer();
-      }  
+      },
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message),  
     )
   }
 

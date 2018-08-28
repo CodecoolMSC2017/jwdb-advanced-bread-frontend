@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { Table } from '../table';
 import { Seat } from '../seat';
+import { ToasterService } from '../toaster.service';
 
 @Component({
   selector: 'app-seats',
@@ -40,19 +41,21 @@ export class SeatsComponent implements OnInit {
   restaurantId : number;
   table$ : Table;
   seats$ : Seat[];
-  newSeat$ : Seat;
+  newSeats$ : Seat[];
   numOfSeats : number = 0;
   created$ : Seat = new Seat();
 
-  constructor(private route: ActivatedRoute, private data: DataService) {
+  constructor(private route: ActivatedRoute, private data: DataService,private toasterService:ToasterService) {
     this.route.params.subscribe( params => this.tableId = params.tableId)
     this.route.params.subscribe( params => this.restaurantId = params.restaurantId)
    }
 
   ngOnInit() {
-    this.data.getSeats(this.tableId).subscribe(data => this.seats$ = data)
+    this.data.getSeats(this.tableId).subscribe(data => this.seats$ = data,
+      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
 
-    this.data.getTable(this.restaurantId,this.tableId).subscribe(data => this.table$ = data)
+    this.data.getTable(this.restaurantId,this.tableId).subscribe(data => this.table$ = data,
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
   }
 
   show():void{
@@ -66,12 +69,14 @@ export class SeatsComponent implements OnInit {
   }
 
   add(){
-    this.data.postSeat(this.tableId, this.created$,this.numOfSeats).subscribe((data) => {
-      this.newSeat$ = data
-      this.data.getSeats(this.tableId).subscribe(
-        resp => this.seats$ = resp
-      )
-    });
+    this.data.postSeats(this.tableId, this.created$,this.numOfSeats).subscribe((data) => {
+      this.newSeats$ = data
+      this.newSeats$.forEach(element => {
+        this.seats$.push(element)
+      });
+      this.toasterService.success(this.newSeats$.length+' seats added')
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message));
     this.hide();
     this.numOfSeats = 0;
     this.created$ = new Seat();
@@ -83,6 +88,9 @@ export class SeatsComponent implements OnInit {
         this.seats$.splice(this.seats$.indexOf(element),1)
       }
     });
-    this.data.deleteSeat(tableId,seatId).subscribe()
+    this.data.deleteSeat(tableId,seatId).subscribe(()=>{
+      this.toasterService.success('Seat deleted')
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
   }
 }

@@ -6,6 +6,7 @@ import { DataService } from '../data.service';
 import { Table } from '../table';
 import { Profile } from '../profile';
 import { Restaurant } from '../restaurant';
+import { ToasterService } from '../toaster.service';
 
 @Component({
   selector: 'app-waiter-tables',
@@ -44,17 +45,19 @@ export class WaiterTablesComponent implements OnInit {
   restaurant$:Restaurant;
   orders$: any[];
 
-  constructor(private waiterData:WaiterService,private data:DataService,private router:ActivatedRoute,private route: Router) {
+  constructor(private waiterData:WaiterService,private data:DataService,private router:ActivatedRoute,private route: Router,private toasterService:ToasterService) {
     this.router.params.subscribe( (param) => {
        this.restaurantId = param.restaurantId,
       this.data.getProfile().subscribe(
-        data => this.loggedIn$ = data 
+        data => this.loggedIn$ = data ,
+        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )}
   )}
 
   ngOnInit() {
       this.waiterData.getTables().subscribe(
-        data => this.tables$ = data
+        data => this.tables$ = data,
+        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
       )
     } 
     
@@ -62,7 +65,8 @@ export class WaiterTablesComponent implements OnInit {
   assign(table){
     this.waiterData.assign(table).subscribe( () =>{
       this.waiterData.getTables().subscribe(
-        data => this.tables$ = data
+        data => this.tables$ = data,
+        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
       )
     })
   }
@@ -70,7 +74,8 @@ export class WaiterTablesComponent implements OnInit {
   unassign(table){
     this.waiterData.deassign(table).subscribe( () =>{
       this.waiterData.getTables().subscribe(
-        data => this.tables$ = data
+        data => this.tables$ = data,
+        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
       )
     })
   }
@@ -79,7 +84,8 @@ export class WaiterTablesComponent implements OnInit {
     this.waiterData.getOrdersByTable(tableId).subscribe((data) => {
       this.orders$ = data,
       this.showOrderModal()
-    }
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
      
     )
   }
