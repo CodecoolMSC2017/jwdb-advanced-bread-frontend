@@ -24,7 +24,7 @@
             <li><strong>Order {{ order.id }} :</strong></li>
             <li *ngFor = "let customerOrder of order.customerOrderList">
               <ul *ngIf = "order.customerOrderList">
-                <li><strong>Time: </strong>{{ customerOrder.orderingTime[3] }}:{{ customerOrder.orderingTime[4] }}:{{ customerOrder.orderingTime[5] }}</li>
+                <li><strong>Time: </strong>{{ customerOrder.orderingTime }}</li>
                 
                 <li><strong>Item: </strong>{{ customerOrder.orderItem.item.name }}</li>
                 <li><strong>Quantity: </strong>{{ customerOrder.orderItem.quantity }}</li> 

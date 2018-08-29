@@ -68,7 +68,8 @@ export class WaiterTablesComponent implements OnInit {
         data => this.tables$ = data,
         error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
       )
-    })
+    },
+    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
   }
 
   unassign(table){

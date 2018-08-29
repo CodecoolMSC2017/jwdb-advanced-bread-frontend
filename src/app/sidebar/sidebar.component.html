@@ -52,7 +52,7 @@
         </a>
     </li>
     <li class = "menu-button" *ngIf="loggedIn$.role === 'WAITER'">
-      <a routerLink="/waiter/table" [class.activated] = "currentUrl == '/waiter/table'">
+      <a routerLink="waiter/table" [class.activated] = "currentUrl === '/waiter/table'">
         <i class="material-icons">ballot</i><span class = "menu-button-text">TABLES</span>
       </a>
     </li>

@@ -54,6 +54,9 @@ export class MyOrdersComponent implements OnInit {
         this.waiterService.getTables().subscribe((data) => {
           this.allTables$ = data,
           this.myTables = this.getMyTables();
+          if(this.myTables.length === 0){
+            this.toasterService.warning('No tables','Assign yourself to a table first!')
+          }
         },
         error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
