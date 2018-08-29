@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportService } from '../report.service';
+import { ItemService } from '../item.service';
+import { Item } from '../item';
 
 @Component({
   selector: 'app-statistics',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatisticsComponent implements OnInit {
 
-  constructor() { }
+  items:Item[];
+  reports$:any[];
+
+
+  constructor(private reportService:ReportService,private itemService:ItemService) { 
+    this.reportService.getOrdersQuantity()
+  }
 
   ngOnInit() {
   }
