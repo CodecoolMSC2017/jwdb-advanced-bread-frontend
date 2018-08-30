@@ -10,18 +10,18 @@ export class ReportService {
 
   constructor(private http:HttpClient) { }
 
-  getAllRestaurntIncomeAvg(ownerId:number,startDate:string,endDate:string):Observable<any[]>{
+  getAllRestaurntIncomeAvg(startDate:string,endDate:string):Observable<any[]>{
     let paramsList = new HttpParams();
     paramsList = paramsList.append('start',startDate);
     paramsList = paramsList.append('end',endDate)
-    return this.http.get<any[]>("/api/stats/owner/"+ownerId+"/restaurants/avg/income",{params:paramsList})
+    return this.http.get<any[]>("/api/stats/owner/restaurants/avg/income",{params:paramsList})
   }
 
   getAllRestaurntIncomeSum(ownerId:number,startDate:string,endDate:string):Observable<any[]>{
     let paramsList = new HttpParams();
     paramsList = paramsList.append('start',startDate);
     paramsList = paramsList.append('end',endDate)
-    return this.http.get<any[]>("/api/stats/owner/"+ownerId+"/restaurants/sum/income",{params:paramsList})
+    return this.http.get<any[]>("/api/stats/owner/restaurants/sum/income",{params:paramsList})
   }
 
   getOrdersQuantity(restaurantId:number,startDate:string,endDate:string):Observable<any[]>{

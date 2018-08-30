@@ -29,10 +29,10 @@ export class InvoiceComponent implements OnInit,AfterViewChecked {
           payment :{
             transactions: [
               {amount: {
-                total: 5 ,
+                total: this.invoice$.totalPrice ,
                 currency: 'HUF'
               },
-              description:'aaaaa'
+              description:'Restaurant Reciept'
               }
             ]
           }
@@ -40,6 +40,7 @@ export class InvoiceComponent implements OnInit,AfterViewChecked {
       },
       onAuthorize : (data, actions) => {
         return actions.payment.execute().then((payment)=> {
+          this.pay(this.invoice$)
           this.showNotifyModal()
         })
       }
