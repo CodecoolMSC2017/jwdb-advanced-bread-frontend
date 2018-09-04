@@ -4,6 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { DataService } from '../data.service';
 import { ToasterService } from '../toaster.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { PaypalinvoiceService } from '../paypalinvoice.service';
+import { PaypalItem } from '../paypal-item';
+import { element } from 'protractor';
+import { UnitPrice } from '../unit-price';
+import { Tax } from '../tax';
 
 declare let paypal:any;
 
@@ -12,44 +19,15 @@ declare let paypal:any;
   templateUrl: './invoice.component.html',
   styleUrls: ['./invoice.component.scss']
 })
-export class InvoiceComponent implements OnInit,AfterViewChecked {
+export class InvoiceComponent implements OnInit{
 
   invoice$: any;
   tableId:number;
   addSctript:boolean = false;
+  paypalInvoice$:any;
+  base64Image:string;
 
-  paypalConfig = {
-    env: 'sandbox',
-    client : {
-      sandbox: 'AUXwUE4OX3-lc6N6GVZzIe-r_IZVoltBZX0DwT84Qs3MThL3YPASOeU-n_KeYtSc-XQfCbnQc4MmMtCZ'
-      },
-      commit:true,
-      payment : (data, actions) => {
-        return actions.payment.create({
-          payment :{
-            transactions: [
-              {amount: {
-                total: this.invoice$.totalPrice ,
-                currency: 'HUF'
-              },
-              description:'Restaurant Reciept'
-              }
-            ]
-          }
-        })
-      },
-      onAuthorize : (data, actions) => {
-        return actions.payment.execute().then((payment)=> {
-          this.pay(this.invoice$)
-          this.showNotifyModal()
-        })
-      }
-      }
-
-
-
-
-  constructor(private waiterService: WaiterService,private route:ActivatedRoute,private router: Router,private toasterService:ToasterService) {
+  constructor(private waiterService: WaiterService,private route:ActivatedRoute,private router: Router,private toasterService:ToasterService, private paypal:PaypalinvoiceService) {
       this.route.params.subscribe(
         params => this.tableId = params.tableId
       )
@@ -82,22 +60,39 @@ export class InvoiceComponent implements OnInit,AfterViewChecked {
     this.router.navigate(['/my-orders'])
   }
 
-  ngAfterViewChecked():void{
-    if(!this.addSctript){
-      this.addPayPalScript().then(()=> {
-        paypal.Button.render(this.paypalConfig,'#paypal-checkout-button')
-      })
-    }
+  paypalInvoiceGen(){
+    this.paypal.createInvoice(this.makePayPalItems()).subscribe(
+      (data) => {
+        this.paypalInvoice$ = data,
+        this.paypal.senInvoice(this.paypalInvoice$.id).subscribe(() => {
+          this.paypal.getQr(this.paypalInvoice$.id).subscribe(
+          data => this.base64Image = data,
+          err => this.toasterService.error('Error '+err.error.status,err.error.message)
+        )}
+          
+      )
+        },
+      err => this.toasterService.error('Error '+err.error.status,err.error.message)
+    )
   }
 
-  addPayPalScript(){
-this.addSctript=true;
-return new Promise((resolve,reject)=>{
-  let scriptTagElement = document.createElement('script')
-  scriptTagElement.src="https://www.paypalobjects.com/api/checkout.js"
-  scriptTagElement.onload = resolve
-  document.body.appendChild(scriptTagElement)
-})
+
+  makePayPalItems():PaypalItem[]{
+    let paypalItems :PaypalItem[] = [] 
+    this.invoice$.invoiceItemDtos.forEach(element => {
+      let paypalItem = new PaypalItem();
+      paypalItem.unit_price = new UnitPrice()
+      paypalItem.tax = new Tax()
+      paypalItem.name = element.itemName
+      paypalItem.quantity = element.quantity
+      paypalItem.unit_price.currency = "HUF"
+      paypalItem.unit_price.value = (element.unitPrice).toString()
+      paypalItem.tax.name = "Tax"
+      paypalItem.tax.percent = 8
+      paypalItems.push(paypalItem)
+    });
+    console.log(paypalItems)
+    return paypalItems;
   }
 
 }

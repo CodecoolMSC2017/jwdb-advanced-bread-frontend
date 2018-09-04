@@ -3,8 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  access_token: "A21AAGSeTJotx29JBiScajR7MBIBmR__iv_JoyOLmxcB90hWaq8fX17uIrOmSTxyUOToZd2XntU4h21bDcBGWDbrnt502znig"
 };
+
+
 
 /*
  * In development mode, to ignore zone related error stack frames such as
