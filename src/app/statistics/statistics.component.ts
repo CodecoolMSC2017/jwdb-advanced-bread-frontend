@@ -13,7 +13,6 @@ import * as Chart from 'chart.js';
 })
 export class StatisticsComponent implements OnInit {
 
-  items:Item[] = [];
   reports$:any[];
   itemQuantityReport$:any[];
   endDate:string = "2020-01-01";
@@ -44,55 +43,71 @@ export class StatisticsComponent implements OnInit {
     )}
 
     loadItems(itemsReports:any[]){
-      itemsReports.forEach(element=>{
-        this.itemService.getById(element.itemId).subscribe((data)=> {
-          this.items.push(data)
-          if(this.itemQuantityReport$.length === this.items.length){
-            console.log(this.itemQuantityReport$)
-            console.log(this.items)
-            for(let i = 0; i< this.items.length;i++){
-              this.itemsNames.push(this.items[i].name)
-              this.itemQuantityReport$.forEach(element => {
-                if(this.items[i].id === element.itemId){
-                   this.itemsQuantity.push(this.itemQuantityReport$[i].itemQuantity)
-                }
-              });
-             
-            }
-            this.makeBestSellerChart()
-          }
-        },err=> this.toasterService.error("ERROR "+err.error.status,err.error.message));
-      },
-      
-    )
+      itemsReports.forEach(element => {
+        this.itemsNames.push(element.itemName)
+        this.itemsQuantity.push(element.itemQuantity)
+      })
+      this.makeBestSellerChart();
     }
-    makeBestSellerChart(){
-      this.barChart=new Chart('barchart',{type: 'bar',
-      data: {
-      labels: this.itemsNames,
-      datasets: [{
-          label: ' # of sells',
-          data: this.itemsQuantity,
-          backgroundColor:this.randomColors(this.itemsQuantity.length),
-          borderColor: this.borderColorsArray,
-          borderWidth: 1
-      }]
-  },
-  options: {
-      scales: {
-          yAxes: [{
+      
+  makeBestSellerChart(){
+    this.barChart=new Chart('barchart-bestsellers',{type: 'bar',
+    data: {
+    labels: this.itemsNames,
+    datasets: [{
+        label: ' # of sells',
+        data: this.itemsQuantity,
+        backgroundColor:this.randomColors(this.itemsQuantity.length),
+        borderColor: this.borderColorsArray,
+        borderWidth: 1
+    }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }],
+            xAxes:[{
               ticks: {
-                  beginAtZero:true
+                display:false
               }
-          }],
-          xAxes:[{
-            ticks: {
-              display:false
-            }
-          }]
-      }
+            }]
+        }
+    }
+  })
   }
-})}
+
+
+  makeDailyIncomeChart(){
+    this.barChart=new Chart('barchart-dailyincome',{type: 'bar',
+    data: {
+    labels: this.itemsNames,
+    datasets: [{
+        label: ' # of sells',
+        data: this.itemsQuantity,
+        backgroundColor:this.randomColors(this.itemsQuantity.length),
+        borderColor: this.borderColorsArray,
+        borderWidth: 1
+    }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }],
+            xAxes:[{
+              ticks: {
+                display:false
+              }
+            }]
+        }
+    }
+  })
+  }
 
   randomColors(counter:number):string[]{
     let randomColors:string[] = []
