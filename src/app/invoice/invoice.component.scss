@@ -21,6 +21,10 @@
         height: 60px;
         width:60px;
     }
+    .qr{
+        height:150px;
+        width:150px;
+    }
 }
 
 .about{
@@ -187,4 +191,26 @@ td {
 
 .hidden {
     display: none;
+}
+
+.qr-display{
+    
+    
+    .qr-display-li{
+    margin-left:285px;
+       width:270px;
+       height:270px; 
+       ul{
+        
+           li{
+               span{
+                   img{
+                       width:275px;
+                       height:275px;
+                       margin-top:-20px;
+                   }
+               }
+           }
+       }
+    }
 }

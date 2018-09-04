@@ -11,7 +11,7 @@ import { PaypalItem } from '../paypal-item';
 import { element } from 'protractor';
 import { UnitPrice } from '../unit-price';
 import { Tax } from '../tax';
-
+import { DomSanitizer } from '@angular/platform-browser';
 declare let paypal:any;
 
 @Component({
@@ -26,17 +26,25 @@ export class InvoiceComponent implements OnInit{
   addSctript:boolean = false;
   paypalInvoice$:any;
   base64Image:string;
+  access_token:string = environment.access_token
 
-  constructor(private waiterService: WaiterService,private route:ActivatedRoute,private router: Router,private toasterService:ToasterService, private paypal:PaypalinvoiceService) {
+  constructor(private waiterService: WaiterService,private route:ActivatedRoute,private router: Router,private toasterService:ToasterService, private paypal:PaypalinvoiceService, private _DomSanitizationService: DomSanitizer) {
       this.route.params.subscribe(
         params => this.tableId = params.tableId
       )
+      
       
    }
 
   ngOnInit() {
     this.waiterService.createInvoice(this.tableId).subscribe(
-      data => this.invoice$ = data,
+      (data) => {
+        this.invoice$ = data
+        /*this.paypal.getAccessToken().subscribe((data) => {
+          this.access_token = data.access_token
+        })*/
+        this.paypalInvoiceGen(this.access_token)
+      },
       error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
   }
@@ -60,13 +68,15 @@ export class InvoiceComponent implements OnInit{
     this.router.navigate(['/my-orders'])
   }
 
-  paypalInvoiceGen(){
-    this.paypal.createInvoice(this.makePayPalItems()).subscribe(
+  paypalInvoiceGen(access_token:string){
+    this.paypal.createInvoice(this.makePayPalItems(),access_token).subscribe(
       (data) => {
         this.paypalInvoice$ = data,
-        this.paypal.senInvoice(this.paypalInvoice$.id).subscribe(() => {
-          this.paypal.getQr(this.paypalInvoice$.id).subscribe(
-          data => this.base64Image = data,
+        this.paypal.senInvoice(this.paypalInvoice$.id,access_token).subscribe(() => {
+          this.paypal.getQr(this.paypalInvoice$.id,access_token).subscribe(
+          data => this.base64Image = 'data:image/png;base64, '+data.image
+          ,
+          
           err => this.toasterService.error('Error '+err.error.status,err.error.message)
         )}
           
@@ -88,10 +98,9 @@ export class InvoiceComponent implements OnInit{
       paypalItem.unit_price.currency = "HUF"
       paypalItem.unit_price.value = (element.unitPrice).toString()
       paypalItem.tax.name = "Tax"
-      paypalItem.tax.percent = 8
+      paypalItem.tax.percent = 0
       paypalItems.push(paypalItem)
     });
-    console.log(paypalItems)
     return paypalItems;
   }
 

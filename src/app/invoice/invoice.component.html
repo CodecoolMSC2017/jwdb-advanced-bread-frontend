@@ -15,6 +15,7 @@
       </div>
       <div class="logo">
         <span><img src="/assets/bread.png"></span>
+        
       </div>
     </li>
     <li><strong>Date: </strong> {{ invoice$.created }}</li>
@@ -39,10 +40,19 @@
     <li class="borders"></li>
      <li>
           <a (click)="pay(invoice$)"><span class="pay-button"><button>PAY</button></span></a>
-          <a (click)="paypalInvoiceGen()"><span class="pay-button"><button>PAYPAL</button></span></a>
       </li>
   </ul>
 </li>
+</ul>
+
+<ul class="qr-display" *ngIf="base64Image">
+  <li class="qr-display-li">
+    <ul>
+      <li>
+        <span ><img class="qr" [src]="_DomSanitizationService.bypassSecurityTrustUrl(base64Image)"></span>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 

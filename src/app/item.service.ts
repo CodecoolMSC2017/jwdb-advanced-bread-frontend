@@ -28,7 +28,7 @@ export class ItemService {
   }
 
   getById(itemId:number):Observable<Item>{
-    return this.http.get<Item>('api/owner/restaurant/{restaurantId}/item/'+itemId)
+    return this.http.get<Item>('api/owner/restaurant/1/item/'+itemId)
   }
 
   postItem(newItem:Item,restaurantId:number):Observable<Item>{

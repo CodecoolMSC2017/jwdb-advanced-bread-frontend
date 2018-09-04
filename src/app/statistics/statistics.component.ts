@@ -13,7 +13,7 @@ import * as Chart from 'chart.js';
 })
 export class StatisticsComponent implements OnInit {
 
-  items:Item[];
+  items:Item[] = [];
   reports$:any[];
   itemQuantityReport$:any[];
   endDate:string = "2020-01-01";
@@ -21,61 +21,71 @@ export class StatisticsComponent implements OnInit {
   restaurantId:number = 1;
   barChart = [];
   borderColorsArray: string[]
+  itemsNames:string[] = []
+  itemsQuantity:number[] = []
 
   constructor(private reportService:ReportService,private itemService:ItemService,private toasterService:ToasterService) { 
     
   }
 
   ngOnInit() {
-    this.loadItems(this.itemQuantityReport$);
+    
     this.getOrdersQuantityReport()
+  
   }
   getOrdersQuantityReport(){
     this.reportService.getOrdersQuantity(this.restaurantId,this.startDate,this.endDate).subscribe(
       (data)=>{
         this.itemQuantityReport$ = data
+        this.loadItems(this.itemQuantityReport$);
 
       },
       err => this.toasterService.error("ERROR"+err.error.status,err.error.message)
     )}
 
     loadItems(itemsReports:any[]){
-      /*itemsReports.forEach(element=>{
-        this.itemService.getById(element.itemId).subscribe(data=> this.items.push(data),err=> this.toasterService.error("ERROR "+err.error.status,err.error.message));
-      })*/
-
-      this.barChart=new Chart('barchart',{
-       type:'bar',
-       data:{
-         labels:["Red","Blue","Yellow","Green","Purple","Orange"],
-         datasets:[{
-          label:'# of votes',
-          data:[9,7,3,5,2,10],
-          backgroundColor:this.randomColors(6),
-          borderColor:this.borderColorsArray,
-          borderWidth:1
-         }],
-         options:{
-           title:{
-             text:"Bar chart",
-             display:true
-           },
-           scales:{
-             yAxes:[{
-               ticks:{
-                 beginAtZesro:true
-               }
-             }]
-           }
-         }
-       }
-      })
+      itemsReports.forEach(element=>{
+        this.itemService.getById(element.itemId).subscribe((data)=> {
+          this.items.push(data)
+          if(this.itemQuantityReport$.length === this.items.length){
+            for(let i = 0; i< this.items.length;i++){
+              this.itemsNames.push(this.items[i].name)
+              this.itemsQuantity.push(this.itemQuantityReport$[i].itemQuantity)
+            }
+            this.makeBestSellerChart()
+          }
+        },err=> this.toasterService.error("ERROR "+err.error.status,err.error.message));
+      },
+      
+    )
     }
+    makeBestSellerChart(){
+      this.barChart=new Chart('barchart',{type: 'bar',
+      data: {
+      labels: this.itemsNames,
+      datasets: [{
+          label: ' # of sells',
+          data: this.itemsQuantity,
+          backgroundColor:this.randomColors(this.itemsQuantity.length),
+          borderColor: this.borderColorsArray,
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero:true
+              }
+          }]
+      }
+  }
+})}
 
   randomColors(counter:number):string[]{
     let randomColors:string[] = []
     for(let i = 0;i<counter;i++){
-      let color:string = "rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+",0.2)"
+      let color:string = "rgba("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+",0.2)"
       randomColors.push(color)
     }
     this.borderColors(randomColors)

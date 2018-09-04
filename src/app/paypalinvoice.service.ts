@@ -11,10 +11,10 @@ export class PaypalinvoiceService {
 
   constructor(private http:HttpClient) { }
 
-  createInvoice(paypalItems:PaypalItem[]){
+  createInvoice(paypalItems:PaypalItem[],access_token:string){
   let header = new HttpHeaders();
   header = header.append('Content-Type','application/json');
-  header = header.append('Authorization',"Bearer "+environment.access_token)
+  header = header.append('Authorization',"Bearer "+access_token)
   return this.http.post("https://api.sandbox.paypal.com/v1/invoicing/invoices",
 
   {
@@ -30,23 +30,34 @@ export class PaypalinvoiceService {
     },
     "items": paypalItems,
     "note": "Thank you for your business.",
-    "terms": "No refunds after 30 days."
+    "terms": "No refunds after 30 days.",
+    "allow_tip":true
   },{ headers:header})
 }
 
-getQr(invoiceId:string):Observable<string>{
+getQr(invoiceId:string,access_token:string):Observable<any>{
   let header = new HttpHeaders();
   header = header.append('Content-Type','application/json')
-  header = header.append('Authorization',"Bearer "+environment.access_token)
-  return this.http.get<string>('https://api.sandbox.paypal.com/v1/invoicing/invoices/'+invoiceId+'/qr-code',{headers:header})
+  header = header.append('Authorization',"Bearer "+access_token)
+  return this.http.get<any>('https://api.sandbox.paypal.com/v1/invoicing/invoices/'+invoiceId+'/qr-code',{headers:header})
 }
 
 
-senInvoice(invoiceId:string):Observable<void>{
+senInvoice(invoiceId:string,access_token:string):Observable<void>{
   let header = new HttpHeaders();
   header = header.append('Content-Type','application/json')
-  header = header.append('Authorization',"Bearer "+environment.access_token)
+  header = header.append('Authorization',"Bearer "+access_token)
   return this.http.post<void>('https://api.sandbox.paypal.com/v1/invoicing/invoices/'+invoiceId+'/send',{params : new HttpParams().set('notify_customer','false')},{headers:header})
+}
+
+getAccessToken():Observable<any>{
+  let header = new HttpHeaders({
+    'Authorization': 'Basic'+ window.btoa('AUXwUE4OX3-lc6N6GVZzIe-r_IZVoltBZX0DwT84Qs3MThL3YPASOeU-n_KeYtSc-XQfCbnQc4MmMtCZ:EM6JzkeBgz7qI93EZAgzi8WKzJkvqdWatEGSxkCt-OEHm3KRy8PjZGI0teDNOW4n4pyNOdKGpR_aDBGO')
+  })
+  header = header.append('Accept','application/json')
+  header = header.append('Accept-Language','en_US')
+  header = header.append('Content-Type','application/x-www-form-urlencoded')
+  return this.http.post<any>('https://api.sandbox.paypal.com/v1/oauth2/token',{grant_type:'client_credentials'},{headers:header})
 }
 
 

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  access_token: "A21AAGSeTJotx29JBiScajR7MBIBmR__iv_JoyOLmxcB90hWaq8fX17uIrOmSTxyUOToZd2XntU4h21bDcBGWDbrnt502znig"
+  access_token: "A21AAHlmf_juHBl8ZLg1kXwaa41_qg0Nz2CSTcxZg71-HjXWWePXbbvIvdYWapPR7rmeA7tEnlPANA-XNHnX-dp-cjG5MUT0A"
 };
 
 
