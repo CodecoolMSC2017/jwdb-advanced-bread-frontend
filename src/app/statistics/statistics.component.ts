@@ -20,7 +20,7 @@ export class StatisticsComponent implements OnInit {
   startDate:string = "2010-01-01";
   restaurantId:number = 1;
   barChart = [];
-  borderColorsArray: string[]
+  borderColorsArray: string[] = []
   itemsNames:string[] = []
   itemsQuantity:number[] = []
 
@@ -48,9 +48,16 @@ export class StatisticsComponent implements OnInit {
         this.itemService.getById(element.itemId).subscribe((data)=> {
           this.items.push(data)
           if(this.itemQuantityReport$.length === this.items.length){
+            console.log(this.itemQuantityReport$)
+            console.log(this.items)
             for(let i = 0; i< this.items.length;i++){
               this.itemsNames.push(this.items[i].name)
-              this.itemsQuantity.push(this.itemQuantityReport$[i].itemQuantity)
+              this.itemQuantityReport$.forEach(element => {
+                if(this.items[i].id === element.itemId){
+                   this.itemsQuantity.push(this.itemQuantityReport$[i].itemQuantity)
+                }
+              });
+             
             }
             this.makeBestSellerChart()
           }
@@ -77,6 +84,11 @@ export class StatisticsComponent implements OnInit {
               ticks: {
                   beginAtZero:true
               }
+          }],
+          xAxes:[{
+            ticks: {
+              display:false
+            }
           }]
       }
   }
