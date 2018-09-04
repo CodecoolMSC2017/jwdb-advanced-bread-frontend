@@ -26,7 +26,7 @@ export class InvoiceComponent implements OnInit{
   addSctript:boolean = false;
   paypalInvoice$:any;
   base64Image:string;
-  access_token:string = environment.access_token
+  access_token:string;
 
   constructor(private waiterService: WaiterService,private route:ActivatedRoute,private router: Router,private toasterService:ToasterService, private paypal:PaypalinvoiceService, private _DomSanitizationService: DomSanitizer) {
       this.route.params.subscribe(
@@ -40,13 +40,17 @@ export class InvoiceComponent implements OnInit{
     this.waiterService.createInvoice(this.tableId).subscribe(
       (data) => {
         this.invoice$ = data
-        /*this.paypal.getAccessToken().subscribe((data) => {
+        this.paypal.getAccessToken().subscribe((data) => {
           this.access_token = data.access_token
-        })*/
-        this.paypalInvoiceGen(this.access_token)
+          console.log(this.access_token)
+          this.paypalInvoiceGen(this.access_token)
+        },
+          err => this.toasterService.error('Error '+err.error.status,err.error.message))
       },
       error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
     )
+
+    
   }
 
   pay(invoice){
@@ -75,9 +79,7 @@ export class InvoiceComponent implements OnInit{
         this.paypal.senInvoice(this.paypalInvoice$.id,access_token).subscribe(() => {
           this.paypal.getQr(this.paypalInvoice$.id,access_token).subscribe(
           data => this.base64Image = 'data:image/png;base64, '+data.image
-          ,
-          
-          err => this.toasterService.error('Error '+err.error.status,err.error.message)
+          ,err => this.toasterService.error('Error '+err.error.status,err.error.message)
         )}
           
       )

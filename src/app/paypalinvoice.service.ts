@@ -51,13 +51,14 @@ senInvoice(invoiceId:string,access_token:string):Observable<void>{
 }
 
 getAccessToken():Observable<any>{
-  let header = new HttpHeaders({
-    'Authorization': 'Basic'+ window.btoa('AUXwUE4OX3-lc6N6GVZzIe-r_IZVoltBZX0DwT84Qs3MThL3YPASOeU-n_KeYtSc-XQfCbnQc4MmMtCZ:EM6JzkeBgz7qI93EZAgzi8WKzJkvqdWatEGSxkCt-OEHm3KRy8PjZGI0teDNOW4n4pyNOdKGpR_aDBGO')
-  })
+  let header = new HttpHeaders(
+    
+  )
+  header = header.append('Authorization', 'Basic '+ btoa(environment.CLIENT_ID+':'+environment.SECTRET_KEY));
+  header = header.append("Content-Type", "application/x-www-form-urlencoded");
   header = header.append('Accept','application/json')
   header = header.append('Accept-Language','en_US')
-  header = header.append('Content-Type','application/x-www-form-urlencoded')
-  return this.http.post<any>('https://api.sandbox.paypal.com/v1/oauth2/token',{grant_type:'client_credentials'},{headers:header})
+  return this.http.post<any>('https://api.sandbox.paypal.com/v1/oauth2/token','grant_type=client_credentials',{headers:header})
 }
 
 
