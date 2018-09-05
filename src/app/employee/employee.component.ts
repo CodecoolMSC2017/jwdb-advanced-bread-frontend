@@ -57,16 +57,16 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
     this.data.getEmployeesByRestaurant(this.restaurantId).subscribe(
       data => this.employees$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
     this.data.getRestaurant(this.restaurantId).subscribe(
       data => this.restaurant$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
 
     this.data.getProfile().subscribe(
       data => this.loggedIn$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 
@@ -91,7 +91,7 @@ export class EmployeeComponent implements OnInit {
       this.data.getEmployeesByRestaurant(this.restaurantId).subscribe(
       data => this.employees$ = data
     )},
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     
   )}
 
@@ -100,9 +100,9 @@ export class EmployeeComponent implements OnInit {
       this.toasterService.success('Employee deleted')
       this.data.getEmployeesByRestaurant(restaurantId).subscribe(
         data => this.employees$ = data,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
   }
 }

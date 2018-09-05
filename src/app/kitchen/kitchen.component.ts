@@ -51,7 +51,7 @@ export class KitchenComponent implements OnInit {
       this.items$ = data
       this.timer()
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
   )
     
   }
@@ -63,7 +63,7 @@ export class KitchenComponent implements OnInit {
       this.toasterService.success('Made item',foodName)
       this.timer();
       },
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message),  
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message),  
     )
   }
 

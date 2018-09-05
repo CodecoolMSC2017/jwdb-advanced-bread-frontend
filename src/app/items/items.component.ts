@@ -51,11 +51,11 @@ export class ItemsComponent implements OnInit {
       this.restaurantId = params.restaurantId
       this.restaurantService.getRestaurant(this.restaurantId).subscribe(
         data => this.restaurant$ = data,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
       itemService.getAllItems(this.restaurantId).subscribe(
         data => this.items$ = data,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
     })
    }
@@ -72,7 +72,7 @@ export class ItemsComponent implements OnInit {
       this.items$.push(data),
       this.toasterService.success('Item added to '+this.restaurant$.name)
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
     this.newItem = new Item();
     this.hide()
   }
@@ -85,7 +85,7 @@ export class ItemsComponent implements OnInit {
       }
     });
     this.itemService.deleteItem(this.restaurantId,itemId).subscribe(() => {this.toasterService.success('Item deleted')},
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
   }
 
   includeString(item:Item):boolean{

@@ -47,7 +47,7 @@ export class InvoiceComponent implements OnInit{
         },
           err => this.toasterService.error('Error '+err.error.status,err.error.message))
       },
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
 
     
@@ -57,7 +57,7 @@ export class InvoiceComponent implements OnInit{
     this.waiterService.pay(invoice).subscribe(() => {
       this.showNotifyModal()
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message) 
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message) 
     )
   }
 

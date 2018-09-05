@@ -50,14 +50,14 @@ export class WaiterTablesComponent implements OnInit {
        this.restaurantId = param.restaurantId,
       this.data.getProfile().subscribe(
         data => this.loggedIn$ = data ,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )}
   )}
 
   ngOnInit() {
       this.waiterData.getTables().subscribe(
         data => this.tables$ = data,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
     } 
     
@@ -66,17 +66,17 @@ export class WaiterTablesComponent implements OnInit {
     this.waiterData.assign(table).subscribe( () =>{
       this.waiterData.getTables().subscribe(
         data => this.tables$ = data,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
   }
 
   unassign(table){
     this.waiterData.deassign(table).subscribe( () =>{
       this.waiterData.getTables().subscribe(
         data => this.tables$ = data,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
     })
   }
@@ -86,7 +86,7 @@ export class WaiterTablesComponent implements OnInit {
       this.orders$ = data,
       this.showOrderModal()
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
      
     )
   }

@@ -57,10 +57,10 @@ export class RestaurantsComponent implements OnInit {
         this.loggedIn$ = data
         this.data.getRestaurants().subscribe(
          data => this.restaurants$ = data,
-         error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+         error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
        )
       },
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 
@@ -82,10 +82,10 @@ export class RestaurantsComponent implements OnInit {
       this.toasterService.success('Restaurant added')
       this.data.getRestaurants().subscribe(
         resp => this.restaurants$ = resp,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message));
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message));
     this.hide()
     this.address$ = new Address()
     this.created$ = new Restaurant()

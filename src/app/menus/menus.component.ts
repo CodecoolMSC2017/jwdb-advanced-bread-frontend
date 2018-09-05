@@ -56,7 +56,7 @@ export class MenusComponent implements OnInit {
   ngOnInit() {
     this.data.getMenus(this.restaurantId).subscribe(
       data => this.menus$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 
@@ -90,10 +90,10 @@ export class MenusComponent implements OnInit {
     this.data.postMenu(this.created$).subscribe((data) => {
       this.newMenu$ = data,
 
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       this.data.getMenus(this.restaurantId).subscribe(
         data => this.menus$ = data,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
     });
     this.hideAdd();
@@ -104,7 +104,7 @@ export class MenusComponent implements OnInit {
     this.data.deleteMenu(menuId).subscribe(() => {
       this.data.getMenus(this.restaurantId).subscribe(
         data => this.menus$ = data,
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
     }
     )
@@ -116,9 +116,9 @@ export class MenusComponent implements OnInit {
           this.menu$ = data,
             this.show()
         },
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
   }
   getIngredientsByItemId(itemId, restaurantId, menuId) {
     this.data.getIngredientsByItemId(itemId, restaurantId).subscribe((data) => {
@@ -129,22 +129,22 @@ export class MenusComponent implements OnInit {
             this.menu$ = data,
               this.show()
           },
-          error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+          error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
       },
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
   }
 
   activate(restaurantId,menu){
     this.data.changeMenuActivity(restaurantId,menu).subscribe(() => {
       this.data.getMenus(restaurantId).subscribe(
         data => this.menus$ = data,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       )
       this.toasterService.success(menu.title+' Activated')
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
       
     
     )
@@ -156,18 +156,18 @@ export class MenusComponent implements OnInit {
         
         this.data.getMenus(restaurantId).subscribe(
           data => this.menus$ = data,
-          error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+          error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
         )
         this.toasterService.success(menu.title+' Deactivated')
       },
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     );
   }
 
   getAllItems(restaurantId) {
     this.data.getAllItems(restaurantId).subscribe(
       data => this.allItems$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 }

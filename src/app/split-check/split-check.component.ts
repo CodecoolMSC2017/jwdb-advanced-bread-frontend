@@ -31,14 +31,14 @@ export class SplitCheckComponent implements OnInit {
   ngOnInit() {
     this.dataService.getSeats(this.tableId).subscribe(
       data => this.seats$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message) 
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message) 
     )
   }
 
   createInvoice(){
     this.waiterService.splitInvoice(this.seatIds).subscribe(
       data => this.invoice$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message) 
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message) 
     )
     
   }

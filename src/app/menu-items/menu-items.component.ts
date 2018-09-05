@@ -57,7 +57,7 @@ export class MenuItemsComponent implements OnInit {
       });
     this.menuService.getMenu(this.menuId).subscribe(
       data => this.currentMenu$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
     this.getAddableItems()
   }
@@ -69,7 +69,7 @@ export class MenuItemsComponent implements OnInit {
   addItem(item:Item){
     this.menuService.addNewItemToMenu(this.menuId,item).subscribe(
       data => this.currentMenu$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
     this.addableItems$.splice(this.addableItems$.indexOf(item),1);
     this.toasterService.success(item.name+' added to '+this.currentMenu$.title)
 
@@ -78,14 +78,14 @@ export class MenuItemsComponent implements OnInit {
   getAddableItems(){
     this.itemService.getAddableItems(this.restaurantId,this.menuId).subscribe(
       data => this.addableItems$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 
   delete(itemId){
     this.itemService.getById(itemId).subscribe(
       data => this.addableItems$.push(data),
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
     this.currentMenu$.items.forEach(element => {
       if(element.id === itemId){
@@ -97,7 +97,7 @@ export class MenuItemsComponent implements OnInit {
         this.getAddableItems()
         this.toasterService.success('Item deleted')
       },
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 

@@ -45,19 +45,20 @@ export class OrdersComponent implements OnInit {
   ngOnInit() {
     this.data.getRestaurants().subscribe(
       data => this.restaurants$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 
   getOrdersByRestaurant(restaurantId){
+    this.orders$ = []
     this.data.getOrders(restaurantId).subscribe(
       data => this.orders$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
 
     this.data.getRestaurant(restaurantId).subscribe(
       data => this.currentRestaurant$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
     
   }

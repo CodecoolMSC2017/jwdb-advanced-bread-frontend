@@ -52,11 +52,11 @@ export class TablesComponent implements OnInit {
   ngOnInit() {
     this.data.getTables(this.restaurantId).subscribe(
       data => this.tables$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
     this.data.getRestaurant(this.restaurantId).subscribe(
       data => this.restaurant$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 
@@ -73,12 +73,9 @@ export class TablesComponent implements OnInit {
   add(){
     this.data.postTable(this.restaurantId, this.created$).subscribe((data) => {
       this.newTable$ = data,
-      this.data.getTables(this.restaurantId).subscribe(
-        resp => this.tables$ = resp,
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
-      )
+      this.tables$.push(this.newTable$)
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message));
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message));
     this.hide();
     this.created$ = new Table();
   }

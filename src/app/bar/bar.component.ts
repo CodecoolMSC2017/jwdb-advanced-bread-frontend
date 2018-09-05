@@ -40,7 +40,7 @@ export class BarComponent implements OnInit {
   constructor(private barService:BarService,private toasterService:ToasterService) { 
     this.barService.getItemsToMake().subscribe(
       data => this.items$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 
@@ -54,6 +54,6 @@ export class BarComponent implements OnInit {
         this.items$ = data
         this.toasterService.success('CREATED ITEM',madeItemName)
       },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
   }
 }

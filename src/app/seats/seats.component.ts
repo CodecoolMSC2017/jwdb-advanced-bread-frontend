@@ -52,10 +52,10 @@ export class SeatsComponent implements OnInit {
 
   ngOnInit() {
     this.data.getSeats(this.tableId).subscribe(data => this.seats$ = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
 
     this.data.getTable(this.restaurantId,this.tableId).subscribe(data => this.table$ = data,
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
   }
 
   show():void{
@@ -70,13 +70,10 @@ export class SeatsComponent implements OnInit {
 
   add(){
     this.data.postSeats(this.tableId, this.created$,this.numOfSeats).subscribe((data) => {
-      this.newSeats$ = data
-      this.newSeats$.forEach(element => {
-        this.seats$.push(element)
-      });
-      this.toasterService.success(this.newSeats$.length+' seats added')
+      this.seats$ = data
+      this.toasterService.success(data.length+' seats added')
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message));
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message));
     this.hide();
     this.numOfSeats = 0;
     this.created$ = new Seat();
@@ -91,6 +88,6 @@ export class SeatsComponent implements OnInit {
     this.data.deleteSeat(tableId,seatId).subscribe(()=>{
       this.toasterService.success('Seat deleted')
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message))
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message))
   }
 }

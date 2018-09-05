@@ -58,10 +58,10 @@ export class MyOrdersComponent implements OnInit {
             this.toasterService.warning('No tables','Assign yourself to a table first!')
           }
         },
-        error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+        error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
     },
-    error => this.toasterService.error('ERROR '+error.error.staus,error.error.message) 
+    error => this.toasterService.error('ERROR '+error.error.status,error.error.message) 
     )}
 
     
@@ -73,7 +73,7 @@ export class MyOrdersComponent implements OnInit {
   getOrdersByTable(tableId){
     this.waiterService.getOrdersByTable(tableId).subscribe(
       data => this.myTables = data,
-      error => this.toasterService.error('ERROR '+error.error.staus,error.error.message)
+      error => this.toasterService.error('ERROR '+error.error.status,error.error.message)
     )
   }
 
